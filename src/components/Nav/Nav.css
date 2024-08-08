@@ -4,6 +4,8 @@
   align-items: center;
   padding: 10px 20px;
   background-color: #4AC7CF;
+  position: fixed;
+  width: 100%;
 }
 
 .navbar-logo img {
