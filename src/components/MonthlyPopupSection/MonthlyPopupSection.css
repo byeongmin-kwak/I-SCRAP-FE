@@ -1,0 +1,79 @@
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-weight: 300;
+  src: url('../../fonts/Noto_Sans_KR/NotoSansKR-Bold.otf') format('woff2'),
+    url('../../fonts/Noto_Sans_KR/NotoSansKR-Bold.otf') format('woff'),
+    url('../../fonts/Noto_Sans_KR/NotoSansKR-Bold.otf') format('truetype');
+}
+
+.monthly-popup-section {
+  display: flex;
+  justify-content:left;
+  align-items: center;
+  margin-top: 200px;
+  margin-bottom: 50px;
+  margin-right: 150px;
+}
+
+.top-image {
+  width: 1500px;
+  display: block;
+  position: absolute;
+  top: 701px;
+}
+
+.left-section {
+  margin-top: 50px;
+  position: relative;
+  flex: 1;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image {
+  width: 350px;
+  height: auto;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 10%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 42px;
+  color: #4AC7CF;
+  text-align: left;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  flex: 2;
+  overflow: hidden;
+}
+
+.arrow-btn {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.arrow-btn img {
+  width: 50px;
+}
+
+
+.card {
+  width: 170px;
+  height: 250px;
+  background-color: #4AC7CF;
+  padding: 20px;
+  border-radius: 8px;
+  scroll-snap-align: center;
+  text-align: center;
+  color: white;
+}

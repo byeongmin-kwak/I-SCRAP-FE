@@ -6,6 +6,7 @@
   background-color: #4AC7CF;
   position: fixed;
   width: 100%;
+  z-index: 100;
 }
 
 .navbar-logo img {
