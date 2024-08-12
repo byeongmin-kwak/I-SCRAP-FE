@@ -37,45 +37,47 @@ const MonthlyPopupSection = () => {
   return (
     <div className="monthly-popup-section">
       <img src={topImage} alt="topImage" className="top-image" />
-      <div className="left-section">
-        <div className="image-container">
-          <img src={image} alt="image" className="image" />
-          <div className="text-overlay">
-            '{currentMonth}월'의 <br></br> &nbsp;팝업
+      <div className="main-container">
+        <div className="left-section">
+          <div className="image-container">
+            <img src={image} alt="image" className="image" />
+            <div className="text-overlay">
+              '{currentMonth}월'의 <br></br> &nbsp;팝업
+            </div>
           </div>
         </div>
-      </div>
-      <div className="right-section">
-        <button className="arrow-btn" onClick={handlePrev}>
-          <img src={leftButton} alt="leftButton" />
-        </button>
-        <Swiper
-          modules={[Autoplay]}
-          spaceBetween={30}
-          slidesPerView={3}
-          onSwiper={(e) => {
-            setSwiper(e);
-          }}
-          autoplay={{
-            // 자동 재생
-            delay: 4000, // 지연 시간 (한 슬라이더에 머물르는 시간)
-            disableOnInteraction: false, // 마우스 제어 이후 자동 재생을 막을지 말지
-            loop: true,
-          }}
-          speed={500} // 슬라이더 넘어가는 속도
-        >
-          {dummyData.map((item) => (
-            <SwiperSlide key={item.id}>
-              <div className="card">
-                <img src={item.imgSrc} alt={item.title} />
-                <p>{item.title}</p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <button className="arrow-btn" onClick={handleNext}>
-          <img src={rightButton} alt="rightButton" />
-        </button>
+        <div className="right-section">
+          <button className="arrow-btn" onClick={handlePrev}>
+            <img src={leftButton} alt="leftButton" />
+          </button>
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={30}
+            slidesPerView={3}
+            onSwiper={(e) => {
+              setSwiper(e);
+            }}
+            autoplay={{
+              // 자동 재생
+              delay: 4000, // 지연 시간 (한 슬라이더에 머물르는 시간)
+              disableOnInteraction: false, // 마우스 제어 이후 자동 재생을 막을지 말지
+              loop: true,
+            }}
+            speed={500} // 슬라이더 넘어가는 속도
+          >
+            {dummyData.map((item) => (
+              <SwiperSlide key={item.id}>
+                <div className="card">
+                  <img src={item.imgSrc} alt={item.title} />
+                  <p>{item.title}</p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <button className="arrow-btn" onClick={handleNext}>
+            <img src={rightButton} alt="rightButton" />
+          </button>
+        </div>
       </div>
     </div>
   );

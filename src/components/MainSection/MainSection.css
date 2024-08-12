@@ -4,6 +4,9 @@
   align-items: center;
   padding: 100px 100px;
   background-color: #4AC7CF;
+  height: 100vh;
+  width: 100%; 
+  box-sizing: border-box;
 }
 
 .main-content {
