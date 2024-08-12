@@ -1,19 +1,19 @@
 import React from "react";
-import "./Nav.css";
+import style from "./Nav.module.css";
 import logo from "../../assets/logo.svg";
 
 const Nav = () => {
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
+    <nav className={style.navbar}>
+      <div className={style.navbarLogo}>
         <img src={logo} alt="Logo" />
       </div>
-      <ul className="navbar-menu">
+      <ul className={style.navbarMenu}>
         <li>지도</li>
         <li>찾기</li>
         <li>기록</li>
         <li>My</li>
-        <li className="login-button">login / join</li>
+        <li className={style.loginButton}>login / join</li>
       </ul>
     </nav>
   );

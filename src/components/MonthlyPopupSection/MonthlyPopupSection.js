@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./MonthlyPopupSection.css";
+import style from "./MonthlyPopupSection.module.css";
 import topImage from "../../assets/image2.svg";
 import image from "../../assets/image3.svg";
 import leftButton from "../../assets/leftButton.svg";
@@ -35,19 +35,19 @@ const MonthlyPopupSection = () => {
   };
 
   return (
-    <div className="monthly-popup-section">
-      <img src={topImage} alt="topImage" className="top-image" />
-      <div className="main-container">
-        <div className="left-section">
-          <div className="image-container">
-            <img src={image} alt="image" className="image" />
-            <div className="text-overlay">
+    <div className={style.monthlyPopupSection}>
+      <img src={topImage} alt="topImage" className={style.topImage} />
+      <div className={style.mainContainer}>
+        <div className={style.leftSection}>
+          <div className={style.imageContainer}>
+            <img src={image} alt="image" className={style.image} />
+            <div className={style.textOverlay}>
               '{currentMonth}월'의 <br></br> &nbsp;팝업
             </div>
           </div>
         </div>
-        <div className="right-section">
-          <button className="arrow-btn" onClick={handlePrev}>
+        <div className={style.rightSection}>
+          <button className={style.arrowBtn} onClick={handlePrev}>
             <img src={leftButton} alt="leftButton" />
           </button>
           <Swiper
@@ -67,14 +67,14 @@ const MonthlyPopupSection = () => {
           >
             {dummyData.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className="card">
+                <div className={style.card}>
                   <img src={item.imgSrc} alt={item.title} />
                   <p>{item.title}</p>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-          <button className="arrow-btn" onClick={handleNext}>
+          <button className={style.arrowBtn} onClick={handleNext}>
             <img src={rightButton} alt="rightButton" />
           </button>
         </div>

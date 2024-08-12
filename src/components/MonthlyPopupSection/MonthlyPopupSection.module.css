@@ -1,4 +1,4 @@
-.monthly-popup-section {
+.monthlyPopupSection {
   align-items: center;
   margin-right: 150px;
   height: 100vh;
@@ -6,24 +6,24 @@
   box-sizing: border-box;
 }
 
-.top-image {
+.topImage {
   width: 1500px;
   display: block;
 }
 
-.main-container {
+.mainContainer {
   display: flex;
   justify-content:left;
   margin-top: 50px;
 }
 
-.left-section {
+.leftSection {
   margin-top: 50px;
   margin-right: 50px;
   position: relative;
 }
 
-.image-container {
+.imageContainer {
   position: relative;
 }
 
@@ -32,7 +32,7 @@
   height: auto;
 }
 
-.text-overlay {
+.textOverlay {
   position: absolute;
   top: 10%;
   left: 60%;
@@ -43,21 +43,21 @@
   text-align: left;
 }
 
-.right-section {
+.rightSection {
   display: flex;
   align-items: center;
   overflow: hidden;
   width: 60%;
 }
 
-.arrow-btn {
+.arrowBtn {
   background-color: white;
   border: none;
   cursor: pointer;
   padding: 10px;
 }
 
-.arrow-btn img {
+.arrowBtn img {
   width: 50px;
 }
 

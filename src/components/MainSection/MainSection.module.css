@@ -1,4 +1,4 @@
-.main-section {
+.mainSection {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,26 +9,26 @@
   box-sizing: border-box;
 }
 
-.main-content {
+.mainContent {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.main-title {
+.mainTitle {
   font-size: 100px;
   color: #FEDC74;
   margin: 0;
   font-family: 'LOTTERIACHAB', sans-serif;
 }
 
-.main-subtitle {
+.mainSubtitle {
   font-size: 24px;
   color: white;
   margin: 10px 0;
 }
 
-.search-bar {
+.searchBar {
   display: flex;
   align-items: center;
   margin-top: 20px;
@@ -36,7 +36,7 @@
   border-radius: 20px;
 }
 
-.search-bar input {
+.searchBar input {
   margin: 10px;
   outline: none;
   width: 300px;
@@ -45,11 +45,11 @@
   color: white;
 }
 
-.search-bar input::placeholder {
+.searchBar input::placeholder {
   color: white;
 }
 
- .search-button {
+ .searchButton {
   padding: 10px 20px;
   border: 0px white;
   border-radius: 0 50px 50px 0;
@@ -59,7 +59,7 @@
   background-color: #4AC7CF;
 }
 
-.main-image {
+.mainImage {
   width: 500px;
   height: auto;
 }

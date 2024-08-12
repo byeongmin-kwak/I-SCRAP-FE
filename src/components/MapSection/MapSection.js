@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import "./MapSection.css";
+import styles from "./MapSection.module.css";
+import bottomImage from "../../assets/image4.svg";
 
 const MapSection = () => {
   const clientId = process.env.REACT_APP_NAVER_MAP_CLIENT_ID;
@@ -21,12 +22,15 @@ const MapSection = () => {
   }, []);
 
   return (
-    <div className="map-section">
-      <div className="map-header">
-        <div className="left-text">내 주변 팝업</div>
-        <div className="right-text">지도에서 찾기</div>
+    <div className={styles.mapSection}>
+      <div className={styles.mainContainer}>
+        <div className={styles.mapHeader}>
+          <div className={styles.leftText}>내 주변 팝업</div>
+          <div className={styles.rightText}>지도에서 찾기</div>
+        </div>
+        <div id="map" className={styles.mapContainer}></div>
       </div>
-      <div id="map" className="map-container"></div>
+      <img src={bottomImage} alt="" className={styles.bottomImage} />
     </div>
   );
 };

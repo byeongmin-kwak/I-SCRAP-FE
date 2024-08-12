@@ -10,12 +10,12 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-logo img {
+.navbarLogo img {
   height: 40px;
   margin-left: 100px;
 }
 
-.navbar-menu {
+.navbarMenu {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -25,17 +25,17 @@
   align-items: center;
 }
 
-.navbar-menu li {
+.navbarMenu li {
   color: #FFFFFF;
   cursor: pointer;
   font-family: 'Noto Sans KR Medium', sans-serif;
 }
 
-.navbar-menu li:hover {
+.navbarMenu li:hover {
   text-decoration: underline;
 }
 
-.login-button {
+.loginButton {
   background-color: #FEDC74;
   padding: 10px 20px;
   border-radius: 20px;
