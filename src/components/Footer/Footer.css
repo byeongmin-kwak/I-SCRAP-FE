@@ -1,0 +1,12 @@
+.footer {
+  position: relative;
+  height: 150px;
+  background-color: #4AC7CF;
+}
+
+.footer img {
+  position: absolute;
+  top: -80px;
+  right: 160px;
+  width: 680px;
+}

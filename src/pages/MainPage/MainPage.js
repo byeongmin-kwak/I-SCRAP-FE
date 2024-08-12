@@ -4,6 +4,7 @@ import MainSection from "../../components/MainSection/MainSection";
 import MonthlyPopupSection from "../../components/MonthlyPopupSection/MonthlyPopupSection";
 import MapSection from "../../components/MapSection/MapSection";
 import NonLoginSection from "../../components/NonLoginSection/NonLoginSection";
+import Footer from "../../components/Footer/Footer";
 
 const MainPage = () => {
   return (
@@ -12,6 +13,7 @@ const MainPage = () => {
       <MonthlyPopupSection />
       <MapSection />
       <NonLoginSection />
+      <Footer />
     </div>
   );
 };
