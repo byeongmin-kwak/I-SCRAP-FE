@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "./MonthlyPopupSection.module.css";
+import styles from "./MonthlyPopupSection.module.css";
 import topImage from "../../assets/image2.svg";
 import image from "../../assets/image3.svg";
 import leftButton from "../../assets/leftButton.svg";
@@ -35,19 +35,19 @@ const MonthlyPopupSection = () => {
   };
 
   return (
-    <div className={style.monthlyPopupSection}>
-      <img src={topImage} alt="topImage" className={style.topImage} />
-      <div className={style.mainContainer}>
-        <div className={style.leftSection}>
-          <div className={style.imageContainer}>
-            <img src={image} alt="image" className={style.image} />
-            <div className={style.textOverlay}>
+    <div className={styles.monthlyPopupSection}>
+      <img src={topImage} alt="topImage" className={styles.topImage} />
+      <div className={styles.mainContainer}>
+        <div className={styles.leftSection}>
+          <div className={styles.imageContainer}>
+            <img src={image} alt="image" className={styles.image} />
+            <div className={styles.textOverlay}>
               '{currentMonth}월'의 <br></br> &nbsp;팝업
             </div>
           </div>
         </div>
-        <div className={style.rightSection}>
-          <button className={style.arrowBtn} onClick={handlePrev}>
+        <div className={styles.rightSection}>
+          <button className={styles.arrowBtn} onClick={handlePrev}>
             <img src={leftButton} alt="leftButton" />
           </button>
           <Swiper
@@ -67,14 +67,14 @@ const MonthlyPopupSection = () => {
           >
             {dummyData.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className={style.card}>
+                <div className={styles.card}>
                   <img src={item.imgSrc} alt={item.title} />
                   <p>{item.title}</p>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-          <button className={style.arrowBtn} onClick={handleNext}>
+          <button className={styles.arrowBtn} onClick={handleNext}>
             <img src={rightButton} alt="rightButton" />
           </button>
         </div>

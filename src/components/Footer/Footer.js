@@ -1,10 +1,10 @@
 import React from "react";
-import style from "./Footer.module.css";
+import styles from "./Footer.module.css";
 import footerImg from "../../assets/footer.svg";
 
 const Footer = () => {
   return (
-    <div className={style.footer}>
+    <div className={styles.footer}>
       <img src={footerImg} alt="" />
     </div>
   );
