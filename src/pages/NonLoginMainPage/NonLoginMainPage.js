@@ -1,14 +1,14 @@
 import React from "react";
-import "./MainPage.css";
+import style from "./NonLoginMainPage.module.css";
 import MainSection from "../../components/MainSection/MainSection";
 import MonthlyPopupSection from "../../components/MonthlyPopupSection/MonthlyPopupSection";
 import MapSection from "../../components/MapSection/MapSection";
 import NonLoginSection from "../../components/NonLoginSection/NonLoginSection";
 import Footer from "../../components/Footer/Footer";
 
-const MainPage = () => {
+const NonLoginMainPage = () => {
   return (
-    <div className="main-page">
+    <div className={style.NonLoginMainPage}>
       <MainSection />
       <MonthlyPopupSection />
       <MapSection />
@@ -18,4 +18,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default NonLoginMainPage;
