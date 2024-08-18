@@ -1,0 +1,41 @@
+.mapSection {
+  background-color: #FEDC74;
+  padding: 0;
+  margin: 0;
+  position: relative; 
+  height: 100vh;
+}
+
+.mainContainer {
+  padding: 100px;
+  margin: 0 auto;
+}
+
+.mapHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-family: 'Noto Sans KR Bold', sans-serif;
+}
+
+.leftText{
+  font-size: 18px;
+  color: black;
+}
+
+.rightText{
+  font-size: 12px;
+  color: black;
+  font-family: 'Noto Sans KR Regular', sans-serif;
+  background-color: #4AC7CF;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 24px;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 400px;
+  border-radius: 16px;
+}
