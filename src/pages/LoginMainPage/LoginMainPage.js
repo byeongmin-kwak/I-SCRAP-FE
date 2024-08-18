@@ -4,6 +4,7 @@ import MainSection from "../../components/MainSection/MainSection";
 import MonthlyPopupSection from "../../components/MonthlyPopupSection/MonthlyPopupSection";
 import RecommendPopupSection from "../../components/RecommendPopupSection/RecommendPopupSection";
 import BookmarkPopupSection from "../../components/BookmarkPopupSection/BookmarkPopupSection";
+import RecentHistorySection from "../../components/RecentHistorySection/RecentHistorySection";
 
 const LoginMainPage = () => {
   return (
@@ -12,6 +13,7 @@ const LoginMainPage = () => {
       <MonthlyPopupSection />
       <RecommendPopupSection />
       <BookmarkPopupSection />
+      <RecentHistorySection />
     </div>
   );
 };
