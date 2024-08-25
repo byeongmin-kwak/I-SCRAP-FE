@@ -1,0 +1,117 @@
+.card-making-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    transform: scale(0.75);
+
+
+}
+
+.making-button-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+}
+
+.saving-button-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 108px;
+}
+
+
+.moving-button {
+    background-color: #BBBBBB;
+    border: none;
+    border-radius: 15px;
+    padding: 14px;
+    font-size: 17px;
+    color: white;
+    font-family: Noto Sans KR;
+    font-weight: 500;
+    line-height: 15px;
+    word-wrap: break-word;
+    width: 94px;
+}
+
+.card-save-button {
+    margin-top: 16px;
+    background-color: #FEDC74;
+    border: none;
+    border-radius: 15px;
+    padding: 14px;
+    font-size: 17px;
+    color: #B4643A;
+    font-family: Noto Sans KR;
+    font-weight: 500;
+    line-height: 15px;
+    word-wrap: break-word;
+    width: 94px;
+
+}
+
+.making-card-text {
+    display: flex;
+    align-items: center;
+    color: #171717;
+    font-size: 30px;
+    font-family: Noto Sans KR;
+    font-weight: 600;
+    line-height: 20px;
+    word-wrap: break-word;
+    margin-left: 45px;
+}
+
+.making-card-option {
+    margin-left: 20px;
+    color: #171717;
+    font-size: 19px;
+    font-family: Noto Sans KR;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 20px;
+    word-wrap: break-word
+}
+
+
+.open-or-not {
+    padding: 5px;
+    width: 120px;
+    height: 24.44px;
+    border-radius: 22.22px;
+    border: 1px rgba(0, 0, 0, 0.50) solid;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    margin-top: -30px;
+    margin-left: 135px;
+
+}
+
+.open-button.active {
+    width: 50%;
+    height: 25px;
+    border: none;
+    background: #4AC7CF;
+    border-radius: 14.81px
+}
+
+.open-button {
+    width: 50%;
+    height: 25px;
+    border: none;
+    background: none;
+    border-radius: 14.81px
+}
+
+.adjust-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 5px;
+    margin-left: 70px;
+    margin-right: 10px;
+    gap: 20px;
+
+}
+
