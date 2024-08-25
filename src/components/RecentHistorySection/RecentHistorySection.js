@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./RecentHistorySection.module.css";
-import topImage from "../../assets/image4.svg";
+import topImage from "../../assets/mainPageImage4.svg";
 
 const history = [
   {

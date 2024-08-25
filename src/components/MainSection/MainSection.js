@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./MainSection.module.css";
-import mainImage from "../../assets/image.png";
+import mainImage from "../../assets/mainPageImage1.png";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const MainSection = () => {

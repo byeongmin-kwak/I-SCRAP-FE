@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./MapSection.module.css";
-import bottomImage from "../../assets/image4.svg";
+import bottomImage from "../../assets/mainPageImage4.svg";
 
 const MapSection = () => {
   const clientId = process.env.REACT_APP_NAVER_MAP_CLIENT_ID;

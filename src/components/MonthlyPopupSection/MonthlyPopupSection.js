@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./MonthlyPopupSection.module.css";
-import topImage from "../../assets/image2.svg";
-import image from "../../assets/image3.svg";
+import topImage from "../../assets/mainPageImage2.svg";
+import image from "../../assets/mainPageImage3.svg";
 import leftButton from "../../assets/leftButton.svg";
 import rightButton from "../../assets/rightButton.svg";
 import { Swiper, SwiperSlide } from "swiper/react";

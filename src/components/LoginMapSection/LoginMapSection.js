@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import styless from "./LoginMapSection.module.css";
-import bottomImage from "../../assets/image4.svg";
+import styles from "./LoginMapSection.module.css";
+import bottomImage from "../../assets/mainPageImage4.svg";
 
 const LoginMapSection = () => {
   const clientId = process.env.REACT_APP_NAVER_MAP_CLIENT_ID;
@@ -22,13 +22,13 @@ const LoginMapSection = () => {
   }, []);
 
   return (
-    <div className={styless.mapSection}>
-      <div className={styless.mainContainer}>
-        <div className={styless.mapHeader}>
-          <div className={styless.leftText}>내 주변 팝업</div>
-          <div className={styless.rightText}>지도에서 찾기</div>
+    <div className={styles.mapSection}>
+      <div className={styles.mainContainer}>
+        <div className={styles.mapHeader}>
+          <div className={styles.leftText}>내 주변 팝업</div>
+          <div className={styles.rightText}>지도에서 찾기</div>
         </div>
-        <div id="map" className={styless.mapContainer}></div>
+        <div id="map" className={styles.mapContainer}></div>
       </div>
     </div>
   );
