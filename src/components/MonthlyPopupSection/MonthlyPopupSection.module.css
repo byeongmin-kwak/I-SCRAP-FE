@@ -1,0 +1,73 @@
+.monthlyPopupSection {
+  align-items: center;
+  margin-right: 150px;
+  height: 100vh;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.topImage {
+  width: 100%;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content:left;
+  margin-top: 50px;
+}
+
+.leftSection {
+  margin-top: 50px;
+  margin-right: 50px;
+  position: relative;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.image {
+  width: 350px;
+  height: auto;
+}
+
+.textOverlay {
+  position: absolute;
+  top: 10%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  font-family: 'Noto Sans KR Bold', sans-serif;
+  font-size: 42px;
+  color: #4AC7CF;
+  text-align: left;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 60%;
+}
+
+.arrowBtn {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.arrowBtn img {
+  width: 50px;
+}
+
+
+.card {
+  width: 170px;
+  height: 250px;
+  background-color: #4AC7CF;
+  padding: 20px;
+  border-radius: 8px;
+  scroll-snap-align: center;
+  text-align: center;
+  color: white;
+}

@@ -1,0 +1,38 @@
+.nonLoginSection {
+  padding: 100px 50px 50px 50px;
+  background-color: #FEDC74;
+}
+
+.headerText {
+  font-family: 'Noto Sans KR Bold', sans-serif;
+  text-align: right;
+  font-size: 24px;
+  margin-right: 80px;
+  color: #B4643A;
+}
+
+.featuresContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 80px;
+}
+
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #333;
+  height: 1000px;
+  text-align: end;
+  font-family: 'Noto Sans KR Light', sans-serif;
+}
+
+.boldText {
+  font-family: 'Noto Sans KR Regular', sans-serif;
+  font-size: 24px;
+}

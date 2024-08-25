@@ -1,0 +1,56 @@
+.topImage {
+  display: block;
+  width: 100%;
+}
+
+.container {
+  background-color: #FEDC74;
+  padding: 100px;
+}
+
+.topText {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: 'Noto Sans KR Bold', sans-serif;
+  font-size: 24px;
+
+}
+
+.button {
+  font-family: 'Noto Sans KR Regular', sans-serif;
+  background-color: #4AC7CF;
+  border-radius: 24px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.history {
+
+}
+
+.historyImage {
+  width: 180px;
+  height: 300px;
+  background-color: white;
+  border-radius: 14px;
+}
+
+.historyTitle {
+  font-family: 'Noto Sans KR Medium', sans-serif;
+  margin-top: 5px;
+}
+
+.historyDate {
+  font-family: 'Noto Sans KR light', sans-serif;
+  font-size: 14px;
+
+}
