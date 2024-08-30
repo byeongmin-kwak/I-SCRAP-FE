@@ -23,7 +23,6 @@ export default function CardMakingPage() {
 
   return (
     <>
-      <Nav />
       <div className='card-making-container'>
         <div>
           <div className='open-or-not'>

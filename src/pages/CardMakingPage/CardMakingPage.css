@@ -1,10 +1,9 @@
 .card-making-container {
+    padding-top: 70px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     transform: scale(0.75);
-
-
 }
 
 .making-button-container {

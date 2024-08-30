@@ -9,13 +9,23 @@
     justify-content: space-between;
     width: 653px;
     height: 57px;
-    background-color: #EEEEEE;
+    border: 1.50px #BBBBBB solid;
     border-radius: 15px;
+    align-items: center;
 
+}
+
+.add-text-input {
+    margin-left: 10px;
+    font-size: 15px;
+    height: 30px;
+    width: 50%;
+    border: none;
 }
 
 .add-text-button {
     width: 120px;
+    height: 40px;
     margin-top: 8px;
     margin-bottom: 8px;
     margin-right: 10px;
@@ -33,7 +43,7 @@
 }
 
 .rayout {
-    background-color: #EEEEEE;
+    border: 1.50px #BBBBBB solid;
     border-radius: 15px;
     width: 60%;
     height: 266px;
@@ -41,7 +51,7 @@
 }
 
 .font {
-    background-color: #EEEEEE;
+    border: 1.50px #BBBBBB solid;
     border-radius: 15px;
     width: 40%;
     height: 266px;
@@ -57,17 +67,51 @@
 
 
 .image {
-    background-color: #EEEEEE;
+    border: 1.50px #BBBBBB solid;
     border-radius: 15px;
     width: 20%;
     height: 266px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+}
+
+.select-image {
+    width: 83px;
+    height: 129px;
+    position: relative;
+    background-color: #E0E0E0;
+}
+
+.selected-image {
+    width: 83px;
+    height: 129px;
+    position: relative;
+}
+
+.image-select-button {
+    width: 83px;
+    height: 38px;
+    display: flex;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 8px;
+    margin-top: 24px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    color: #2E2E2E;
+    font-size: 13px;
+    font-family: Noto Sans KR;
+    font-weight: 500;
+    word-wrap: break-word
 }
 
 
 
 .background {
-    background-color: #EEEEEE;
+    border: 1.50px #BBBBBB solid;
     border-radius: 15px;
     width: 20%;
     height: 266px;
@@ -80,9 +124,25 @@
 }
 
 .maked-card {
-    background-color: #E0E0E0;
+    background-color: #f6f6f6;
     width: 292px;
     height: 500.29px;
-    margin-top: 53px;
+    margin-top: 13px;
     border-radius: 15px;
 }
+
+.card-image {
+    width: 292px;
+    height: 500.29px;
+    border-radius: 15px;
+}
+
+.opacity-slider{
+    margin-top: 30px;
+}
+
+
+  
+
+  
+
