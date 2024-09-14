@@ -1,0 +1,43 @@
+.card-making-setting {
+    padding: 5px;
+    width: 120px;
+    height: 24.44px;
+    border-radius: 22.22px;
+    border: 1px rgba(0, 0, 0, 0.50) solid;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    margin-top: -30px;
+    margin-left: 135px;
+
+}
+
+.card-basic-setting{
+    padding: 5px;
+    width: 120px;
+    height: 24.44px;
+    border-radius: 22.22px;
+    border: 1px rgba(0, 0, 0, 0.50) solid;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    
+}
+
+.open-button.active {
+    width: 50%;
+    height: 25px;
+    border: none;
+    background: #4AC7CF;
+    border-radius: 14.81px;
+    color: white;
+}
+
+.open-button {
+    width: 50%;
+    height: 25px;
+    border: none;
+    background: none;
+    border-radius: 14.81px;
+    color: rgba(0, 0, 0, 0.50) solid;;
+}

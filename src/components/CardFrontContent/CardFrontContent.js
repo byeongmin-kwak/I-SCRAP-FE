@@ -6,11 +6,20 @@ import './CardFrontContent.css';
 import StickerCanvas from '../StickerCanvas/StickerCanvas';
 import GoForward from '../../assets/goforward.svg';
 import GoBack from '../../assets/reset.svg';
+import { useSelector } from 'react-redux';
+import BackGroundColor from '../BackGroundColor/BackGroundColor';
+import CardFrontRayout from '../CardFrontRayout/CardFrontRayout';
+
+
 
 export default function CardFrontContent() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [opacity, setOpacity] = useState(1);
   const [texts, setTexts] = useState([]);
+  const [stickers, setStickers] = useState([]);
+  const selectedLayout = useSelector((state) => state.frontLayout.selectedLayout); // 'layout' 대신 'frontLayout'
+
+  
+
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -23,23 +32,32 @@ export default function CardFrontContent() {
     }
   };
 
-  const handleOpacityChange = (event) => {
-    setOpacity(event.target.value);
-  };
 
   const handleTextAdd = () => {
     const input = document.querySelector('.add-text-input');
     if (input.value.trim()) {
       const newText = {
         text: input.value,
-        x: 50, // 초기 X 위치
-        y: 50, // 초기 Y 위치
-        width: 100, // 기본 너비
-        height: 50, // 기본 높이
+        x: 50,
+        y: 50,
+        width: 80,
+        height: 30,
+        fontSize: 16, // 기본 폰트 크기
       };
       setTexts([...texts, newText]);
-      input.value = ''; // 입력 필드 초기화
+      input.value = '';
     }
+  };
+
+  const handleStickerSelect = (stickerSrc) => {
+    const newSticker = {
+      src: stickerSrc,
+      x: 50,
+      y: 50,
+      width: 100,
+      height: 100,
+    };
+    setStickers([...stickers, newSticker]);
   };
 
   return (
@@ -55,50 +73,89 @@ export default function CardFrontContent() {
             <img src={GoForward} alt="Go forward" />
           </div>
           <div>
-            {selectedImage && (
-              <div className='opacity-slider'>
-                <label htmlFor="opacityRange">투명도</label>
-                <input
-                  type="range"
-                  id="opacityRange"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={opacity}
-                  onChange={handleOpacityChange}
-                />
-              </div>
-            )}
-            <div className='maked-card'>
+            <div
+              className='maked-card'
+              style={{ position: 'relative' }}
+            >
               {selectedImage && (
                 <img
                   src={selectedImage}
                   alt="Selected"
                   className="card-image"
-                  style={{ opacity: opacity }}
                 />
               )}
+              {selectedLayout && (
+                <img
+                  src={selectedLayout}
+                  alt="Layout"
+                  className="card-layout"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    pointerEvents: 'none', // 드래그 방지
+                  }}
+                />
+              )}
+              {stickers.map((sticker, index) => (
+                <Draggable
+                  key={index}
+                  bounds="parent"
+                  defaultPosition={{ x: sticker.x, y: sticker.y }}
+                >
+                  <ResizableBox
+                    width={sticker.width}
+                    height={sticker.height}
+                    minConstraints={[50, 50]}
+                    maxConstraints={[300, 300]}
+                    className="resizable-box"
+                  >
+                    <img
+                      src={sticker.src}
+                      alt="sticker"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        pointerEvents: 'none',
+                      }}
+                    />
+                  </ResizableBox>
+                </Draggable>
+              ))}
               {texts.map((text, index) => (
                 <Draggable
                   key={index}
                   bounds="parent"
                 >
                   <ResizableBox
-                    width={text.width}
-                    height={text.height}
-                    minConstraints={[50, 20]}
-                    maxConstraints={[300, 200]}
+                    width={texts[index].width}
+                    height={texts[index].height}
+                    minConstraints={[50, 10]}
+                    maxConstraints={[300, 50]}
                     className="resizable-box"
+                    onResizeStop={(e, data) => {
+                      const updatedTexts = [...texts];
+                      updatedTexts[index] = {
+                        ...updatedTexts[index],
+                        width: data.size.width,
+                        height: data.size.height,
+                        fontSize: Math.min(data.size.width / 3, 48), // 폰트 크기 조절
+                      };
+                      setTexts(updatedTexts);
+                    }}
+                  // 텍스트에 맞춰 ResizableBox의 크기를 조정하기 위한 동적 크기 설정
                   >
                     <div
                       className="draggable-text"
                       style={{
-                        fontSize: '16px', // 기본 폰트 크기
-                        lineHeight: '20px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+                        fontSize: `${texts[index].fontSize}px`, // 폰트 크기 적용
+                        lineHeight: 'normal',
                         borderRadius: '3px',
-                        padding: '2px 5px',
                         cursor: 'move',
+                        whiteSpace: 'pre-wrap', // 줄 바꿈을 위해 추가
+                        overflow: 'hidden', // 오버플로우를 숨기기 위해 추가
                       }}
                     >
                       {text.text}
@@ -119,7 +176,7 @@ export default function CardFrontContent() {
           <button className='add-text-button' onClick={handleTextAdd}>추가하기</button>
         </div>
         <div className='rayout-font'>
-          <div className='rayout'>레이아웃</div>
+          <CardFrontRayout />
           <div className='font'>폰트</div>
         </div>
         <div className='image-sticker-background'>
@@ -151,8 +208,8 @@ export default function CardFrontContent() {
             />
             <label htmlFor="imageUpload" className="image-select-button">불러오기</label>
           </div>
-          <StickerCanvas />
-          <div className='background'>배경색</div>
+          <StickerCanvas onStickerSelect={handleStickerSelect} />
+          <BackGroundColor />
         </div>
       </div>
     </>

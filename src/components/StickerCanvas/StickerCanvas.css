@@ -1,7 +1,18 @@
-.sticker {
-    border: 1.50px #BBBBBB solid;
-    border-radius: 15px;
-    width: 60%;
-    height: 266px;
+.sticker-canvas {
+    display: flex;
+    flex-direction: column;
+    padding: 33px 31px;
+    gap: 8px;
+}
+
+.sticker-text {
+    font-family: Noto Sans KR Medium;
+    font-size: 16px;
+    color: #2E2E2E;
+}
+
+.sticker-item {
+    margin-right: 25px;
+    margin-top: 25px;
 
 }

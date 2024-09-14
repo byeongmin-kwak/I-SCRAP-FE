@@ -1,0 +1,115 @@
+.front-custom-canvas-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 78px;
+    margin-top: 80px;
+}
+
+
+.front-custom-canvas {
+    width: 660px;
+    height: 484px;
+    background: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 1px #898989 solid;
+}
+
+
+.front-custom-button-container {
+    width: 660px;
+}
+
+.front-custom-button-a {
+    width: 25%;
+    height: 35px;
+    background: white;
+    border-bottom-left-radius: 20px;
+    border: 1px #898989 solid;
+    text-align: center;
+    color: #898989;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-a.active {
+    width: 25%;
+    height: 35px;
+    border-bottom-left-radius: 20px;
+    background: #4AC7CF;
+    border: 1px #4AC7CF solid;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-b {
+    width: 25%;
+    height: 35px;
+    background-color: white;
+    border: 1px #898989 solid;
+    color: #898989;
+    text-align: center;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-b.active {
+    width: 25%;
+    height: 35px;
+    text-align: center;
+    background: #4AC7CF;
+    border: 1px #4AC7CF solid;
+    color: white;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-c {
+    width: 25%;
+    height: 35px;
+    background: white;
+    border: 1px #898989 solid;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+    color: #898989;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-c.active {
+    width: 25%;
+    height: 35px;
+    border-bottom-right-radius: 20px;
+    background: #4AC7CF;
+    border: 1px #4AC7CF solid;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}

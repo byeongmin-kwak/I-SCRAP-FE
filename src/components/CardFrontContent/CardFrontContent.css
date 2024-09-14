@@ -42,13 +42,6 @@
     gap: 17px;
 }
 
-.rayout {
-    border: 1.50px #BBBBBB solid;
-    border-radius: 15px;
-    width: 60%;
-    height: 266px;
-
-}
 
 .font {
     border: 1.50px #BBBBBB solid;
@@ -125,21 +118,24 @@
 
 .maked-card {
     background-color: #f6f6f6;
-    width: 292px;
-    height: 500.29px;
-    margin-top: 13px;
+    width: 290px;
+    height: 430px;
+    margin-top: 42px;
     border-radius: 15px;
 }
 
 .card-image {
-    width: 292px;
-    height: 500.29px;
+    position: absolute;
+    width: 290px;
+    height: 430px;
     border-radius: 15px;
 }
 
 .opacity-slider{
     margin-top: 30px;
 }
+
+
 
 
   

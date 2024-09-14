@@ -1,0 +1,64 @@
+.font-text{
+    font-family: Noto Sans KR Medium;
+    font-size: 16px;
+    margin-bottom: 14.72px;
+}
+
+.select-fonts{
+    margin-left: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4개의 열, 각 열은 동일한 비율로 분배 */
+    grid-template-rows: repeat(2, auto);   /* 2개의 행, 각 행의 높이는 콘텐츠에 맞게 */
+    gap: 10px; /* 각 셀 사이의 간격 */
+}
+
+.select-font{
+    display: flex;
+    cursor: pointer;
+}
+
+.font1{
+    font-family: 'Cafe24 Simplehae';
+    font-size: 12px;
+}
+
+.font2{
+    font-family: 'Cafe24 Ssurround';
+    font-size: 12px;
+}
+
+.font3{
+    font-family: 'Cafe24 Moyamoya';
+    font-size: 12px;
+}
+
+.font4{
+    font-size: 12px;
+    font-family: 'CWDangamAsac-Bold';
+}
+
+.font5{
+    font-size: 12px;
+    font-family: 'RixInooAriDuriR';
+}
+
+.font6{
+    font-size: 12px;
+    font-family: 'LOTTERIACHAB';
+}
+
+.font7{
+    font-size: 12px;
+    font-family: 'Hakgyoansim Mulgyeol';
+}
+
+.font8{
+    font-size: 12px;
+    font-family: 'OdibeeSans';
+}
+
+.text-number{
+    font-size: 10.14px;
+    font-family: 'Noto Sans KR Medium';
+    margin-right: 13px;
+}

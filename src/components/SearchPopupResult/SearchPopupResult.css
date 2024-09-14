@@ -1,0 +1,61 @@
+.search-popup {
+    padding: 10px;
+    width: 196px;
+    height: 354px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.search-popup.selected {
+    background-color: #FEDC74;
+    padding: 10px;
+    width: 196px;
+    height: 354px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.search-popup:hover {
+    border: 3px #FEDC74 solid;
+}
+
+.search-popup {
+    padding: 10px;
+    width: 196px;
+    height: 354px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.search-popup-img {
+    width: 190px;
+    height: 100%;
+    border-radius: 11.48px
+}
+
+.search-popup-name {
+    margin-top: 15px;
+    font-size: 18px;
+    font-family: Noto Sans KR;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.search-popup-duedate {
+    margin-top: 7px;
+    font-size: 12px;
+    font-family: Noto Sans KR;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word;
+}

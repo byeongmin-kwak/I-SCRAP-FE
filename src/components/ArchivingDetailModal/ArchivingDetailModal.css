@@ -20,6 +20,12 @@
     height: 550px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
+    transform: translateY(-30px); /* 초기 상태는 위로 이동 */
+    transition: transform 0.3s ease; /* 애니메이션 추가 */
+}
+
+.archiving-modal-container.show {
+    transform: translateY(0); /* 모달이 열릴 때 원래 위치로 이동 */
 }
 
 .archiving-modal-content {
