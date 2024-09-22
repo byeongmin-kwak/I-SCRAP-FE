@@ -1,0 +1,104 @@
+.nonLoginSection {
+  padding: 150px 50px 150px 50px;
+  background-color: #FEDC74;
+}
+
+.headerText {
+  font-family: 'Noto Sans KR Bold', sans-serif;
+  text-align: right;
+  font-size: 24px;
+  margin-right: 16%;
+  color: #B4643A;
+  margin-bottom: 80px;
+}
+
+/* 전체 컨테이너 레이아웃 수정: 더 유연한 그리드로 변경 */
+.featuresContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 140px;
+  margin-top: 20px;
+  padding: 0 80px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* 각각의 섹션을 더 유연하게 배치 */
+.section {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.imageContainer {
+  flex: 1;
+  margin-right: 40px;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto;
+}
+
+.textContainer {
+  flex: 1;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #333;
+  text-align: right;
+  font-family: 'Noto Sans KR Light', sans-serif;
+}
+
+.boldText {
+  font-family: 'Noto Sans KR Regular', sans-serif;
+  font-size: 24px;
+}
+
+/* 반응형 디자인 추가 */
+@media (max-width: 1024px) {
+  .featuresContainer {
+    padding: 0 40px;
+  }
+
+  .section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .textContainer {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .headerText {
+    text-align: center;
+    margin-right: 0;
+  }
+
+  .imageContainer {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nonLoginSection {
+    padding: 100px 20px;
+  }
+
+  .headerText {
+    font-size: 20px;
+  }
+
+  .boldText {
+    font-size: 20px;
+  }
+
+  .textContainer {
+    font-size: 16px;
+  }
+
+  .featuresContainer {
+    grid-gap: 20px;
+  }
+}

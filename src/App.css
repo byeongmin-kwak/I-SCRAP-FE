@@ -1,38 +1,50 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'LOTTERIACHAB';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Noto Sans KR Light';
+  src: url('./fonts/Noto_Sans_KR/NotoSansKR-Light.otf') format('woff2'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-Light.otf') format('woff'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-Light.otf') format('truetype');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: 'Noto Sans KR Bold';
+  src: url('./fonts/Noto_Sans_KR/NotoSansKR-Bold.otf') format('woff2'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-Bold.otf') format('woff'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-Bold.otf') format('truetype');
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@font-face {
+  font-family: 'Noto Sans KR Regular';
+  src: url('./fonts/Noto_Sans_KR/NotoSansKR-Regular.otf') format('woff2'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-Regular.otf') format('woff'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-Regular.otf') format('truetype');
 }
 
-.App-link {
-  color: #61dafb;
+@font-face {
+  font-family: 'Noto Sans KR Medium';
+  src: url('./fonts/Noto_Sans_KR/NotoSansKR-Medium.otf') format('woff2'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-Medium.otf') format('woff'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-Medium.otf') format('truetype');
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.swiper-wrapper {
+  position: relative;
+  transition-timing-function: linear !important;
 }
+
+.swiper-button-prev::after {
+  color: #BBBBBB;
+  font-size: 22px !important;
+}
+
+.swiper-button-next::after {
+  color: #BBBBBB;
+  font-size: 22px !important;
+}
+

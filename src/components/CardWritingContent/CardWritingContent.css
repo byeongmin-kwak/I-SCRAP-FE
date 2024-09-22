@@ -1,0 +1,49 @@
+.card-writing {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-and-info {
+    display: flex;
+}
+
+.add-photo-container {
+    margin-left: 680px;
+    margin-top: 130px;
+}
+
+.popup-info {
+    margin-left: 63px;
+    margin-top: 96px;
+}
+
+.writing-card-view {
+    margin-left: 90px;
+    margin-top: 50px;
+    width: 246px;
+    height: 394px;
+    background: #E0E0E0;
+    border-radius: 25px
+}
+
+.popup-writing {
+    margin-left: 87px;
+    margin-top: 52px;
+    color: rgba(0, 0, 0, 0.50);
+    font-size: 16px;
+    font-family: Noto Sans KR;
+    font-weight: 400;
+    line-height: 24px;
+    word-wrap: break-word;
+    outline: none;
+    border: none;
+}
+
+.add-photo {
+    width: 107px;
+    height: 49px;
+    border-radius: 15px;
+    border-radius: 10;
+    border: 1.50px #BBBBBB solid;
+    background: none;
+}

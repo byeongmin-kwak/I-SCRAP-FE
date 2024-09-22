@@ -1,0 +1,89 @@
+.card-basic-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-search{
+    margin-top: 70px;
+    width: 800px; 
+    height: 47px;
+    border-radius: 50px; 
+    border: 3px #4AC7CF solid
+}
+
+.popup-detail-container{
+    display: flex;
+    margin-top: 60px;
+}
+
+.popup-post-container{
+    display: flex;
+    flex-direction: column;
+    margin-right: 148px;
+}
+
+.popup-post{
+    width: 160px; 
+    height: 230px; 
+    background: #D9D9D9; 
+    border-radius: 15px;
+}
+
+.popup-name {
+    margin-top: 17px;
+    text-align: center;
+}
+
+.popup-detail-title {
+    color: black;
+    font-size: 15px;
+    font-family: Noto Sans KR; 
+    font-weight: 600; 
+    line-height: 20px;
+    word-wrap: break-word;
+    
+
+}
+
+.popup-detail{
+    margin-top: -20px;
+}
+
+.details-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+    width: 350px;
+    justify-content: space-between;
+   
+}
+
+.popup-detail-input{
+    border: none;
+    outline: none;
+    width: 210px;
+}
+
+.button-container {
+    margin-top: 62px;
+    margin-bottom: 0px;
+}
+
+.save-button {
+    width: 250px; 
+    height: 60px; 
+    background: #EEEEEE; 
+    border: none;
+    border-radius: 15px;
+    margin-right: 39px;
+}
+
+.custom-button {
+    width: 250px; 
+    height: 60px; 
+    border: none;
+    border-radius: 15px;
+    background: #FEDC74;
+}

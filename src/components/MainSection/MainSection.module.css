@@ -1,0 +1,191 @@
+.mainSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 100px;
+  background-color: #4AC7CF;
+  height: 100vh;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mainTitle {
+  font-size: 100px;
+  color: #FEDC74;
+  margin: 0;
+  font-family: 'LOTTERIACHAB', sans-serif;
+}
+
+.mainSubtitle {
+  font-size: 24px;
+  color: white;
+  margin: 10px 0;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  border: 2px solid white;
+  border-radius: 20px;
+}
+
+.searchBar input {
+  margin: 10px;
+  outline: none;
+  width: 300px;
+  background-color: #4AC7CF;
+  border: 0;
+  color: white;
+}
+
+.searchBar input::placeholder {
+  color: white;
+}
+
+ .searchButton {
+  padding: 10px 20px;
+  border: 0px white;
+  border-radius: 0 50px 50px 0;
+  cursor: pointer;  
+  font-size: 16px;
+  color: white;
+  background-color: #4AC7CF;
+}
+
+.mainImage {
+  width: 500px;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .mainSection {
+    padding: 50px;
+  }
+
+  .mainContent {
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+  }
+
+  .mainTitle {
+    font-size: 70px;
+  }
+
+  .mainSubtitle {
+    font-size: 20px;
+  }
+
+  .searchBar input {
+    width: 250px;
+  }
+
+  .mainImage {
+    width: 400px;
+  }
+}
+
+@media (max-width: 840px) {
+  .mainSection {
+    padding: 50px;
+  }
+
+  .mainContent {
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+  }
+
+  .mainTitle {
+    font-size: 70px;
+  }
+
+  .mainSubtitle {
+    font-size: 20px;
+  }
+
+  .searchBar input {
+    width: 250px;
+  }
+
+  .mainImage {
+    width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainSection {
+    padding: 40px;
+  }
+
+  .mainTitle {
+    font-size: 50px;
+  }
+
+  .mainSubtitle {
+    font-size: 18px;
+  }
+
+  .searchBar input {
+    width: 200px;
+  }
+
+  .mainImage {
+    width: 250px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mainSection {
+    padding: 40px;
+  }
+
+  .mainTitle {
+    font-size: 50px;
+  }
+
+  .mainSubtitle {
+    font-size: 18px;
+  }
+
+  .searchBar input {
+    width: 200px;
+  }
+
+  .mainImage {
+    width: 200px;
+  }
+}
+
+@media (max-width: 586px) {
+  .mainSection {
+    flex-direction: column;
+    padding-top: 60px;
+  }
+  
+  .mainContent {
+    padding: 0;
+  }
+  .mainTitle {
+    font-size: 50px;
+  }
+
+  .mainSubtitle {
+    font-size: 18px;
+  }
+
+  .searchBar input {
+    width: 200px;
+  }
+
+  .mainImage {
+    width: 200px;
+  }
+}

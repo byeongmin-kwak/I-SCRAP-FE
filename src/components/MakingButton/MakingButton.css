@@ -1,0 +1,49 @@
+.making-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 94px;
+    height: 94px;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    margin-top: 16px;
+}
+
+.making-button.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 94px;
+    height: 94px;
+    background-color: #4AC7CF;
+    border-radius: 15px;
+    margin-top: 16px;
+}
+
+.making-button-img {
+    width: 45%;
+    height: 45%;
+    margin-top: 5px;
+    object-fit: cover;
+
+}
+
+.making-button-text {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #999999;
+    /* 텍스트 색상 */
+    text-align: center;
+    font-family: Noto Sans KR;
+}
+
+.making-button-text.active {
+    margin-top: 10px;
+    font-size: 13px;
+    color: white;
+    /* 텍스트 색상 */
+    text-align: center;
+    font-family: Noto Sans KR;
+}
