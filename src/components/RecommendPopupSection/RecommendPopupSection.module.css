@@ -42,6 +42,9 @@
 }
 
 @media (max-width: 768px) {
+  .recommendPopupSection {
+    padding: 10px;
+  }
   .grid {
     grid-template-columns: 1fr;
     place-items: center;

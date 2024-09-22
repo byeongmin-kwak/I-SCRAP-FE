@@ -5,7 +5,6 @@ import MonthlyPopupSection from "../../components/MonthlyPopupSection/MonthlyPop
 import RecommendPopupSection from "../../components/RecommendPopupSection/RecommendPopupSection";
 import BookmarkPopupSection from "../../components/BookmarkPopupSection/BookmarkPopupSection";
 import RecentHistorySection from "../../components/RecentHistorySection/RecentHistorySection";
-import LoginMapSection from "../../components/LoginMapSection/LoginMapSection";
 import Footer from "../../components/Footer/Footer";
 
 const LoginMainPage = () => {
@@ -16,8 +15,6 @@ const LoginMainPage = () => {
       <RecommendPopupSection />
       <BookmarkPopupSection />
       <RecentHistorySection />
-      <LoginMapSection />
-      <Footer />
     </div>
   );
 };
