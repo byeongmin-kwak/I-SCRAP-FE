@@ -1,0 +1,29 @@
+.back-layout{
+    padding: 33px;
+}
+
+.back-layout-text{
+    font-family: Noto Sans KR Medium;
+    font-size: 16px;
+}
+
+.back-layout-container{
+    display: flex;
+    justify-content: center;
+}
+
+.card-back-layouts{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 4열로 설정 */
+    justify-items: center; /* 가운데 정렬 */
+    align-items: center;
+    gap: 25px;
+    
+}
+
+.card-back-layout{
+    width: 126.3px;
+    height: 187.27px;
+
+}

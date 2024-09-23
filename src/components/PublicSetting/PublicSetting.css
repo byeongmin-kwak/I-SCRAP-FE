@@ -31,6 +31,7 @@
     background: #4AC7CF;
     border-radius: 14.81px;
     color: white;
+    font-family: Noto Sans KR Regular;
 }
 
 .open-button {
@@ -39,5 +40,6 @@
     border: none;
     background: none;
     border-radius: 14.81px;
-    color: rgba(0, 0, 0, 0.50) solid;;
+    color: rgba(0, 0, 0, 0.50);
+    font-family: Noto Sans KR Regular;
 }

@@ -8,6 +8,7 @@ import MapPage from "./pages/MapPage/MapPage";
 import CardBasicPage from "./pages/CardBasicPage/CardBasicPage";
 import CardMakingPage from "./pages/CardMakingPage/CardMakingPage";
 import ArchivingPage from "./pages/ArchivingPage/ArchivingPage";
+import WritingDetailPage from "./pages/WritingDetailPage/WritingDetailPage";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/card-basic" element={<CardBasicPage />} />
         <Route path="/card-making" element={<CardMakingPage />} />
         <Route path="/archiving" element={<ArchivingPage />} />
+        <Route path="/writing" element={<WritingDetailPage/>} />
       </Routes>
     </div>
   );

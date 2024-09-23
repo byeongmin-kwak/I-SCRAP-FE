@@ -3,8 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
-    transform: scale(0.9);
+    transform: scale(0.8);
 }
 
 .popup-search-container {
@@ -12,17 +11,19 @@
 }
 
 .popup-search{
-    margin-top: 70px;
+    margin-top: 60px;
     width: 800px;
     padding: 20px;
     border-radius: 50px; 
-    border: 3px #4AC7CF solid
+    border: 3px #4AC7CF solid;
+    font-size: 15px;
+    font-family: Noto Sans KR Regular;
 }
 
 .search-icon {
     position: absolute;
     right: 30px; /* input의 오른쪽 끝에서 10px 떨어지게 설정 */
-    top: 98px;
+    top: 92px;
     transform: translateY(-50%); /* 세로 가운데 정렬 */
     height: 22px; /* 원하는 아이콘 크기 */
     cursor: pointer; /* 클릭 가능한 포인터 커서 */
@@ -56,15 +57,16 @@
 }
 
 .popup-name {
+    font-family: Noto Sans KR Regular;
     margin-top: 17px;
+    font-size: 18px;
     text-align: center;
 }
 
 .popup-detail-title {
     color: black;
     font-size: 15px;
-    font-family: Noto Sans KR; 
-    font-weight: 600; 
+    font-family: Noto Sans KR Regular; 
     line-height: 20px;
     word-wrap: break-word;
     
@@ -72,7 +74,7 @@
 }
 
 .popup-detail{
-   margin-top: 30px;
+   margin-top: 40px;
 }
 
 .details-container {
@@ -85,31 +87,39 @@
 }
 
 .popup-detail-input{
+    font-family: Noto Sans KR Regular;
     border: none;
     outline: none;
     width: 280px;
 }
 
 .button-container {
-    margin-top: 52px;
-    margin-bottom: 0px;
+    margin-top: 82px;
+ 
 }
 
 .save-button {
     width: 250px; 
-    height: 60px; 
+    height: 65px; 
     background: #EEEEEE; 
     border: none;
     border-radius: 15px;
     margin-right: 39px;
+    font-size: 15px;
+    font-family: Noto Sans KR Regular;
+    cursor: pointer;
 }
 
 .custom-button {
     width: 250px; 
-    height: 60px; 
+    height: 65px;
     border: none;
     border-radius: 15px;
     background: #FEDC74;
+    font-size: 15px;
+    font-family: Noto Sans KR Regular;
+    color: #B4643A;
+    cursor: pointer;
 }
 
 .star-rating{

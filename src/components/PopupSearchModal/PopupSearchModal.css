@@ -16,9 +16,9 @@
 }
 
 .popup-search-modal-container {
-    margin-top: 180px;
+    margin-top: 190px;
     width: 784px;
-    height: 520px;
+    height: 540px;
     padding: 20px;
     box-sizing: border-box;
     background: white;
@@ -52,22 +52,27 @@
 
 .select-button-container {
     display: flex;
+    justify-content: center;
     width: 100%;
-    justify-content: end;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .select-button {
     cursor: pointer;
-    width: 93px;
-    height: 32px;
+    width: 90%;
+    height: 42px;
     border: none;
-    background: #FEDC74;
+    background: #4AC7CF;
     border-radius: 10px;
-    color: #B4643A;
+    color: white;
     font-size: 14px;
-    font-family: Noto Sans KR;
+    font-family: Noto Sans KR Medium;
     font-weight: 500;
     line-height: 20px;
     word-wrap: break-word;
+}
+
+.searchQuery{
+    font-size: 16px;
+    font-family: Noto Sans KR Regular;
 }

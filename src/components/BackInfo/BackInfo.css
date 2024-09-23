@@ -1,53 +1,51 @@
-.card-back {
-    display: flex;
-    align-items: center;
-    align-content: center;
-}
+
+
 
 .card-back-popname {
-    width: 613px;
-    border-radius: 15px;
-    border: 1.50px #BBBBBB solid;
+    border-bottom: 3px #FEDC74 solid;
     align-items: center;
     align-content: center;
-    padding: 20px;
+    padding: 11px;
 }
+
+.card-back-info{
+   padding: 15px;
+   margin-top: 10px;
+}
+
 
 .place-date {
     display: flex;
-    margin-top: 20px;
+    margin-top: 25px;
     gap: 20px;
 }
 
 .back-place {
     width: 60%;
-    padding: 20px;
-    border-radius: 15px;
-    border: 1.50px #BBBBBB solid;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
     align-items: center;
     align-content: center;
 }
 
 .back-date {
     width: 40%;
-    padding: 20px;
-    border-radius: 15px;
-    border: 1.50px #BBBBBB solid;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
     align-items: center;
     align-content: center;
 }
 
 .price-with-star {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
     gap: 20px;
 }
 
 .back-price {
     width: 30%;
-    padding: 20px;
-    border-radius: 15px;
-    border: 1.50px #BBBBBB solid;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
     align-items: center;
     align-content: center;
 
@@ -55,9 +53,8 @@
 
 .back-with {
     width: 30%;
-    padding: 20px;
-    border-radius: 15px;
-    border: 1.50px #BBBBBB solid;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
     align-items: center;
     align-content: center;
 
@@ -65,9 +62,8 @@
 
 .back-star {
     width: 40%;
-    padding: 20px;
-    border-radius: 15px;
-    border: 1.50px #BBBBBB solid;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
     align-items: center;
     align-content: center;
 
@@ -115,18 +111,20 @@
 
 
 .maked-back-card {
-    width: 292px;
-    height: 500.29px;
+    width: 290px;
+    height: 430px;
     background-color: #e8e8e8;
     margin-left: 111px;
     border-radius: 15px;
     margin-top: 52px;
 }
 
-.card-back-options {
-    margin-top: 130px;
-    margin-left: 67px;
-    width: 653px;
+
+.card-back-options{
+    padding: 33px;
 }
 
-
+.card-back-info-text{
+    font-family: Noto Sans KR Medium;
+    font-size: 16px;
+}

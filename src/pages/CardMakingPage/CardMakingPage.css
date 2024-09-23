@@ -3,7 +3,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    transform: scale(0.75);
+    transform: scale(0.8);
+
 }
 
 .making-button-container {
@@ -54,10 +55,8 @@
     align-items: center;
     color: #171717;
     font-size: 30px;
-    font-family: Noto Sans KR;
+    font-family: Noto Sans KR Medium;
     font-weight: 600;
-    line-height: 20px;
-    word-wrap: break-word;
     margin-left: 45px;
 }
 
@@ -65,11 +64,10 @@
     margin-left: 20px;
     color: #171717;
     font-size: 19px;
-    font-family: Noto Sans KR;
+    font-family: Noto Sans KR Medium;
     font-weight: 600;
     text-transform: uppercase;
-    line-height: 20px;
-    word-wrap: break-word
+
 }
 
 .adjust-buttons {
@@ -83,3 +81,32 @@
 
 }
 
+
+.card-making-container-new {
+    position: relative;
+    min-height: 100vh;
+    /* 전체 화면 높이를 차지하도록 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* 하단에 클라우드를 배치하기 위해 설정 */
+
+}
+
+/* 클라우드를 화면 하단에 고정하는 스타일 */
+.cloud-image {
+    position: fixed;
+    /* 화면에 고정 */
+    bottom: 0;
+    /* 하단에 붙임 */
+    left: 50%;
+    /* 중앙 정렬을 위해 50% 위치로 설정 */
+    transform: translateX(-50%);
+    /* 중앙으로 정확히 정렬 */
+
+    /* 원하는 너비로 설정 */
+   
+    /* 최대 너비 설정 가능 */
+    z-index: -1;
+    /* 다른 콘텐츠보다 뒤에 위치하도록 설정 */
+}

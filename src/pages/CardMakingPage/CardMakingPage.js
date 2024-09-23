@@ -8,12 +8,13 @@ import CardBack_Click from '../../assets/CardMakingButtons/cardback_click.svg';
 import CardWriting from '../../assets/CardMakingButtons/cardwriting.svg';
 import CardWriting_Click from '../../assets/CardMakingButtons/cardwriting_click.svg';
 import MakingButton from '../../components/MakingButton/MakingButton'; // 새로운 버튼 컴포넌트
-import CardFrontContent from '../../components/CardFrontContent/CardFrontContent'; // 카드 앞면 컴포넌트
-import CardBackContent from '../../components/CardBackContent/CardBackContent'; // 카드 뒷면 컴포넌트
 import CardWritingContent from '../../components/CardWritingContent/CardWritingContent';
 import PopupModal from '../../components/PopupModal/PopupModa';
 import PublicSetting from '../../components/PublicSetting/PublicSetting';
 import CardFrontCustom from '../../components/CardFrontCustom/CardFrontCustom';
+import CardBackCustom from '../../components/CardBackCustom/CardBackCustom';
+import CardWritingCustom from '../../components/CardWritingCustom/CardWritingCustom';
+import Cloud from '../../assets/background-cloud.svg';
 
 export default function CardMakingPage() {
   const [activeButton, setActiveButton] = useState('card-front');
@@ -24,7 +25,7 @@ export default function CardMakingPage() {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <>
+    <div className='card-making-container-new'>
       <div className='card-making-container'>
         <div>
           <PublicSetting open={open} setOpen={setOpen} className={'card-making-setting'} />
@@ -57,11 +58,12 @@ export default function CardMakingPage() {
           </div>
         </div>
         {activeButton === 'card-front' && <CardFrontCustom />}
-        {activeButton === 'card-back' && <CardBackContent />}
-        {activeButton === 'card-writing' && <CardWritingContent />}
-      </div>
-      <PopupModal isOpen={isModalOpen} onClose={closeModal} />
-    </>
+        {activeButton === 'card-back' && <CardBackCustom />}
+        {activeButton === 'card-writing' && <CardWritingCustom />}
 
+      </div>
+      <img src={Cloud} className="cloud-image" alt="Cloud Background" />
+      <PopupModal isOpen={isModalOpen} onClose={closeModal} />
+    </div>
   );
 }
