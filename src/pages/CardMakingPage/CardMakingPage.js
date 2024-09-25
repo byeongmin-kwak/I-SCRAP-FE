@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './CardMakingPage.css';
-import Nav from '../../components/Nav/Nav';
 import CardFront from '../../assets/CardMakingButtons/cardfront.svg';
 import CardFront_Click from '../../assets/CardMakingButtons/cardfront_click.svg';
 import CardBack from '../../assets/CardMakingButtons/cardback.svg';
@@ -8,7 +7,6 @@ import CardBack_Click from '../../assets/CardMakingButtons/cardback_click.svg';
 import CardWriting from '../../assets/CardMakingButtons/cardwriting.svg';
 import CardWriting_Click from '../../assets/CardMakingButtons/cardwriting_click.svg';
 import MakingButton from '../../components/MakingButton/MakingButton'; // 새로운 버튼 컴포넌트
-import CardWritingContent from '../../components/CardWritingContent/CardWritingContent';
 import PopupModal from '../../components/PopupModal/PopupModa';
 import PublicSetting from '../../components/PublicSetting/PublicSetting';
 import CardFrontCustom from '../../components/CardFrontCustom/CardFrontCustom';

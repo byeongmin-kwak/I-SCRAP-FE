@@ -2,12 +2,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    popName: '쿵야레스토랑즈 용기상점',
-    place: '서울시 강남구 어딘가',
-    date: '2024.09.15',
-    price: '5000',
-    companion: '박나리',
+    popName: '',
+    place: '',
+    date: new Date().toISOString().slice(0, 10), // 오늘 날짜 기본값
+    price: '',
+    companion: '',
     rating: 0,
+    comment: ''
 };
 
 const backInfoSlice = createSlice({
@@ -32,11 +33,14 @@ const backInfoSlice = createSlice({
         setRating: (state, action) => {
             state.rating = action.payload;
         },
+        setComment: (state, action) => {
+            state.comment = action.payload;
+        },
         resetBackInfo: (state) => {
             return initialState;
         }
     }
 });
 
-export const { setPopName, setPlace, setDate, setPrice, setCompanion, setRating, resetBackInfo } = backInfoSlice.actions;
+export const { setPopName, setPlace, setDate, setPrice, setCompanion, setRating, setComment, resetBackInfo } = backInfoSlice.actions;
 export default backInfoSlice.reducer;

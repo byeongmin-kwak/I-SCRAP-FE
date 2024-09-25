@@ -5,13 +5,15 @@ import BackLayoutColor from '../BackLayoutColor/BackLayoutColor';
 
 export default function BackInfo() {
     // Redux state에서 backInfo 정보를 불러옴
-    const { popName, place, date, price, companion, rating } = useSelector((state) => state.backInfo);
+    const {place, date, price, companion, rating } = useSelector((state) => state.backInfo);
+    const selectedPopup = useSelector((state) => state.popup.selectedPopup);
+    const name = selectedPopup? selectedPopup.name : "";
 
     return (
         <div className='card-back-options'>
             <div className='card-back-info-text'>정보</div>
             <div className='card-back-info'>
-                <div className='card-back-popname'>{popName}</div>
+                <div className='card-back-popname'>{name}</div>
                 <div className='place-date'>
                     <div className='back-place'>{place}</div>
                     <div className='back-date'>{date}</div>

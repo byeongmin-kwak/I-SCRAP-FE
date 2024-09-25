@@ -11,7 +11,7 @@ import CardFrontRayout from '../CardFrontRayout/CardFrontRayout';
 import CardFrontLayoutRender from '../CardFrontLayoutRender/CardFrontLayoutRender';
 import TextEditor from '../TextEditor/TextEditor';
 import html2canvas from 'html2canvas';
-import { setImage, addText, addSticker, updateText, updateSticker, setSavedCardImage } from '../../store/cardSlice';
+import { setImage, addText, addSticker, updateText, updateSticker, setSavedCardImage, removeSticker } from '../../store/cardSlice';
 
 export default function CardFrontCustom() {
   const dispatch = useDispatch();
@@ -113,6 +113,10 @@ export default function CardFrontCustom() {
   useEffect(() => {
     handleCapture();
   }, [texts, stickers, image, selectedColor, selectedLayout, selectedFont, selectedFontColor]);
+
+  const handleStickerDelete = (index) => {
+    dispatch(removeSticker(index));  // removeSticker 액션 호출
+  };
 
   return (
     <>
@@ -254,9 +258,22 @@ export default function CardFrontCustom() {
           {activeButton === 'rayout' &&
             <CardFrontRayout />
           }
-          {activeButton === 'sticker' &&
-            <StickerCanvas onStickerSelect={handleStickerSelect} />
-          }
+          {activeButton === 'sticker' && (
+              <>
+                <StickerCanvas onStickerSelect={handleStickerSelect} />
+                <div className="used-sticker-list">
+                  <div className='used-sticker-text'>추가된 스티커</div>
+                  {stickers.map((sticker, index) => (
+                    <div key={index} className="used-sticker-item">
+                      <div className="delete-sticker" onClick={() => handleStickerDelete(index)}>
+                        &#x2716; {/* 'x' 아이콘 */}
+                      </div>
+                      <img src={sticker.src} alt="sticker" className="used-sticker-image" />
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           {activeButton === 'text' &&
             <TextEditor onClick={handleTextAdd} />
           }

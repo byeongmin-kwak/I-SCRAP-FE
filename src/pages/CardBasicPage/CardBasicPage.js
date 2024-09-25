@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import Nav from '../../components/Nav/Nav';
@@ -8,25 +8,33 @@ import SearchButton from '../../assets/search-button.svg';
 import PublicSetting from '../../components/PublicSetting/PublicSetting';
 import PopupSearchModal from '../../components/PopupSearchModal/PopupSearchModal';
 import { setOpen } from '../../store/publicSlice';  // Redux 액션 추가
+import { setDate, setPlace, setPrice, setComment, setRating, setCompanion } from '../../store/backInfoSlice';
+import BasicMakingModal from '../../components/BasicMakingModal/BasicMakingModal';
+import { useNavigate } from 'react-router-dom'; // useNavigate 훅 import
 import './CardBasicPage.css';
 
 export default function CardBasicPage() {
-    const [rating, setRating] = useState(0);
-    const [place, setPlace] = useState('');
-    const [visitDate, setVisitDate] = useState(new Date().toISOString().slice(0, 10)); // 오늘 날짜 기본값
-    const [amount, setAmount] = useState(0);
-    const [companions, setCompanions] = useState('');
-    const [comment, setComment] = useState('');
+    const navigate = useNavigate(); // useNavigate 훅 사용
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
     const [searchInput, setSearchInput] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const dispatch = useDispatch();
     const open = useSelector((state) => state.publicSetting.open); // 전역 상태로부터 공개/비공개 상태 가져오기
     const selectedPopup = useSelector((state) => state.popup.selectedPopup); // popupId를 가져옴
+    const date = useSelector((state) => state.backInfo.date);
+    const rating = useSelector((state) => state.backInfo.rating);
+    const place = useSelector((state) => state.backInfo.place);
+    const amount = useSelector((state) => state.backInfo.price);
+    const companions = useSelector((state) => state.backInfo.companion);
+    const comment = useSelector((state) => state.backInfo.comment);
     const baseUrl = 'https://mbnbcpl609.execute-api.ap-northeast-2.amazonaws.com/dev/';
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+
+    const openModal2 = () => setModalOpen(true);
+    const closeModal2 = () => setModalOpen(false);
 
     // 별을 렌더링하는 함수
     const renderStars = () => {
@@ -38,7 +46,7 @@ export default function CardBasicPage() {
                     src={i <= rating ? Star : StarFilled}
                     alt={`${i} star`}
                     className='star-icon'
-                    onClick={() => setRating(i)}
+                    onClick={() => dispatch(setRating(i))}
                 />
             );
         }
@@ -47,7 +55,7 @@ export default function CardBasicPage() {
 
     const handleSearch = async () => {
         try {
-            const response = await axios.get(`${ baseUrl }search/popups?popupName=${ searchInput }`);
+            const response = await axios.get(`${baseUrl}search/popups?popupName=${searchInput}`);
             console.log(response.data);
             setSearchResults(response.data); // API 응답 데이터를 상태로 저장
             openModal(); // 모달 열기
@@ -65,7 +73,7 @@ export default function CardBasicPage() {
 
         const reviewData = {
             place: place || 'Unknown Place', // 장소 입력 없으면 기본값
-            visitDate: visitDate,  // 기본으로 오늘 날짜를 전달
+            visitDate: date,  // 기본으로 오늘 날짜를 전달
             amount: amount,
             companions: companions || 'None', // 동행인 입력 없으면 기본값
             rating: rating,
@@ -81,6 +89,10 @@ export default function CardBasicPage() {
             console.error('리뷰 저장 중 오류가 발생했습니다:', error);
         }
     };
+
+    useEffect(()=>{
+        console.log(comment);
+    }, [comment])
 
     return (
         <>
@@ -118,7 +130,7 @@ export default function CardBasicPage() {
                                 className='popup-detail-input'
                                 placeholder='관람한 장소'
                                 value={place}
-                                onChange={(e) => setPlace(e.target.value)}
+                                onChange={(e) => dispatch(setPlace(e.target.value))}
                             />
                         </div>
                         <div className='details-container'>
@@ -126,8 +138,8 @@ export default function CardBasicPage() {
                             <input
                                 className='popup-detail-input'
                                 type='date'
-                                value={visitDate}
-                                onChange={(e) => setVisitDate(e.target.value)}
+                                value={date}
+                                onChange={(e) => dispatch(setDate(e.target.value))}
                             />
                         </div>
                         <div className='details-container'>
@@ -136,7 +148,7 @@ export default function CardBasicPage() {
                                 className='popup-detail-input'
                                 placeholder='팝업스토어의 입장료'
                                 value={amount}
-                                onChange={(e) => setAmount(e.target.value)}
+                                onChange={(e) => dispatch(setPrice(e.target.value))}
                             />
                         </div>
                         <div className='details-container'>
@@ -145,7 +157,7 @@ export default function CardBasicPage() {
                                 className='popup-detail-input'
                                 placeholder='같이 관람한 동행인을 입력해주세요'
                                 value={companions}
-                                onChange={(e) => setCompanions(e.target.value)}
+                                onChange={(e) => dispatch(setCompanion(e.target.value))}
                             />
                         </div>
                         <div className='details-container'>
@@ -160,16 +172,17 @@ export default function CardBasicPage() {
                                 className='popup-detail-input'
                                 placeholder='팝업에 대한 평을 입력해주세요 (50자 이내)'
                                 value={comment}
-                                onChange={(e) => setComment(e.target.value)} // 카드 이미지 입력 처리
+                                onChange={(e) => dispatch(setComment(e.target.value))} // 카드 이미지 입력 처리
                             />
                         </div>
                     </div>
                 </div>
                 <div className='button-container'>
-                    <button className='save-button' onClick={handleSavePopupCard}>팝업카드 바로 저장하기</button> {/* 저장 버튼에 onClick 추가 */}
+                    <button className='save-button' onClick={openModal2}>팝업카드 바로 저장하기</button> {/* 저장 버튼에 onClick 추가 */}
                     <button className='custom-button'>카드 커스텀&기록 작성</button>
                 </div>
                 <PopupSearchModal isOpen={isModalOpen} onClose={closeModal} searchQuery={searchInput} searchResults={searchResults} />
+                <BasicMakingModal isOpen={modalOpen} onClose={closeModal2}/>
             </div>
         </>
     );

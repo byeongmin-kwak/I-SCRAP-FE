@@ -247,5 +247,64 @@
     border-radius: 15px;
 }
 
+.used-sticker-list {
+    display: flex;
+    width: 530px;
+    height: 43px;
+    padding: 10px;
+    padding-left: 15px;
+    align-items: center;
+    border-radius: 40px;
+    background-color: #E0E0E0;
+    margin-left: 50px;
+    margin-top: 90px;
+    gap: 16px;
+    font-weight: 400;
+    overflow-x: auto;
+    overflow-y: hidden;
 
-  
+}
+
+.used-sticker-text {
+    color: #2E2E2E;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    flex-shrink: 0;
+}
+
+.used-sticker-item {
+    width: 36.33px;
+    height: 36.33px;
+    background: white;
+    border-radius: 2.79px;
+    border: 1.40px #BBBBBB solid;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    flex-shrink: 0;
+}
+
+.delete-sticker {
+    position: absolute;
+    top: -6px;
+    /* 스티커 네모 상자 위로 약간 튀어나오게 */
+    right: -6px;
+    /* 스티커 네모 상자 오른쪽 위로 약간 튀어나오게 */
+    background: #BBBBBB;
+    color: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.used-sticker-image {
+    height: 80%;
+    width: 80%;
+}

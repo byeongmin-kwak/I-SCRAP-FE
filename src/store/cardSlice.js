@@ -24,7 +24,7 @@ const cardSlice = createSlice({
     setSavedCardImage: (state, action) => {
         state.savedCardImage = action.payload;
     },
-    setSavedBackImage: (state, action) =>{
+    setSavedBackImage: (state, action) => {
         state.savedBackImage = action.payload;
     },
     // 텍스트 추가 액션
@@ -45,8 +45,24 @@ const cardSlice = createSlice({
       const { index, newSticker } = action.payload;
       state.stickers[index] = newSticker;
     },
+    // 스티커 삭제 액션 (특정 스티커의 삭제)
+    removeSticker: (state, action) => {
+      state.stickers = state.stickers.filter((_, index) => index !== action.payload);
+    },
   },
 });
 
-export const { setImage, setTexts, setStickers, addText, addSticker, updateText, updateSticker, setSavedCardImage, setSavedBackImage } = cardSlice.actions;
+export const {
+  setImage,
+  setTexts,
+  setStickers,
+  addText,
+  addSticker,
+  updateText,
+  updateSticker,
+  removeSticker,    // 삭제 액션 추가
+  setSavedCardImage,
+  setSavedBackImage,
+} = cardSlice.actions;
+
 export default cardSlice.reducer;

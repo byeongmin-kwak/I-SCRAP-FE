@@ -11,7 +11,9 @@ import './CardBackLayoutRender.css';  // CSS 파일을 따로 생성
 export default function CardBackLayoutRender() {
     const selectedLayout = useSelector((state) => state.backLayout.selectedBackLayout);
     const selectedColor = useSelector((state) => state.backLayout.backLayoutColor);
-    const { popName, place, date, price, companion, rating } = useSelector((state) => state.backInfo);
+    const selectedPopup = useSelector((state) => state.popup.selectedPopup);
+    const popName = selectedPopup? selectedPopup.name: "";
+    const {place, date, price, companion} = useSelector((state) => state.backInfo);
 
     const variations = [
         ['#F8CDCC', '#FFF4F4'],
@@ -34,7 +36,7 @@ export default function CardBackLayoutRender() {
 
     // 날짜 형식을 'YYYY.MM.DD'에서 'YYMMDD'로 변환하는 함수
     const formatDate = (dateString) => {
-        const parts = dateString.split('.');
+        const parts = dateString.split('-');
         return parts[0].slice(2) + parts[1] + parts[2];
     };
 
