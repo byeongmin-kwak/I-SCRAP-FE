@@ -6,11 +6,15 @@ import NonLoginMainPage from "./pages/NonLoginMainPage/NonLoginMainPage";
 import LoginMainPage from "./pages/LoginMainPage/LoginMainPage";
 import CardBasicPage from "./pages/CardBasicPage/CardBasicPage";
 import CardMakingPage from "./pages/CardMakingPage/CardMakingPage";
+import ArchivingPage from "./pages/ArchivingPage/ArchivingPage";
+import WritingDetailPage from "./pages/WritingDetailPage/WritingDetailPage";
+import TestPage from "./pages/TestPage/TestPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import PopupPage from "./pages/PopupPage/PopupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import OnboardingPage from "./pages/OnboardingPage/OnboardingPage";
 import MyPage from "./pages/MyPage/MyPage";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -47,6 +51,9 @@ function App() {
         )}
         <Route path="/card-basic" element={<CardBasicPage />} />
         <Route path="/card-making" element={<CardMakingPage />} />
+        <Route path="/archiving" element={<ArchivingPage />} />
+        <Route path="/writing" element={<WritingDetailPage />} />
+        <Route path='/test' element={<TestPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/popup" element={<PopupPage />} />
         <Route path="/login" element={<LoginPage />} />

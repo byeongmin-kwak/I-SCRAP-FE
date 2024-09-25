@@ -1,0 +1,130 @@
+
+
+
+.card-back-popname {
+    border-bottom: 3px #FEDC74 solid;
+    align-items: center;
+    align-content: center;
+    padding: 11px;
+}
+
+.card-back-info{
+   padding: 15px;
+   margin-top: 10px;
+}
+
+
+.place-date {
+    display: flex;
+    margin-top: 25px;
+    gap: 20px;
+}
+
+.back-place {
+    width: 60%;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
+    align-items: center;
+    align-content: center;
+}
+
+.back-date {
+    width: 40%;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
+    align-items: center;
+    align-content: center;
+}
+
+.price-with-star {
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+}
+
+.back-price {
+    width: 30%;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
+    align-items: center;
+    align-content: center;
+
+}
+
+.back-with {
+    width: 30%;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
+    align-items: center;
+    align-content: center;
+
+}
+
+.back-star {
+    width: 40%;
+    padding: 11px;
+    border-bottom: 3px #FEDC74 solid;
+    align-items: center;
+    align-content: center;
+
+}
+
+.rayout-background {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.back-rayout {
+    width: 80%;
+    padding: 20px;
+    height: 236px;
+    border-radius: 15px;
+    border: 1.50px #BBBBBB solid;
+    overflow-x: scroll;
+    white-space: nowrap;
+    scrollbar-width: none;
+    /* Firefox에서 스크롤바 숨김 */
+    -ms-overflow-style: none;
+    /* IE 및 Edge에서 스크롤바 숨김 */
+}
+
+.rayouts {
+    margin-top: 21px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    scrollbar-width: none;
+    /* Firefox에서 스크롤바 숨김 */
+    -ms-overflow-style: none;
+    /* IE 및 Edge에서 스크롤바 숨김 */
+
+}
+
+.back-rayout::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera에서 스크롤바 숨김 */
+}
+
+.back-rayout img {
+    margin-right: 10px;
+}
+
+
+.maked-back-card {
+    width: 290px;
+    height: 430px;
+    background-color: #e8e8e8;
+    margin-left: 111px;
+    border-radius: 15px;
+    margin-top: 52px;
+}
+
+
+.card-back-options{
+    padding: 33px;
+}
+
+.card-back-info-text{
+    font-family: Noto Sans KR Medium;
+    font-size: 16px;
+}

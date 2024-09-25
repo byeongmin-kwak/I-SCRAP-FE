@@ -1,0 +1,28 @@
+.rayout {
+    padding: 25px 31px;
+}
+
+.rayout-text{
+    font-size: 16px;
+    font-family: Noto Sans KR Medium;
+}
+
+.card-front-rayouts{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4열로 설정 */
+    grid-gap: 13.99px; /* 이미지들 간격 */
+    justify-items: center; /* 가운데 정렬 */
+    align-items: center;
+}
+
+.card-front-rayout{
+    width: 121.76px;
+    height: 180.54px;
+
+}
+
+.frot-rayout-container{
+    display: flex;
+    margin-top: 12.24px;
+}

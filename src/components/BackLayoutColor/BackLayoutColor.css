@@ -1,0 +1,116 @@
+.background-color-container{
+    display: flex;
+    margin-top: 52px;
+    margin-left: 16px;
+}
+
+.layout-text{
+    margin-top: 8px;
+    font-family: Noto Sans KR Medium;
+    font-size: 12px;
+}
+
+.back-background-colors{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 4열로 설정 */
+    justify-items: center; /* 가운데 정렬 */
+    align-items: center;
+    gap: 9px;
+    margin-left: 31px;
+}
+
+.back-background-color1 {
+    width: 70px; 
+    height: 32px;
+    background: #F8CDCC;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color2 {
+    width: 70px; 
+    height: 32px;
+    background: #FE6F96;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color3 {
+    width: 70px; 
+    height: 32px;
+    background: #E2D4F4;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color4 {
+    width: 70px; 
+    height: 32px;
+    background: #6F69AC;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color5 {
+    width: 70px; 
+    height: 32px;
+    background: #CEE2F5;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color6 {
+    width: 70px; 
+    height: 32px;
+    background: #719FAF;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color7 {
+    width: 70px; 
+    height: 32px;
+    background: #D1E8E5;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color8 {
+    width: 70px; 
+    height: 32px;
+    background: #95DAC1;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color9 {
+    width: 70px; 
+    height: 32px;
+    background: #FBF0CF;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color10 {
+    width: 70px; 
+    height: 32px;
+    background: white;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color11 {
+    width: 70px; 
+    height: 32px;
+    background: #E9DBD0;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}
+
+.back-background-color12 {
+    width: 70px; 
+    height: 32px;
+    background: black;
+    border-radius: 5px;
+    border: 1px #7B7B7B solid
+}

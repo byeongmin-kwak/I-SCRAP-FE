@@ -1,0 +1,97 @@
+.card-back {
+    display: flex;
+   
+}
+
+
+.making-back-view {
+    margin-left: 111px;
+    border-radius: 15px;
+    margin-top: 52px;
+}
+
+.back-custom-canvas-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 78px;
+    margin-top: 90px;
+}
+
+
+.back-custom-canvas {
+    width: 660px;
+    height: 484px;
+    background: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 1px #898989 solid;
+}
+
+
+.back-custom-button-container {
+    width: 660px;
+}
+
+.back-custom-button-a {
+    width: 50%;
+    height: 35px;
+    background: white;
+    border-bottom-left-radius: 20px;
+    border: 1px #898989 solid;
+    text-align: center;
+    color: #898989;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.back-custom-button-a.active {
+    width: 50%;
+    height: 35px;
+    border-bottom-left-radius: 20px;
+    background: #4AC7CF;
+    border: 1px #4AC7CF solid;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.back-custom-button-b {
+    width: 50%;
+    height: 35px;
+    background-color: white;
+    border-bottom-right-radius: 20px;
+    border: 1px #898989 solid;
+    color: #898989;
+    text-align: center;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.back-custom-button-b.active {
+    width: 50%;
+    height: 35px;
+    text-align: center;
+    background: #4AC7CF;
+    border: 1px #4AC7CF solid;
+    border-bottom-right-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
