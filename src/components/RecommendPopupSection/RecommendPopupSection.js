@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./RecommendPopupSection.module.css";
-
-const popupItems = [
-  { id: 1, title: "뭐뭐뭐한 팝업", image: "이미지" },
-  { id: 2, title: "뭐뭐뭐한 팝업", image: "이미지" },
-  { id: 3, title: "뭐뭐뭐한 팝업", image: "이미지" },
-  { id: 4, title: "뭐뭐뭐한 팝업", image: "이미지" },
-  { id: 5, title: "뭐뭐뭐한 팝업", image: "이미지" },
-  { id: 6, title: "뭐뭐뭐한 팝업", image: "이미지" },
-  { id: 7, title: "뭐뭐뭐한 팝업", image: "이미지" },
-  { id: 8, title: "뭐뭐뭐한 팝업", image: "이미지" },
-  { id: 9, title: "뭐뭐뭐한 팝업", image: "이미지" },
-];
+import axios from "axios";
 
 const RecommendPopupSection = () => {
+  const [popupItems, setPopupItems] = useState([]);
+
+  const serverURL = process.env.REACT_APP_SERVER_URL;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${serverURL}/popups/home/personalized-popups`
+        );
+        setPopupItems(response.data);
+        console.log("recommendPopup", response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className={styles.recommendPopupSection}>
       <div className={styles.header}>
@@ -23,8 +31,22 @@ const RecommendPopupSection = () => {
       <div className={styles.grid}>
         {popupItems.map((item) => (
           <div key={item.id} className={styles.popupItem}>
-            <div className={styles.popupImage}>{item.image}</div>
-            <div className={styles.popupTitle}>{item.title}</div>
+            <div className={styles.popupImage}>
+              <img src={item.poster} alt={`${item.title} Poster`} />
+              <div className={styles.popupDetails}>
+                <div>
+                  <p>{item.location}</p>
+                  <p>기간 : {item.dateRange}</p>
+                  <p>금액 : {item.fee.toLocaleString()}원</p>
+                </div>
+                <div>
+                  <button className={styles.categoryButton}>
+                    #{item.category}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={styles.popupTitle}>{item.name}</div>
           </div>
         ))}
       </div>
