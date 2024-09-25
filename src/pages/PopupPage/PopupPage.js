@@ -31,57 +31,6 @@ const PopupPage = () => {
     fetchPopupData(); // 컴포넌트 마운트 시 데이터 요청
   }, []);
 
-  const formatOperatingHours = (operatingHours) => {
-    const daysOfWeek = {
-      Monday: "월",
-      Tuesday: "화",
-      Wednesday: "수",
-      Thursday: "목",
-      Friday: "금",
-      Saturday: "토",
-      Sunday: "일",
-    };
-
-    const groupedHours = [];
-    let currentGroup = [];
-    let previousTimeRange = null;
-
-    for (let day in operatingHours) {
-      const dayData = operatingHours[day];
-      if (!dayData.closed) {
-        const timeRange = `${dayData.open} - ${dayData.close}`;
-        if (timeRange === previousTimeRange) {
-          currentGroup.push(daysOfWeek[day]);
-        } else {
-          if (currentGroup.length > 0) {
-            groupedHours.push({
-              days: currentGroup,
-              timeRange: previousTimeRange,
-            });
-          }
-          currentGroup = [daysOfWeek[day]];
-          previousTimeRange = timeRange;
-        }
-      }
-    }
-
-    // 마지막 그룹 처리
-    if (currentGroup.length > 0) {
-      groupedHours.push({
-        days: currentGroup,
-        timeRange: previousTimeRange,
-      });
-    }
-
-    // 그룹화된 결과를 문자열로 변환, 요일을 쉼표로 구분
-    return groupedHours.map((group, index) => (
-      <span key={index}>
-        {group.days.length > 1 ? group.days.join(", ") : group.days[0]} :{" "}
-        {group.timeRange}
-        <br />
-      </span>
-    ));
-  };
   const ReviewCard = ({ review }) => {
     return (
       <div className={styles.card}>
@@ -148,30 +97,16 @@ const PopupPage = () => {
               </div>
               <ul>
                 <li>{popupData.location.address}</li>
-                <li>
-                  기간:{" "}
-                  {new Date(popupData.dateRange.start).toLocaleDateString(
-                    "ko-KR",
-                    {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    }
-                  )}{" "}
-                  -
-                  {new Date(popupData.dateRange.end).toLocaleDateString(
-                    "ko-KR",
-                    {
-                      year: "numeric",
-                      month: "2-digit",
-                      day: "2-digit",
-                    }
-                  )}
-                </li>
+                <li>기간: {popupData.dateRange}</li>
                 <li>입장료: {popupData.fee}원</li>
                 <li>
                   이용시간: <br />
-                  {formatOperatingHours(popupData.operatingHours)}
+                  {popupData.operatingHours.split("\n").map((line, index) => (
+                    <React.Fragment key={index}>
+                      {line}
+                      <br />
+                    </React.Fragment>
+                  ))}
                 </li>
                 <li>
                   팝업/전시 크기 정보: {popupData.sizeInfo.width} x{" "}
