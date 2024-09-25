@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './CardMakingPage.css';
-import Nav from '../../components/Nav/Nav';
 import CardFront from '../../assets/CardMakingButtons/cardfront.svg';
 import CardFront_Click from '../../assets/CardMakingButtons/cardfront_click.svg';
 import CardBack from '../../assets/CardMakingButtons/cardback.svg';
@@ -8,10 +7,12 @@ import CardBack_Click from '../../assets/CardMakingButtons/cardback_click.svg';
 import CardWriting from '../../assets/CardMakingButtons/cardwriting.svg';
 import CardWriting_Click from '../../assets/CardMakingButtons/cardwriting_click.svg';
 import MakingButton from '../../components/MakingButton/MakingButton'; // 새로운 버튼 컴포넌트
-import CardFrontContent from '../../components/CardFrontContent/CardFrontContent'; // 카드 앞면 컴포넌트
-import CardBackContent from '../../components/CardBackContent/CardBackContent'; // 카드 뒷면 컴포넌트
-import CardWritingContent from '../../components/CardWritingContent/CardWritingContent';
 import PopupModal from '../../components/PopupModal/PopupModa';
+import PublicSetting from '../../components/PublicSetting/PublicSetting';
+import CardFrontCustom from '../../components/CardFrontCustom/CardFrontCustom';
+import CardBackCustom from '../../components/CardBackCustom/CardBackCustom';
+import CardWritingCustom from '../../components/CardWritingCustom/CardWritingCustom';
+import Cloud from '../../assets/background-cloud.svg';
 
 export default function CardMakingPage() {
   const [activeButton, setActiveButton] = useState('card-front');
@@ -22,24 +23,10 @@ export default function CardMakingPage() {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <>
-      <Nav />
+    <div className='card-making-container-new'>
       <div className='card-making-container'>
         <div>
-          <div className='open-or-not'>
-            <button
-              className={`open-button ${open === 'open' ? 'active' : ''}`}
-              onClick={() => setOpen('open')}
-            >
-              공개
-            </button>
-            <button
-              className={`open-button ${open === 'not-open' ? 'active' : ''}`}
-              onClick={() => setOpen('not-open')}
-            >
-              비공개
-            </button>
-          </div>
+          <PublicSetting open={open} setOpen={setOpen} className={'card-making-setting'} />
           <div className='making-button-container'>
             <MakingButton
               isActive={activeButton === 'card-front'}
@@ -68,14 +55,13 @@ export default function CardMakingPage() {
             <button className='card-save-button'>저장</button>
           </div>
         </div>
+        {activeButton === 'card-front' && <CardFrontCustom />}
+        {activeButton === 'card-back' && <CardBackCustom />}
+        {activeButton === 'card-writing' && <CardWritingCustom />}
 
-        {/* 조건부 렌더링 */}
-        {activeButton === 'card-front' && <CardFrontContent />}
-        {activeButton === 'card-back' && <CardBackContent />}
-        {activeButton === 'card-writing' && <CardWritingContent />}
       </div>
+      <img src={Cloud} className="cloud-image" alt="Cloud Background" />
       <PopupModal isOpen={isModalOpen} onClose={closeModal} />
-    </>
-
+    </div>
   );
 }

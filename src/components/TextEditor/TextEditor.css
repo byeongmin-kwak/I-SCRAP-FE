@@ -1,0 +1,40 @@
+.text-add-container {
+    padding: 25px 31px;
+}
+
+.text-add-text {
+    font-family: Noto Sans KR Medium;
+    font-size: 16px;
+    margin-bottom: 26px;
+}
+
+.text-add-input-container {
+    display: flex;
+    margin-bottom: 30px;
+    margin-left: 20px;
+
+}
+
+.text-add-input {
+    width: 433px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1.50px #FEDC74 dotted;
+}
+
+
+.text-add-button {
+    margin-left: 16px;
+    border: none;
+    width: 83px;
+    height: 30px;
+    background: #FEDC74;
+    border-radius: 50px;
+    color: #B4643A;
+    font-size: 10px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word
+}
+

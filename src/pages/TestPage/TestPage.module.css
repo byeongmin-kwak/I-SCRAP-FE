@@ -1,0 +1,83 @@
+.container {
+    position: relative;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    background-color: #FEDC74;
+    z-index: -1;
+}
+
+.img {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+.textContainer {
+    position: relative;
+    /* 말풍선과 텍스트를 함께 배치할 상대 위치 컨테이너 */
+    width: 498px;
+    height: 142px;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+.textContainer.show {
+    opacity: 1;
+}
+
+.text {
+    position: absolute;
+    top: 31%;
+    /* 말풍선 안에서 텍스트의 위치 조정 */
+    left: 50%;
+    transform: translate(-50%, -20%);
+    color: black;
+    /* 글씨 색상 */
+    font-size: 14px;
+    text-align: center;
+    pointer-events: none;
+    /* 클릭 불가 */
+    font-family: Noto Sans KR Medium;
+    font-size: 18px;
+}
+
+.circleButton1 {
+    width: 152px;
+    height: 152px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.50);
+    border-radius: 9999px;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    margin-top: 20px;
+    z-index: 1;
+}
+
+.circleButton1.show {
+    opacity: 1;
+  }
+
+.circleButton2 {
+    width: 104px;
+    height: 104px;
+    background: white;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.questionContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 86px;
+    font-family: Noto Sans KR Medium;
+    font-size: 18px;
+}

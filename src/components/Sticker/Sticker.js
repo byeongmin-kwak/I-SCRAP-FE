@@ -3,30 +3,31 @@ import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 
-const Sticker = ({ imageSrc, position }) => {
+
+const Sticker = ({ imageSrc, position, onDragStart }) => {
   const [size, setSize] = useState({ width: 48, height: 48 });
   const [positionOffset, setPositionOffset] = useState(position);
 
+  // 드래그 중인 스티커의 크기와 위치를 조절하는 함수
   const handleResize = (event, { size }) => {
-    const deltaX = (size.width - size.width) / 2;
-    const deltaY = (size.height - size.height) / 2;
-
-    setPositionOffset(prev => ({
-      x: prev.x - deltaX,
-      y: prev.y - deltaY,
-    }));
-    
     setSize(size);
   };
 
+  // 드래그할 때 스티커의 위치를 조절하는 함수
   const handleDrag = (e, data) => {
     setPositionOffset({ x: data.x, y: data.y });
+  };
+
+  // 드래그를 시작할 때 호출되는 함수
+  const handleStart = (e) => {
+    onDragStart && onDragStart();
   };
 
   return (
     <Draggable
       position={positionOffset}
       onDrag={handleDrag}
+      onStart={handleStart}
     >
       <div style={{ display: 'inline-block' }}>
         <ResizableBox 

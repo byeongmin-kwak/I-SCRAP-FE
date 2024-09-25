@@ -1,0 +1,78 @@
+.popup-search-modal-overlay {
+    position: fixed;
+    /* 화면 전체를 덮도록 설정 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    /* 다른 요소들보다 위에 표시되도록 */
+    /* 작은 화면에서도 여백이 생기도록 패딩 추가 */
+    box-sizing: border-box;
+
+}
+
+.popup-search-modal-container {
+    margin-top: 190px;
+    width: 784px;
+    height: 540px;
+    padding: 20px;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 30px;
+    border: 3px #4AC7CF solid;
+}
+
+.search-value-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.popup-search-modal-close {
+    font-size: 22px;
+    margin-top: -10px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #4AC7CF;
+}
+
+.search-popups-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    overflow-x: auto;
+    gap: 30px;
+}
+
+.select-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.select-button {
+    cursor: pointer;
+    width: 90%;
+    height: 42px;
+    border: none;
+    background: #4AC7CF;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    font-family: Noto Sans KR Medium;
+    font-weight: 500;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.searchQuery{
+    font-size: 16px;
+    font-family: Noto Sans KR Regular;
+}

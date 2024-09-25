@@ -1,0 +1,310 @@
+.front-custom-canvas-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 78px;
+    margin-top: 80px;
+}
+
+
+.front-custom-canvas {
+    width: 660px;
+    height: 484px;
+    background: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 1px #898989 solid;
+}
+
+
+.front-custom-button-container {
+    width: 660px;
+}
+
+.front-custom-button-a {
+    width: 25%;
+    height: 35px;
+    background: white;
+    border-bottom-left-radius: 20px;
+    border: 1px #898989 solid;
+    text-align: center;
+    color: #898989;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-a.active {
+    width: 25%;
+    height: 35px;
+    border-bottom-left-radius: 20px;
+    background: #4AC7CF;
+    border: 1px #4AC7CF solid;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-b {
+    width: 25%;
+    height: 35px;
+    background-color: white;
+    border: 1px #898989 solid;
+    color: #898989;
+    text-align: center;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-b.active {
+    width: 25%;
+    height: 35px;
+    text-align: center;
+    background: #4AC7CF;
+    border: 1px #4AC7CF solid;
+    color: white;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-c {
+    width: 25%;
+    height: 35px;
+    background: white;
+    border: 1px #898989 solid;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+    color: #898989;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.front-custom-button-c.active {
+    width: 25%;
+    height: 35px;
+    border-bottom-right-radius: 20px;
+    background: #4AC7CF;
+    border: 1px #4AC7CF solid;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    font-weight: 400;
+    line-height: 15px;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.custom-options {
+    margin-top: 25px;
+    margin-left: 67px;
+}
+
+.add-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 653px;
+    height: 57px;
+    border: 1.50px #BBBBBB solid;
+    border-radius: 15px;
+    align-items: center;
+
+}
+
+.add-text-input {
+    margin-left: 10px;
+    font-size: 15px;
+    height: 30px;
+    width: 50%;
+    border: none;
+}
+
+.add-text-button {
+    width: 120px;
+    height: 40px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 10px;
+    background: #BBBBBB;
+    border: none;
+    border-radius: 15px
+}
+
+
+.rayout-font {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: row;
+    gap: 17px;
+}
+
+
+.font {
+    border: 1.50px #BBBBBB solid;
+    border-radius: 15px;
+    width: 40%;
+    height: 266px;
+
+}
+
+.image-sticker-background {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: row;
+    gap: 17px;
+}
+
+
+.image {
+    border: 1.50px #BBBBBB solid;
+    border-radius: 15px;
+    width: 20%;
+    height: 266px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.select-image {
+    width: 83px;
+    height: 129px;
+    position: relative;
+    background-color: #E0E0E0;
+}
+
+.selected-image {
+    width: 83px;
+    height: 129px;
+    position: relative;
+}
+
+.image-select-button {
+    width: 83px;
+    height: 38px;
+    display: flex;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 8px;
+    margin-top: 24px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    color: #2E2E2E;
+    font-size: 13px;
+    font-family: Noto Sans KR;
+    font-weight: 500;
+    word-wrap: break-word
+}
+
+
+
+.background {
+    border: 1.50px #BBBBBB solid;
+    border-radius: 15px;
+    width: 20%;
+    height: 266px;
+
+}
+
+.making-card-view {
+    display: flex;
+    flex-direction: row;
+}
+
+.maked-card {
+    background-color: #f6f6f6;
+    width: 290px;
+    height: 430px;
+    margin-top: 42px;
+    border-radius: 15px;
+}
+
+.card-image {
+    position: absolute;
+    width: 290px;
+    height: 430px;
+    border-radius: 15px;
+}
+
+.used-sticker-list {
+    display: flex;
+    width: 530px;
+    height: 43px;
+    padding: 10px;
+    padding-left: 15px;
+    align-items: center;
+    border-radius: 40px;
+    background-color: #E0E0E0;
+    margin-left: 50px;
+    margin-top: 90px;
+    gap: 16px;
+    font-weight: 400;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+}
+
+.used-sticker-text {
+    color: #2E2E2E;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    flex-shrink: 0;
+}
+
+.used-sticker-item {
+    width: 36.33px;
+    height: 36.33px;
+    background: white;
+    border-radius: 2.79px;
+    border: 1.40px #BBBBBB solid;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    flex-shrink: 0;
+}
+
+.delete-sticker {
+    position: absolute;
+    top: -6px;
+    /* 스티커 네모 상자 위로 약간 튀어나오게 */
+    right: -6px;
+    /* 스티커 네모 상자 오른쪽 위로 약간 튀어나오게 */
+    background: #BBBBBB;
+    color: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.used-sticker-image {
+    height: 80%;
+    width: 80%;
+}

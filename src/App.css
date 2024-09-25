@@ -33,6 +33,60 @@
     url('./fonts/Noto_Sans_KR/NotoSansKR-Medium.otf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Cafe24 Simplehae';
+  src: url('./fonts/Cafe24/Cafe24Simplehae-v2.0.woff') format('woff2'),
+    url('./fonts/Cafe24/Cafe24Simplehae-v2.0.woff') format('woff'),
+    url('./fonts/Cafe24/Cafe24Simplehae-v2.0.woff') format('truetype');
+}
+
+@font-face {
+  font-family: 'Cafe24 Ssurround';
+  src: url('./fonts/Cafe24/Cafe24Ssurround-v2.0.woff') format('woff2'),
+    url('./fonts/Cafe24/Cafe24Ssurround-v2.0.woff') format('woff'),
+    url('./fonts/Cafe24/Cafe24Ssurround-v2.0.woff') format('truetype');
+}
+
+@font-face {
+  font-family: 'Cafe24 Moyamoya';
+  src: url('./fonts/Cafe24/Cafe24Moyamoya-Regular-v1.0.woff') format('woff2'),
+    url('./fonts/Cafe24/Cafe24Moyamoya-Regular-v1.0.woff') format('woff'),
+    url('./fonts/Cafe24/Cafe24Moyamoya-Regular-v1.0.woff') format('truetype'),
+}
+
+@font-face {
+  font-family: 'CWDangamAsac-Bold';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RixInooAriDuriR';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LOTTERIACHAB';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hakgyoansim Mulgyeol';
+  src: url('./fonts/HakgyoansimMulgyeolR.ttf') format('ttf'),
+    url('./fonts/HakgyoansimMulgyeolR.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'OdibeeSans';
+  src: url('./fonts/OdibeeSans-Regular.ttf') format('ttf'),
+    url('./fonts/OdibeeSans-Regular.ttf') format('truetype'),
+}
+
 .swiper-wrapper {
   position: relative;
   transition-timing-function: linear !important;
@@ -47,4 +101,5 @@
   color: #BBBBBB;
   font-size: 22px !important;
 }
+
 

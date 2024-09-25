@@ -1,0 +1,66 @@
+
+.archiving-popup-info {
+    display: flex;
+    align-items: end;
+    margin-top: 5px;
+}
+
+.archiving-popup {
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    height: 167px;
+    padding: 1px;
+    cursor: pointer;
+}
+
+
+.archiving-popup.deletable:hover {
+    background-color: #FEDC74; /* 선택된 경우 배경색 */
+}
+
+.archiving-popup.selected {
+    background-color: #FEDC74; /* 선택된 경우 배경색 */
+}
+
+.archiving-image {
+    width: 83.94px;
+    height: 133.37px;
+    border-radius: 10px;
+
+}
+
+
+.archiving-popup-content {
+    margin-left: 3.75px;
+   
+}
+
+.archiving-popup-title {
+    margin-top: 5px;
+    color: black;
+    font-size: 9.33px;
+    font-family: Noto Sans KR;
+    font-weight: 400;
+    line-height: 18.65px;
+    word-wrap: break-word;
+    
+}
+
+.archiving-popup-name {
+    color: #9D9D9D;
+    font-size: 8px;
+    font-family: Noto Sans KR;
+    font-weight: 400;
+    line-height: 18.65px;
+    word-wrap: break-word;
+}
+
+.archiving-visit-date {
+    color: black;
+    font-size: 20.52px;
+    font-family: Noto Sans KR;
+    font-weight: 400;
+    line-height: 18.65px;
+    word-wrap: break-word;
+}

@@ -1,0 +1,70 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    text-align: center;
+}
+
+.uploadContainer {
+    margin-top: 20px;
+}
+
+.uploadLabel {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.uploadInput {
+    display: none;
+}
+
+.previewContainer {
+    display: flex;
+    flex-wrap: wrap; /* 여러 개의 이미지를 나열 */
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.previewImage {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.modalActions {
+    margin-top: 20px;
+}
+
+.closeButton, .addButton {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.closeButton {
+    background-color: #DC3545;
+}
+
+.closeButton:hover, .addButton:hover {
+    opacity: 0.8;
+}
