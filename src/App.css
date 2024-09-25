@@ -86,3 +86,20 @@
   src: url('./fonts/OdibeeSans-Regular.ttf') format('ttf'),
     url('./fonts/OdibeeSans-Regular.ttf') format('truetype'),
 }
+
+.swiper-wrapper {
+  position: relative;
+  transition-timing-function: linear !important;
+}
+
+.swiper-button-prev::after {
+  color: #BBBBBB;
+  font-size: 22px !important;
+}
+
+.swiper-button-next::after {
+  color: #BBBBBB;
+  font-size: 22px !important;
+}
+
+

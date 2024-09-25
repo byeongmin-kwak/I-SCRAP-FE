@@ -3,12 +3,11 @@
   padding: 0;
   margin: 0;
   position: relative; 
-  height: 100vh;
+  height: 120vh;
 }
 
 .mainContainer {
-  padding: 100px;
-  margin: 0 auto;
+  padding: 10%;
 }
 
 .mapHeader {
@@ -36,7 +35,7 @@
 }
 
 .bottomImage {
-  display: block;
-  width: 100%;
   position: absolute;
+  bottom: 0;
+  width: 100%;
 }

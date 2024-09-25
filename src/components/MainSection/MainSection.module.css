@@ -64,3 +64,128 @@
   height: auto;
 }
 
+@media (max-width: 1024px) {
+  .mainSection {
+    padding: 50px;
+  }
+
+  .mainContent {
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+  }
+
+  .mainTitle {
+    font-size: 70px;
+  }
+
+  .mainSubtitle {
+    font-size: 20px;
+  }
+
+  .searchBar input {
+    width: 250px;
+  }
+
+  .mainImage {
+    width: 400px;
+  }
+}
+
+@media (max-width: 840px) {
+  .mainSection {
+    padding: 50px;
+  }
+
+  .mainContent {
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+  }
+
+  .mainTitle {
+    font-size: 70px;
+  }
+
+  .mainSubtitle {
+    font-size: 20px;
+  }
+
+  .searchBar input {
+    width: 250px;
+  }
+
+  .mainImage {
+    width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainSection {
+    padding: 40px;
+  }
+
+  .mainTitle {
+    font-size: 50px;
+  }
+
+  .mainSubtitle {
+    font-size: 18px;
+  }
+
+  .searchBar input {
+    width: 200px;
+  }
+
+  .mainImage {
+    width: 250px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mainSection {
+    padding: 40px;
+  }
+
+  .mainTitle {
+    font-size: 50px;
+  }
+
+  .mainSubtitle {
+    font-size: 18px;
+  }
+
+  .searchBar input {
+    width: 200px;
+  }
+
+  .mainImage {
+    width: 200px;
+  }
+}
+
+@media (max-width: 586px) {
+  .mainSection {
+    flex-direction: column;
+    padding-top: 60px;
+  }
+  
+  .mainContent {
+    padding: 0;
+  }
+  .mainTitle {
+    font-size: 50px;
+  }
+
+  .mainSubtitle {
+    font-size: 18px;
+  }
+
+  .searchBar input {
+    width: 200px;
+  }
+
+  .mainImage {
+    width: 200px;
+  }
+}
