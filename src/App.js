@@ -10,6 +10,7 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import PopupPage from "./pages/PopupPage/PopupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import OnboardingPage from "./pages/OnboardingPage/OnboardingPage";
+import MyPage from "./pages/MyPage/MyPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -49,6 +50,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/popup" element={<PopupPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/my" element={<MyPage />} />
       </Routes>
     </div>
   );

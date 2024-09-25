@@ -1,0 +1,319 @@
+.myPage {
+  display: flex;
+  padding: 120px 120px 40px 120px;
+}
+
+.profileSection {
+  width: 20%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #e0e0e0;
+}
+
+.profileImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.profileStats {
+  margin: 20px 0;
+}
+
+.profileStats div {
+  margin: 5px 0;
+}
+
+.editButton, .notificationButton, .logoutButton {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.editButton {
+  background-color: #4ac7cf;
+  color: #fff;
+}
+
+.notificationButton {
+  background-color: #fedc74;
+  color: #fff;
+}
+
+.logoutButton {
+  background-color: #ccc;
+}
+
+.bookmarkSection {
+  width: 80%;
+  padding: 20px;
+}
+
+.calendarContainer {
+  margin-bottom: 20px;
+}
+
+
+.expandButton {
+  margin-top: 10px;
+  background-color: transparent;
+  border: none;
+  color: #4ac7cf;
+  cursor: pointer;
+}
+
+.filterButtons {
+  width: 300px;
+  height: 22px;
+  display: flex;
+  justify-content: center; /* 버튼을 가운데 정렬 */
+  align-items: center;
+  gap: 10px; /* 버튼 간격 */
+  padding: 10px;
+  border: 2px solid #e0e0e0; /* 외곽선 */
+  border-radius: 25px; /* 둥근 테두리 */
+  background-color: #f8f8f8; /* 배경색 */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.filterButtons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #7b7b7b;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  position: relative; /* 상대적 위치 설정 */
+
+}
+
+.filterButtons button::before {
+  content: "";
+  position: absolute;
+  right: -10px; /* 오른쪽에 세로줄 추가 */
+  height: 20px; /* 세로줄 길이 */
+  width: 1px; /* 세로줄 너비 */
+  background-color: #ccc; /* 세로줄 색상 */
+}
+
+.filterButtons button:last-child::before {
+  display: none; /* 마지막 버튼은 세로줄 제거 */
+}
+
+.filterButtons button.active {
+  color: #4ac7cf;
+  font-weight: bold;
+}
+
+.popupGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.popupCard {
+  width: 200px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.popupCard img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: opacity 0.3s ease;
+}
+
+.dateOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5px 10px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.popupCard:hover img {
+  opacity: 0.3;
+}
+
+.popupCard:hover .dateOverlay {
+  opacity: 1;
+}
+
+.popupName {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 주간 캘린더 */
+.weekView {
+  display: grid;
+  grid-template-rows: auto 1fr; /* 네비게이션과 팝업을 분리 */
+  margin-top: 20px;
+}
+
+.weekNav {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr); /* 네비게이션을 9등분 */
+  text-align: center;
+  align-items: center;
+}
+
+.weekDay {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.weekPopupsContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); 
+  margin-top: -144px !important;
+  position: relative;
+  z-index: 2;
+  width: 78%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+
+.popupBar {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  background-color: #4ac7cf;
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+  white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+  text-overflow: ellipsis; /* 넘치는 텍스트 ... 표시 */
+  margin: 3px;
+  position: relative;
+}
+
+.popupBar::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  width: 20px;
+  height: 10px;
+  background-color: #a3765e; /* 갈색 막대 색상 */
+  border-radius: 50%;
+}
+
+/* 특정 날짜에만 ::after 요소를 표시 */
+.lastDay::after {
+  display: none; /* 마지막 날이 아닌 경우 숨김 */
+}
+
+
+.popupBar:nth-child(1) {
+  background-color: #4ac7cf;
+}
+
+.popupBar:nth-child(2) {
+  background-color: #a0d1a3;
+}
+
+.popupBar:nth-child(3) {
+  background-color: #fedc74;
+}
+
+.morePopup {
+  grid-column: 1 / 8;
+  color: #4ac7cf;
+  text-align: center;
+  font-weight: bold;
+  height: 26px;
+}
+
+.dayNumber {
+  font-size: 18px;
+  font-weight: 700; /* 폰트 두께 증가 */
+  color: #333; /* 텍스트 색상 변경 */
+}
+
+.dayName {
+  font-size: 14px;
+  color: #888; /* 요일 텍스트 색상 변경 */
+}
+
+.dayNumber.sunday {
+  color: #ff4d4d; /* 일요일 텍스트 색상 */
+}
+
+.dayNumber.saturday {
+  color: #4d79ff; /* 토요일 텍스트 색상 */
+}
+
+
+.navIcon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #7B7B7B;
+  transition: transform 0.2s ease; /* 클릭 시 애니메이션 */
+  z-index: 3;
+}
+
+.navIcon:hover {
+  transform: scale(1.1); /* 호버 시 크기 증가 */
+}
+
+.popups {
+  grid-column: 1 / -1; /* 전체 weekDay를 덮도록 설정 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 20px; /* 모서리 둥글게 */
+  padding: 5px 10px; /* 좌우 패딩 추가 */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 팝업 그림자 */
+  height: 35px; /* 높이 증가 */
+}
+
+.popupLabel {
+  font-size: 12px;
+}
+

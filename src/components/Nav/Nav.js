@@ -14,8 +14,8 @@ const Nav = () => {
     window.location.href = "/"; // 로고 클릭 시 새로고침과 함께 메인 페이지로 이동
   };
 
-  const handleMapClick = () => {
-    window.location.href = "/"; // "지도" 클릭 시 새로고침과 함께 /map 페이지로 이동
+  const handleHomeClick = () => {
+    window.location.href = "/";
   };
 
   const handleSearchClick = () => {
@@ -24,6 +24,10 @@ const Nav = () => {
 
   const handleLoginClick = () => {
     window.location.href = "/login";
+  };
+
+  const handleMyClick = () => {
+    window.location.href = "/my";
   };
 
   return (
@@ -37,10 +41,10 @@ const Nav = () => {
       </div>
 
       <ul className={`${styles.navbarMenu} ${menuOpen ? styles.active : ""}`}>
-        <li onClick={handleMapClick}>홈</li>
+        <li onClick={handleHomeClick}>홈</li>
         <li onClick={handleSearchClick}>찾기</li>
         <li>기록</li>
-        <li>My</li>
+        <li onClick={handleMyClick}>My</li>
         <li className={styles.loginButton} onClick={handleLoginClick}>
           login / join
         </li>

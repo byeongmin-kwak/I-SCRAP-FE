@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./BookmarkPopupSection.module.css";
 import Calendar from "react-calendar";
-import "./CalendarCustom.css";
 import calendarImage from "../../assets/calendarImage.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -11,6 +10,190 @@ import "swiper/css/navigation";
 import leftButton from "../../assets/leftButton.svg";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import noBookmark from "../../assets/mainPageImage5.svg";
+import styled from "styled-components";
+
+const StyledCalendar1 = styled(Calendar)`
+  .react-calendar {
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    padding: 20px;
+    padding-top: 32px;
+    background-color: #4ac7cf; /* 흰색 배경 */
+  }
+
+  /* 상단의 월과 연도 표시 영역 */
+  .react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .react-calendar__navigation button {
+    color: black;
+    min-width: 44px;
+    background: none;
+    font-size: 16px;
+    border: none;
+    font-family: "Noto Sans KR Bold", sans-serif;
+  }
+
+  .react-calendar__navigation button:disabled {
+    background-color: #f0f0f0;
+  }
+
+  .react-calendar__navigation button:enabled:hover,
+  .react-calendar__navigation button:enabled:focus {
+    background-color: #e6f7f9;
+    border-radius: 8px;
+  }
+
+  .react-calendar__viewContainer {
+    background-color: white;
+    border-radius: 12px;
+  }
+
+  /* 요일 헤더 스타일 */
+  .react-calendar__month-view__weekdays {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #777777;
+    font-weight: bold;
+  }
+
+  .react-calendar__month-view__weekdays__weekday {
+    font-family: "Noto Sans KR Medium", sans-serif;
+    padding: 10px 0;
+  }
+
+  .react-calendar__month-view__days__day {
+    font-family: "Noto Sans KR Medium", sans-serif;
+  }
+
+  /* 날짜 타일 스타일 */
+  .react-calendar__tile {
+    padding: 15px 0;
+    background: none;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+  }
+
+  .react-calendar__tile:hover {
+    cursor: pointer;
+    background-color: rgb(231, 231, 231);
+  }
+  .react-calendar__tile abbr {
+    position: relative;
+    z-index: 10 !important;
+  }
+
+  /* 기본 날짜 타일 hover 효과 */
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+  }
+
+  /* 선택된 날짜 스타일 */
+  .react-calendar__tile--active {
+  }
+
+  .react-calendar__tile--now {
+    position: relative;
+  }
+
+  .react-calendar__tile--now::before {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 비활성화된 날짜 스타일 */
+  .react-calendar__tile--disabled {
+    color: #d6d6d6 !important;
+  }
+
+  /* 주말 날짜 스타일 */
+  .react-calendar__month-view__days__day--weekend {
+    color: #f44336;
+  }
+
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #777777;
+  }
+
+  /* 전체 캘린더의 패딩 및 반응형 스타일 */
+  @media (max-width: 600px) {
+    .react-calendar {
+      padding: 10px;
+    }
+
+    .react-calendar__tile {
+      padding: 10px 0;
+    }
+
+    .react-calendar__navigation button {
+      font-size: 14px;
+    }
+  }
+
+  /* 팝업이 1개 있는 날짜 */
+  .react-calendar__tile.single-popup::before {
+    content: "";
+    position: absolute;
+    width: 28px; /* 크기 조정 */
+    height: 28px;
+    border-radius: 50%;
+    background-color: #4ac7cf;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  .react-calendar__tile.single-popup {
+    color: white;
+  }
+  /* 팝업이 2개 있는 날짜 */
+  .react-calendar__tile.double-popup::before {
+    content: "";
+    position: absolute;
+    width: 28px; /* 크기 조정 */
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(0deg, #fedc74 0%, #4ac7cf 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .react-calendar__tile.double-popup {
+    color: white;
+  }
+
+  /* 팝업이 3개 이상 있는 날짜 */
+  .react-calendar__tile.multiple-popup::before {
+    content: "";
+    position: absolute;
+    width: 28px; /* 크기 조정 */
+    height: 28px;
+    border-radius: 50%;
+    background: conic-gradient(#eea984 0%, #fedc74 50%, #4ac7cf 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .react-calendar__tile.multiple-popup {
+    color: white;
+  }
+`;
 
 const BookmarkPopupSection = () => {
   const [date, setDate] = useState(new Date());
@@ -130,7 +313,7 @@ const BookmarkPopupSection = () => {
           alt="Calendar Decoration"
           className={styles.calendarImage}
         />
-        <Calendar
+        <StyledCalendar1
           className={styles.calendar}
           onChange={setDate}
           value={date}
