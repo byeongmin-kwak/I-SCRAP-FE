@@ -11,19 +11,16 @@ const PopupPage = () => {
 
   const [popupData, setPopupData] = useState(null);
   const [error, setError] = useState("");
-  const { id } = useParams();
+  const { popupId } = useParams();
 
   useEffect(() => {
     const fetchPopupData = async () => {
       try {
         const response = await axios.get(
-          `${serverURL}/popups/detail/64dcbf56f001b623d8a71ba0`
+          `${serverURL}/popups/detail/${popupId}` // 받아온 ID로 API 요청
         );
-        // const response = await axios.get(
-        //   `${serverURL}/popups/detail?id=${id}` // 받아온 ID로 API 요청
-        // );
         setPopupData(response.data); // 데이터를 상태에 저장
-        console.log(response.data);
+        console.log("popupData", response.data);
       } catch (err) {
         setError("데이터를 불러오는 데 실패했습니다.");
       }
@@ -118,7 +115,14 @@ const PopupPage = () => {
           <div className={styles.horizontalLine}></div>
           <div className={styles.info}>
             <h2>팝업스토어 소개</h2>
-            <p>{popupData.description}</p>
+            <p>
+              {popupData.description.split("\n").map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
+            </p>{" "}
           </div>
           <div className={styles.map}>
             <h2>찾아오는 길</h2>
