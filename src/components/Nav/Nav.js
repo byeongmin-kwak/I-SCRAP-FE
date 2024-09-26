@@ -35,13 +35,9 @@ const Nav = ({ isLoggedIn, username }) => {
 
   const handleLogoutClick = async () => {
     try {
-      await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/auth/logout`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/auth/logout`, {
+        withCredentials: true,
+      });
       window.location.href = "/"; // 로그아웃 후 메인 페이지로 이동
     } catch (error) {
       console.error("로그아웃 중 오류 발생:", error);
