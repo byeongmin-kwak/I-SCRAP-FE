@@ -6,8 +6,9 @@ import styles from './BasicMakingModal.module.css'; // 스타일은 별도 파�
 
 export default function BasicMakingModal({ isOpen, onClose }) {
     const selectedPopup = useSelector((state) => state.popup.selectedPopup); // popupId를 가져옴
+    const open = useSelector((state) => state.publicSetting.open); // 전역 상태로부터 공개/비공개 상태 가져오기
     const popName = selectedPopup? selectedPopup.name: "";
-    const { place, date, price, companion } = useSelector((state) => state.backInfo);
+    const { place, date, price, companion, comment } = useSelector((state) => state.backInfo);
 
     if (!isOpen) return null;
 
@@ -18,7 +19,7 @@ export default function BasicMakingModal({ isOpen, onClose }) {
                 <div>
                     <div className={styles.cardContainer}>
                         <div>
-                            <img src={selectedPopup.image} className={styles.img} />
+                            <img src={selectedPopup.poster} className={styles.img} />
                         </div>
 
                         <div className={styles.svgContainer}>

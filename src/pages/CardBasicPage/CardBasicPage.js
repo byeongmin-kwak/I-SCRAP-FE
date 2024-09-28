@@ -28,7 +28,6 @@ export default function CardBasicPage() {
     const amount = useSelector((state) => state.backInfo.price);
     const companions = useSelector((state) => state.backInfo.companion);
     const comment = useSelector((state) => state.backInfo.comment);
-    const baseUrl = 'https://mbnbcpl609.execute-api.ap-northeast-2.amazonaws.com/dev/';
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
@@ -53,9 +52,11 @@ export default function CardBasicPage() {
         return stars;
     };
 
+    
+
     const handleSearch = async () => {
         try {
-            const response = await axios.get(`${baseUrl}search/popups?popupName=${searchInput}`);
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/search/popups?popupName=${searchInput}`);
             console.log(response.data);
             setSearchResults(response.data); // API 응답 데이터를 상태로 저장
             openModal(); // 모달 열기
@@ -83,7 +84,7 @@ export default function CardBasicPage() {
         };
 
         try {
-            const response = await axios.post(`${baseUrl}reviews`, reviewData);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}reviews`, reviewData);
             console.log('리뷰가 성공적으로 저장되었습니다:', response.data);
         } catch (error) {
             console.error('리뷰 저장 중 오류가 발생했습니다:', error);
@@ -91,8 +92,8 @@ export default function CardBasicPage() {
     };
 
     useEffect(()=>{
-        console.log(comment);
-    }, [comment])
+        console.log(selectedPopup);
+    }, [selectedPopup])
 
     return (
         <>
@@ -113,7 +114,7 @@ export default function CardBasicPage() {
 
                         {selectedPopup ? (
                             <>
-                                <img src={selectedPopup.image} className='selected-popup-post' />
+                                <img src={selectedPopup.poster} className='selected-popup-post' />
                                 <div className='popup-name'>{selectedPopup.name}</div>
                             </>
                         ) : (
