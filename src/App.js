@@ -52,7 +52,7 @@ function App() {
         <Route path="/card-basic" element={<CardBasicPage />} />
         <Route path="/card-making" element={<CardMakingPage />} />
         <Route path="/archiving" element={<ArchivingPage />} />
-        <Route path="/writing" element={<WritingDetailPage />} />
+        <Route path="/writing/:id" element={<WritingDetailPage />} />
         <Route path='/test' element={<TestPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/popup" element={<PopupPage />} />

@@ -30,6 +30,10 @@ const Nav = () => {
     window.location.href = "/my";
   };
 
+  const handleArchiving = () => {
+    window.location.href = "/archiving"
+  }
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarLogo}>
@@ -43,7 +47,7 @@ const Nav = () => {
       <ul className={`${styles.navbarMenu} ${menuOpen ? styles.active : ""}`}>
         <li onClick={handleHomeClick}>홈</li>
         <li onClick={handleSearchClick}>찾기</li>
-        <li>기록</li>
+        <li onClick={handleArchiving}>기록</li>
         <li onClick={handleMyClick}>My</li>
         <li className={styles.loginButton} onClick={handleLoginClick}>
           login / join

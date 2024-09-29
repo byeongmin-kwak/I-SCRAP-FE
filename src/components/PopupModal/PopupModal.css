@@ -1,69 +1,96 @@
 .modal-overlay {
-    position: fixed; /* 화면 전체를 덮도록 설정 */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.60);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* 다른 요소들보다 위에 표시되도록 */ /* 작은 화면에서도 여백이 생기도록 패딩 추가 */
-    box-sizing: border-box;
-  }
-  
-  .modal-container {
-    width: 500px;
-    height: 220px;
-    background: white;
-    border-radius: 30px;
-    border: 1px solid #898989;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    color: black;
-    font-size: 15px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: center;
-  }
-  
-  .modal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
-  }
-  
-  .modal-button {
-    width: 103px;
-    height: 42px;
-    border-radius: 30px;
-    font-size: 13px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
-    line-height: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .no-button {
-    background-color: #bbbbbb;
-    color: white;
-    border: none;
-  }
-  
-  .yes-button {
-    background-color: transparent;
-    color: #bbbbbb;
-    border: 2px solid #bbbbbb;
-  }
-  
+  position: fixed;
+  /* 화면 전체를 덮도록 설정 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  /* 다른 요소들보다 위에 표시되도록 */
+  /* 작은 화면에서도 여백이 생기도록 패딩 추가 */
+  box-sizing: border-box;
+}
+
+.modal-container {
+  width: 500px;
+  height: 220px;
+  background: white;
+  border-radius: 30px;
+  border: 1px solid #4AC7CF;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+.modal-content {
+  margin-top: 30px;
+  color: black;
+  font-size: 15px;
+  font-family: 'Noto Sans KR Regular';
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.modal-button {
+  width: 103px;
+  height: 42px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-family: 'Noto Sans KR Regular';
+  font-weight: 400;
+  line-height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-button {
+  background-color: white;
+  color: #4AC7CF;
+  border: none;
+  border: 2px solid #4AC7CF;
+}
+
+.yes-button {
+  background-color: #4AC7CF;
+  color: white;
+  border: 2px solid #4AC7CF;
+}
+
+.modal-content-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 61px;
+  background: #4AC7CF;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.modal-icon{
+  width: 62.51px;
+}
+
+.modal-content-container{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 220px;
+}

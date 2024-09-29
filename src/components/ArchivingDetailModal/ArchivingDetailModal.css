@@ -12,7 +12,7 @@
 }
 
 .archiving-modal-container {
-    margin-top: 16px;
+    margin-top: 90px;
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 8px;
@@ -20,16 +20,19 @@
     height: 550px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
-    transform: translateY(-30px); /* 초기 상태는 위로 이동 */
-    transition: transform 0.3s ease; /* 애니메이션 추가 */
+    transform: translateY(-30px);
+    /* 초기 상태는 위로 이동 */
+    transition: transform 0.3s ease;
+    /* 애니메이션 추가 */
 }
 
 .archiving-modal-container.show {
-    transform: translateY(0); /* 모달이 열릴 때 원래 위치로 이동 */
+    transform: translateY(0);
+    /* 모달이 열릴 때 원래 위치로 이동 */
 }
 
 .archiving-modal-content {
-    margin-top: 30px;
+    margin-top: 25px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -37,7 +40,7 @@
 }
 
 .archiving-modal-info {
-    margin-top: 60px;
+    margin-top: 30px;
     color: white;
 }
 
@@ -58,7 +61,7 @@
 
 .archiving-modal-image {
     display: flex;
-    margin-top: 30px;
+    margin-top: 10px;
     width: 290px;
     height: 430px;
     border-radius: 15px;
@@ -68,7 +71,8 @@
 .archiving-card {
     width: 290px;
     height: 430px;
-    perspective: 1000px; /* 3D 효과를 위한 원근감 */
+    perspective: 1000px;
+    /* 3D 효과를 위한 원근감 */
 }
 
 .archiving-card-inner {
@@ -76,15 +80,18 @@
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.6s; /* 회전 애니메이션 */
+    transition: transform 0.6s;
+    /* 회전 애니메이션 */
 }
 
 .archiving-card.flipped .archiving-card-inner {
-    transform: rotateY(180deg); /* 카드 회전 */
+    transform: rotateY(180deg);
+    /* 카드 회전 */
 }
 
-.archiving-card-inner:hover  {
-    animation: rotate 2s linear infinite; /* hover 상태에서 회전 애니메이션 */
+.archiving-card-inner:hover {
+    animation: rotate 2s linear infinite;
+    /* hover 상태에서 회전 애니메이션 */
 }
 
 .archiving-card-front,
@@ -92,15 +99,19 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* 뒷면이 보이지 않도록 설정 */
+    backface-visibility: hidden;
+    /* 뒷면이 보이지 않도록 설정 */
 }
 
 .archiving-card-back {
-    transform: rotateY(180deg); /* 뒷면 회전 */
+    transform: rotateY(180deg);
+    /* 뒷면 회전 */
 }
 
-.flipped-card{
-    margin-top: 50px;
+.flipped-card {
+    margin-left: 125px;
+    margin-top: 30px;
+    cursor: pointer;
 }
 
 /* 회전 애니메이션 정의 */
@@ -108,6 +119,7 @@
     from {
         transform: rotateY(0deg);
     }
+
     to {
         transform: rotateY(360deg);
     }
@@ -122,9 +134,8 @@
 
 .archiving-modal-date {
     color: white;
-    font-size: 16px;
-    font-family: Noto Sans KR;
-    font-weight: 400;
+    font-size: 14px;
+    font-family: Noto Sans KR Regular;
     line-height: 20px;
     word-wrap: break-word;
 }
@@ -142,30 +153,42 @@
 .archiving-modal-open {
     color: white;
     margin-top: 15px;
-    font-size: 14px;
-    font-family: Noto Sans KR;
-    font-weight: 400;
-    line-height: 20px;
-    word-wrap: break-word;
+    font-size: 12px;
+    font-family: Noto Sans KR Regular;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 26px;
+    background: #4AC7CF;
+    border-radius: 50px;
+    margin-bottom: 41px;
+
 }
 
 .archiving-modal-coment {
-    margin-top: 58px;
+    margin-top: 38px;
     color: white;
     font-size: 14px;
-    font-family: Noto Sans KR;
-    font-weight: 500;
+    font-family: Noto Sans KR Medium;
     line-height: 13.12px;
     word-wrap: break-word;
+}
+
+.archiving-modal-popupName {
+    font-family: Noto Sans KR Light;
+    font-size: 16px;
+    margin-top: 11px;
 }
 
 .archiving-modal-title {
     color: white;
     font-size: 14px;
-    font-family: Noto Sans KR;
+    font-family: Noto Sans KR Medium;
     font-weight: 500;
     line-height: 13.12px;
     word-wrap: break-word;
+    margin-top: 5px;
 }
 
 .archiving-modal-detail {
@@ -174,18 +197,17 @@
     margin-top: 51px;
     color: white;
     font-size: 14px;
-    font-family: Noto Sans KR;
-    font-weight: 300;
+    font-family: Noto Sans KR Light;
     line-height: 28px;
 }
 
 .archiving-more {
     margin-top: 5px;
-    margin-right: 30px;
+
     text-align: end;
     color: white;
     font-size: 12px;
-    font-family: Noto Sans KR;
+    font-family: Noto Sans KR Light;
     font-weight: 300;
     line-height: 20px;
     word-wrap: break-word;

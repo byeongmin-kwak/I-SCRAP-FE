@@ -22,6 +22,7 @@ export default function CardFrontCustom() {
   const selectedFont = useSelector((state) => state.font.selectedFont);
   const selectedFontColor = useSelector((state) => state.font.selectedFontColor);
   const selectedColor = useSelector((state) => state.frontLayout.backgroundColor);
+  const selectedPopup = useSelector((state) => state.popup.selectedPopup);
   const [activeButton, setActiveButton] = useState('image');
   const [selectedTextIndex, setSelectedTextIndex] = useState(null); // 선택된 텍스트 인덱스
   const [brightness, setBrightness] = useState(100);
@@ -77,13 +78,11 @@ export default function CardFrontCustom() {
   };
 
   // 사용자가 폰트나 색상을 선택했을 때 텍스트에 적용
-  useEffect(() => {
-    applyFontAndColorToText();
-  }, [selectedFont, selectedFontColor]);  // 폰트나 색상이 변경되면 해당 텍스트에만 적용
+
 
   const handleCapture = () => {
     if (cardRef.current) {
-      html2canvas(cardRef.current, { scale: 2 }).then((canvas) => {
+      html2canvas(cardRef.current, { scale: 2, useCORS: true, }).then((canvas) => {
         const imageData = canvas.toDataURL('image/png');
         dispatch(setSavedCardImage(imageData));
       });
@@ -110,13 +109,25 @@ export default function CardFrontCustom() {
     dispatch(setImage(newImage));
   };
 
+  const handleStickerDelete = (index) => {
+    dispatch(removeSticker(index));  // removeSticker 액션 호출
+  };
+
+  useEffect(() => {
+    if (selectedPopup && !image) {
+      dispatch(setImage(selectedPopup.poster));
+    }
+  }, [selectedPopup]);
+
   useEffect(() => {
     handleCapture();
   }, [texts, stickers, image, selectedColor, selectedLayout, selectedFont, selectedFontColor]);
 
-  const handleStickerDelete = (index) => {
-    dispatch(removeSticker(index));  // removeSticker 액션 호출
-  };
+  useEffect(() => {
+    applyFontAndColorToText();
+  }, [selectedFont, selectedFontColor]);  // 폰트나 색상이 변경되면 해당 텍스트에만 적용
+
+
 
   return (
     <>
@@ -136,105 +147,103 @@ export default function CardFrontCustom() {
               style={{ position: 'relative' }}
               onClick={handleDeselect}
             >
-              {image && (
-                <div
-                  className="card-image-wrapper"
-                  ref={cardRef}
+              <div
+                className="card-image-wrapper"
+                ref={cardRef}
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <img
+                  src={image}
+                  alt="Selected"
+                  className="card-image"
                   style={{
-                    position: 'relative',
+                    filter: `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) hue-rotate(${hue}deg)`,
                     width: '100%',
                     height: '100%',
                   }}
-                >
-                  <img
-                    src={image}
-                    alt="Selected"
-                    className="card-image"
-                    style={{
-                      filter: `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) hue-rotate(${hue}deg)`,
-                      width: '100%',
-                      height: '100%',
+                />
+
+                <CardFrontLayoutRender selectedLayout={selectedLayout} selectedColor={selectedColor} />
+
+                {/* 스티커 요소 */}
+                {stickers.map((sticker, index) => (
+                  <Rnd
+                    key={index}
+                    size={{ width: sticker.width, height: sticker.height }}
+                    position={{ x: sticker.x, y: sticker.y }}
+                    bounds="parent"
+                    onDragStop={(e, d) => {
+                      const updatedSticker = { ...sticker, x: d.x, y: d.y };
+                      dispatch(updateSticker({ index, newSticker: updatedSticker }));
                     }}
-                  />
+                    onResizeStop={(e, direction, ref, delta, position) => {
+                      const updatedSticker = {
+                        ...sticker,
+                        width: ref.offsetWidth,
+                        height: ref.offsetHeight,
+                        ...position,
+                      };
+                      dispatch(updateSticker({ index, newSticker: updatedSticker }));
+                    }}
+                    style={{ transform: `rotate(${sticker.rotation}deg)` }}
+                  >
+                    <img
+                      src={sticker.src}
+                      alt="sticker"
+                      style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+                    />
+                  </Rnd>
+                ))}
 
-                  <CardFrontLayoutRender selectedLayout={selectedLayout} selectedColor={selectedColor} />
-
-                  {/* 스티커 요소 */}
-                  {stickers.map((sticker, index) => (
-                    <Rnd
-                      key={index}
-                      size={{ width: sticker.width, height: sticker.height }}
-                      position={{ x: sticker.x, y: sticker.y }}
-                      bounds="parent"
-                      onDragStop={(e, d) => {
-                        const updatedSticker = { ...sticker, x: d.x, y: d.y };
-                        dispatch(updateSticker({ index, newSticker: updatedSticker }));
+                {/* 텍스트 요소 */}
+                {texts.map((text, index) => (
+                  <Rnd
+                    key={index}
+                    size={{ width: text.width, height: text.height }}
+                    position={{ x: text.x, y: text.y }}
+                    bounds="parent"
+                    onDragStop={(e, d) => {
+                      const updatedText = { ...text, x: d.x, y: d.y };
+                      dispatch(updateText({ index, newText: updatedText }));
+                    }}
+                    onResizeStop={(e, direction, ref, delta, position) => {
+                      const updatedText = {
+                        ...text,
+                        width: ref.offsetWidth,
+                        height: ref.offsetHeight,
+                        fontSize: Math.min(Math.max(ref.offsetWidth / 6, 12), 48),
+                        ...position,
+                      };
+                      dispatch(updateText({ index, newText: updatedText }));
+                    }}
+                    style={{ transform: `rotate(${text.rotation}deg)` }}
+                  >
+                    <div
+                      className={`draggable-text ${selectedTextIndex === index ? 'selected' : ''}`}
+                      style={{
+                        fontSize: `${text.fontSize}px`,
+                        fontFamily: text.fontFamily,
+                        color: text.color,
+                        lineHeight: 'normal',
+                        borderRadius: '3px',
+                        cursor: 'move',
+                        overflow: 'visible',
+                        border: selectedTextIndex === index ? '1px solid black' : 'none',
                       }}
-                      onResizeStop={(e, direction, ref, delta, position) => {
-                        const updatedSticker = {
-                          ...sticker,
-                          width: ref.offsetWidth,
-                          height: ref.offsetHeight,
-                          ...position,
-                        };
-                        dispatch(updateSticker({ index, newSticker: updatedSticker }));
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleTextClick(index);
                       }}
-                      style={{ transform: `rotate(${sticker.rotation}deg)` }}
                     >
-                      <img
-                        src={sticker.src}
-                        alt="sticker"
-                        style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
-                      />
-                    </Rnd>
-                  ))}
-
-                  {/* 텍스트 요소 */}
-                  {texts.map((text, index) => (
-                    <Rnd
-                      key={index}
-                      size={{ width: text.width, height: text.height }}
-                      position={{ x: text.x, y: text.y }}
-                      bounds="parent"
-                      onDragStop={(e, d) => {
-                        const updatedText = { ...text, x: d.x, y: d.y };
-                        dispatch(updateText({ index, newText: updatedText }));
-                      }}
-                      onResizeStop={(e, direction, ref, delta, position) => {
-                        const updatedText = {
-                          ...text,
-                          width: ref.offsetWidth,
-                          height: ref.offsetHeight,
-                          fontSize: Math.min(Math.max(ref.offsetWidth / 6, 12), 48),
-                          ...position,
-                        };
-                        dispatch(updateText({ index, newText: updatedText }));
-                      }}
-                      style={{ transform: `rotate(${text.rotation}deg)` }}
-                    >
-                      <div
-                        className={`draggable-text ${selectedTextIndex === index ? 'selected' : ''}`}
-                        style={{
-                          fontSize: `${text.fontSize}px`,
-                          fontFamily: text.fontFamily,
-                          color: text.color,
-                          lineHeight: 'normal',
-                          borderRadius: '3px',
-                          cursor: 'move',
-                          overflow: 'visible',
-                          border: selectedTextIndex === index ? '1px solid black' : 'none',
-                        }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleTextClick(index);
-                        }}
-                      >
-                        {text.text}
-                      </div>
-                    </Rnd>
-                  ))}
-                </div>
-              )}
+                      {text.text}
+                    </div>
+                  </Rnd>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -259,21 +268,21 @@ export default function CardFrontCustom() {
             <CardFrontRayout />
           }
           {activeButton === 'sticker' && (
-              <>
-                <StickerCanvas onStickerSelect={handleStickerSelect} />
-                <div className="used-sticker-list">
-                  <div className='used-sticker-text'>추가된 스티커</div>
-                  {stickers.map((sticker, index) => (
-                    <div key={index} className="used-sticker-item">
-                      <div className="delete-sticker" onClick={() => handleStickerDelete(index)}>
-                        &#x2716; {/* 'x' 아이콘 */}
-                      </div>
-                      <img src={sticker.src} alt="sticker" className="used-sticker-image" />
+            <>
+              <StickerCanvas onStickerSelect={handleStickerSelect} />
+              <div className="used-sticker-list">
+                <div className='used-sticker-text'>추가된 스티커</div>
+                {stickers.map((sticker, index) => (
+                  <div key={index} className="used-sticker-item">
+                    <div className="delete-sticker" onClick={() => handleStickerDelete(index)}>
+                      &#x2716; {/* 'x' 아이콘 */}
                     </div>
-                  ))}
-                </div>
-              </>
-            )}
+                    <img src={sticker.src} alt="sticker" className="used-sticker-image" />
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
           {activeButton === 'text' &&
             <TextEditor onClick={handleTextAdd} />
           }

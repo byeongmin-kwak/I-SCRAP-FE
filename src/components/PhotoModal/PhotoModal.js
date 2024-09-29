@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import styles from './PhotoModal.module.css';
 
-export default function PhotoModal({ onClose }) {
+export default function PhotoModal({ onClose, onPhotoAdd }) {  // onPhotoAdd 추가
     const [selectedImages, setSelectedImages] = useState([]);
 
     const handleImageChange = (event) => {
         const files = Array.from(event.target.files); // 여러 파일을 배열로 변환
         const newImages = files.map(file => URL.createObjectURL(file)); // 이미지 미리보기 URL 생성
         setSelectedImages([...selectedImages, ...newImages]); // 기존 이미지에 추가
+    };
+
+    const handleAddImages = () => {
+        // 선택된 이미지를 상위 컴포넌트로 전달
+        onPhotoAdd(selectedImages);
+        onClose(); // 모달을 닫음
     };
 
     return (
@@ -41,7 +47,7 @@ export default function PhotoModal({ onClose }) {
                         닫기
                     </button>
                     {selectedImages.length > 0 && (
-                        <button className={styles.addButton}>
+                        <button onClick={handleAddImages} className={styles.addButton}>
                             추가
                         </button>
                     )}

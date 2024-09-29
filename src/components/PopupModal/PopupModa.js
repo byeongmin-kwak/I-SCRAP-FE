@@ -7,6 +7,7 @@ export default function PopupModal({ isOpen, onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal-container">
+        <div className='modal-content-top'></div>
         <div className="modal-content">
           <p>팝업 기록을 멈추고 보관함으로 가시겠습니까?</p>
         </div>

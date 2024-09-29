@@ -8,7 +8,7 @@ import SearchButton from '../../assets/search-button.svg';
 import PublicSetting from '../../components/PublicSetting/PublicSetting';
 import PopupSearchModal from '../../components/PopupSearchModal/PopupSearchModal';
 import { setOpen } from '../../store/publicSlice';  // Redux 액션 추가
-import { setDate, setPlace, setPrice, setComment, setRating, setCompanion } from '../../store/backInfoSlice';
+import { setDate, setPlace, setPrice, setComment, setRating, setCompanion, setReviewId } from '../../store/backInfoSlice';
 import BasicMakingModal from '../../components/BasicMakingModal/BasicMakingModal';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 import
 import './CardBasicPage.css';
@@ -52,7 +52,7 @@ export default function CardBasicPage() {
         return stars;
     };
 
-    
+
 
     const handleSearch = async () => {
         try {
@@ -65,39 +65,36 @@ export default function CardBasicPage() {
         }
     };
 
-    // 팝업카드 바로 저장하기 버튼 클릭 시 호출되는 함수
-    const handleSavePopupCard = async () => {
-        if (!selectedPopup) {
-            alert('필수 정보가 부족합니다.');
-            return;
-        }
-
+    const locationCustomPage = async () => {
         const reviewData = {
-            place: place || 'Unknown Place', // 장소 입력 없으면 기본값
-            visitDate: date,  // 기본으로 오늘 날짜를 전달
-            amount: amount,
-            companions: companions || 'None', // 동행인 입력 없으면 기본값
+            place: place,
+            visitDate: date,
+            amount: Number(amount) || 0,
+            companions: companions,
             rating: rating,
             popupId: selectedPopup.id,  // 필수 데이터
             isPublic: open === 'open',  // 공개 상태를 Redux에서 가져옴
-            cardImage: 'defaultImage.png',
+            cardImage: 'cardFront-ex',  // 예시 이미지 파일명 (실제 데이터로 교체 필요)
+            cardBack: 'cardBack-ex',  // 예시 이미지 파일명 (실제 데이터로 교체 필요)
+            shortComment: comment || '', // 한줄평 (빈 값 처리)
         };
-
         try {
-            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}reviews`, reviewData);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/reviews`, reviewData);
+            console.log(response.data);
+            dispatch(setReviewId(response.data));
             console.log('리뷰가 성공적으로 저장되었습니다:', response.data);
+            navigate('/card-making'); // 요청 성공 시 이동할 페이지
         } catch (error) {
             console.error('리뷰 저장 중 오류가 발생했습니다:', error);
         }
-    };
+    }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(selectedPopup);
     }, [selectedPopup])
 
     return (
         <>
-            <Nav />
             <div className='card-basic-container'>
                 <div className='popup-search-container'>
                     <input
@@ -105,6 +102,7 @@ export default function CardBasicPage() {
                         placeholder='팝업을 검색하세요'
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
+                        required
                     />
                     <img src={SearchButton} className='search-icon' onClick={handleSearch} />
                 </div>
@@ -132,6 +130,7 @@ export default function CardBasicPage() {
                                 placeholder='관람한 장소'
                                 value={place}
                                 onChange={(e) => dispatch(setPlace(e.target.value))}
+                                required
                             />
                         </div>
                         <div className='details-container'>
@@ -141,6 +140,7 @@ export default function CardBasicPage() {
                                 type='date'
                                 value={date}
                                 onChange={(e) => dispatch(setDate(e.target.value))}
+                                required
                             />
                         </div>
                         <div className='details-container'>
@@ -150,6 +150,7 @@ export default function CardBasicPage() {
                                 placeholder='팝업스토어의 입장료'
                                 value={amount}
                                 onChange={(e) => dispatch(setPrice(e.target.value))}
+                                required
                             />
                         </div>
                         <div className='details-container'>
@@ -159,6 +160,7 @@ export default function CardBasicPage() {
                                 placeholder='같이 관람한 동행인을 입력해주세요'
                                 value={companions}
                                 onChange={(e) => dispatch(setCompanion(e.target.value))}
+                                required
                             />
                         </div>
                         <div className='details-container'>
@@ -180,10 +182,10 @@ export default function CardBasicPage() {
                 </div>
                 <div className='button-container'>
                     <button className='save-button' onClick={openModal2}>팝업카드 바로 저장하기</button> {/* 저장 버튼에 onClick 추가 */}
-                    <button className='custom-button'>카드 커스텀&기록 작성</button>
+                    <button className='custom-button' onClick={locationCustomPage}>카드 커스텀&기록 작성</button>
                 </div>
                 <PopupSearchModal isOpen={isModalOpen} onClose={closeModal} searchQuery={searchInput} searchResults={searchResults} />
-                <BasicMakingModal isOpen={modalOpen} onClose={closeModal2}/>
+                <BasicMakingModal isOpen={modalOpen} onClose={closeModal2} />
             </div>
         </>
     );

@@ -1,13 +1,71 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ArchivingDetailModal.css';
+import FlippedButton from '../../assets/flipped-button.svg';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import SaveConfirmModal from '../SaveConfirmModal/SaveConfirmModal';
 
-export default function ArchivingDetailModal({ id, title, frontImage, backImage, name, date, isOpen, onClose }) {
+export default function ArchivingDetailModal({ id, isOpen, onClose }) {
     const [isFlipped, setIsFlipped] = useState(false);
-
-    if (!isOpen) return null;
+    const [reviewData, setReviewData] = useState(null);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // 삭제 확인 모달 상태
+    const navigate = useNavigate();
 
     const handleCardClick = () => {
         setIsFlipped(!isFlipped);
+    };
+
+    const truncateText = (text, limit) => {
+        if (text.length > limit) {
+            return text.substring(0, limit) + '...';
+        }
+        return text;
+    };
+
+    useEffect(() => {
+        const fetchReviewDetails = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}`);
+                setReviewData(response.data);
+            } catch (error) {
+                console.error('리뷰 데이터를 가져오는 중 오류 발생:', error);
+            }
+        };
+
+        fetchReviewDetails();
+    }, [id]);
+
+    if (!isOpen) return null;
+
+    if (!reviewData) {
+        return <div>Loading...</div>;
+    }
+
+    const handleMoreClick = () => {
+        navigate(`/writing/${id}`);
+    };
+
+    // 삭제 요청을 처리하는 함수
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}`);
+            alert('리뷰가 성공적으로 삭제되었습니다.');
+            onClose(); // 모달을 닫기 위해 onClose 호출
+            window.location.href = '/archiving';
+        } catch (error) {
+            console.error('리뷰 삭제 중 오류 발생:', error);
+            alert('리뷰 삭제 중 오류가 발생했습니다.');
+        }
+    };
+
+    // 삭제 확인 모달 열기
+    const openDeleteModal = () => {
+        setIsDeleteModalOpen(true);
+    };
+
+    // 삭제 확인 모달 닫기
+    const closeDeleteModal = () => {
+        setIsDeleteModalOpen(false);
     };
 
     return (
@@ -16,36 +74,47 @@ export default function ArchivingDetailModal({ id, title, frontImage, backImage,
                 <button className="archiving-close-button" onClick={onClose}>
                     &times;
                 </button>
-                <div className='archiving-modal-content'>
+                <div className="archiving-modal-content">
                     <div className={`archiving-card ${isFlipped ? 'flipped' : ''}`}>
-                        <div className='archiving-card-inner'>
-                            <div className='archiving-card-front'>
-                                <img src={frontImage} alt="Front" className='archiving-modal-image' />
+                        <div className="archiving-card-inner">
+                            <div className="archiving-card-front">
+                                <img src={reviewData.cardFront} alt="Front" className="archiving-modal-image" />
                             </div>
-                            <div className='archiving-card-back'>
-                                <img src={backImage} alt="Back" className='archiving-modal-image' />
+                            <div className="archiving-card-back">
+                                <img src={reviewData.cardBack} alt="Back" className="archiving-modal-image" />
                             </div>
                         </div>
-                        <button className='flipped-card' onClick={handleCardClick} >카드뒤집</button>
+                        <img src={FlippedButton} className="flipped-card" onClick={handleCardClick} />
                     </div>
-                    <div className='archiving-modal-info'>
-                        <div className='archiving-modal-date'>2024.{date}</div>
-                        <div className='archiving-modal-name'>{name}</div>
-                        <div className='archiving-modal-open'>공개</div>
-                        <div className='archiving-modal-coment'>
-                            "한줄 코멘트 어쩌구저쩌구 약 50자 정도 될 거 같음. 한줄 코멘트 어쩌구 저쩌구 약 50 "
+                    <div className="archiving-modal-info">
+                        <div className="archiving-modal-open">{reviewData.isPublic ? '공개' : '비공개'}</div>
+                        <div className="archiving-modal-date">{reviewData.visitDate}</div>
+                        {reviewData.title ? <div className="archiving-modal-name">{reviewData.title}</div> : <div className="archiving-modal-name">기록을 작성해주세요</div>}
+                        <div className="archiving-modal-popupName">- {reviewData.popupName}</div>
+                        <div className="archiving-modal-coment">"{reviewData.shortComment}"</div>
+
+                        <div className="archiving-modal-detail">
+                            {reviewData.detailedReview ?
+                                truncateText(reviewData.detailedReview, 100):
+                                <div>작성된 내용이 없습니다.</div>
+                            }
+
+                            <div className="archiving-more" onClick={handleMoreClick}>
+                                자세히 보러가기
+                            </div>
                         </div>
-                        <div className='archiving-modal-detail'>
-                            Bibendum ut pharetra sed sem augue arcu vestibulum. Vel tellus enim mi viverra...
-                            <div className='archiving-more'>자세히 보러가기</div>
-                        </div>
-                        <div className='archiving-modal-button-container'>
-                            <button className='archiving-modal-edit'>수정하기</button>
-                            <button className='archiving-modal-delete'>삭제하기</button>
+                        <div className="archiving-modal-button-container">
+                            <button className="archiving-modal-edit">수정하기</button>
+                            <button className="archiving-modal-delete" onClick={openDeleteModal}>
+                                삭제하기
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* 삭제 확인 모달 */}
+            <SaveConfirmModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} onConfirm={handleDelete} />
         </div>
     );
 }

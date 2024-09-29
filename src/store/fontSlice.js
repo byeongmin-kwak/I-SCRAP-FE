@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     selectedFont: 'Cafe24 Simplehae', // 기본 폰트 설정
-    selectedFontColor: 'black',
+    selectedFontColor: '#000000',
 };
 
 const fontSlice = createSlice({

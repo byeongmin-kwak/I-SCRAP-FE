@@ -1,4 +1,3 @@
-// backInfoSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -8,7 +7,11 @@ const initialState = {
     price: '',
     companion: '',
     rating: 0,
-    comment: ''
+    comment: '',
+    reviewId: '',
+    title: '',
+    detailedReview: '',
+    photos: [],
 };
 
 const backInfoSlice = createSlice({
@@ -36,11 +39,29 @@ const backInfoSlice = createSlice({
         setComment: (state, action) => {
             state.comment = action.payload;
         },
+        setReviewId: (state, action) => {
+            state.reviewId = action.payload;
+        },
+        setTitle: (state, action) => {
+            state.title = action.payload;
+        },
+        setDetailedReview: (state, action) => {
+            state.detailedReview = action.payload;
+        },
+        setPhotos: (state, action) => {
+            state.photos = action.payload;
+        },
         resetBackInfo: (state) => {
             return initialState;
         }
     }
 });
 
-export const { setPopName, setPlace, setDate, setPrice, setCompanion, setRating, setComment, resetBackInfo } = backInfoSlice.actions;
+export const { 
+    setPopName, setPlace, setDate, setPrice, 
+    setCompanion, setRating, setComment, 
+    setReviewId, setTitle, setDetailedReview, 
+    setPhotos, resetBackInfo 
+} = backInfoSlice.actions;
+
 export default backInfoSlice.reducer;

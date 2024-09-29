@@ -1,32 +1,22 @@
 .card-writing {
     display: flex;
     flex-direction: column;
-
 }
-
-.writing-info-container {
-    margin-left: 400px;
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-}
-
 
 .writing-card-view {
     margin-left: 90px;
     margin-top: 50px;
-    width: 248.94px;
-    height: 369.12px;
+    width: 290px;
+    height: 430px;
     background: #E0E0E0;
     border-radius: 15px
 }
 
 .writing-card {
     perspective: 1000px;
-    /* 3D 효과를 위한 원근 설정 */
     position: relative;
     cursor: pointer;
+    margin-left: 50px;
 }
 
 .writing-card-front,
@@ -35,30 +25,50 @@
     height: 100%;
     position: absolute;
     backface-visibility: hidden;
-    /* 카드 뒷면이 보이지 않도록 설정 */
-    transition: transform 0.6s;
+    transition: transform 0.8s ease;  /* 애니메이션 시간을 늘리고 부드럽게 */
 }
 
 .writing-card-front {
     z-index: 2;
-    /* 앞면이 기본적으로 보이도록 설정 */
     transform: rotateY(0deg);
 }
 
 .writing-card-back {
     z-index: 1;
     transform: rotateY(180deg);
-    /* 뒷면을 뒤집어서 보이지 않게 설정 */
 }
 
 .writing-card.flipped .writing-card-front {
     transform: rotateY(-180deg);
-    /* 뒤집힌 상태에서는 앞면이 보이지 않도록 설정 */
 }
 
 .writing-card.flipped .writing-card-back {
     transform: rotateY(0deg);
-    /* 뒤집힌 상태에서는 뒷면이 보이도록 설정 */
+}
+
+
+.flipped-button {
+    position: absolute;
+    bottom: -460px; /* 카드 하단에 고정 */
+    left: 40px;   /* 카드 왼쪽에 고정 */
+    cursor: pointer;
+}
+
+.writing-info-container {
+    width: 610px;
+    margin-left: 520px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.add-photo-container{
+    display: flex;
+    width: 100%;
+    justify-items: end;
+    justify-content: end;
+    align-items: end;
 }
 
 .add-photo {
@@ -89,11 +99,27 @@
     font-family: Noto Sans KR Medium;
 }
 
+.market-locaton-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 32px;
+}
+
+.market-container{
+    display: flex;
+    gap: 10px;
+}
+
+.location-container{
+    margin-left: -2px;
+    display: flex;
+    gap: 8px;
+}
+
 .writing-popName {
     font-size: 16px;
     font-family: Noto Sans KR Light;
-    margin-top: 32px;
-    margin-bottom: 15px;
 }
 
 .writing-place {
@@ -110,11 +136,13 @@
 
 
 .popup-writing {
-    margin-top: 70px;
-    margin-left: 90px;
+    margin-top: 120px;
+    margin-left: 140px;
     border: none;
     font-size: 16px;
     font-family: Noto Sans KR Regular;
+    resize: none;  /* 사용자가 수동으로 크기를 조정하지 못하게 함 */
+    overflow: hidden;  /* 텍스트가 넘칠 때 스크롤이 생기지 않도록 함 */
     background-color: transparent;
 
 }
