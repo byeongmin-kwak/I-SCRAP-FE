@@ -106,8 +106,10 @@ const PopupPage = () => {
                   ))}
                 </li>
                 <li>
-                  팝업/전시 크기 정보: {popupData.sizeInfo.width} x{" "}
-                  {popupData.sizeInfo.height}
+                  팝업/전시 크기 정보:{" "}
+                  {popupData.sizeInfo
+                    ? `${popupData.sizeInfo.width} x ${popupData.sizeInfo.height}`
+                    : "정보 없음"}
                 </li>
               </ul>
             </div>

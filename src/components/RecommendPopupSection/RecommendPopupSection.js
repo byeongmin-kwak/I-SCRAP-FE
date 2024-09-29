@@ -3,7 +3,7 @@ import styles from "./RecommendPopupSection.module.css";
 import axios from "axios";
 
 const RecommendPopupSection = () => {
-  const [popupItems, setPopupItems] = useState([]);
+  const [popupItems, setPopupItems] = useState({ userName: "", popups: [] });
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
@@ -25,11 +25,11 @@ const RecommendPopupSection = () => {
   return (
     <div className={styles.recommendPopupSection}>
       <div className={styles.header}>
-        <div className={styles.title}>‘oo’을 위한</div>
+        <div className={styles.title}>‘{popupItems.userName}’을 위한</div>
         <div className={styles.viewAllButton}>전체보기</div>
       </div>
       <div className={styles.grid}>
-        {popupItems.map((item) => (
+        {popupItems.popups.map((item) => (
           <div key={item.id} className={styles.popupItem}>
             <div className={styles.popupImage}>
               <img src={item.poster} alt={`${item.title} Poster`} />
