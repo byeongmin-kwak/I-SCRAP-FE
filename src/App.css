@@ -20,6 +20,13 @@
 }
 
 @font-face {
+  font-family: 'Noto Sans KR SemiBold';
+  src: url('./fonts/Noto_Sans_KR/NotoSansKR-SemiBold.ttf') format('woff2'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-SemiBold.ttf') format('woff'),
+    url('./fonts/Noto_Sans_KR/NotoSansKR-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
   font-family: 'Noto Sans KR Regular';
   src: url('./fonts/Noto_Sans_KR/NotoSansKR-Regular.otf') format('woff2'),
     url('./fonts/Noto_Sans_KR/NotoSansKR-Regular.otf') format('woff'),
