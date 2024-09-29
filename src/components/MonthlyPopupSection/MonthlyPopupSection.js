@@ -5,12 +5,14 @@ import topImage from "../../assets/mainPageImage2.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { useNavigate } from "react-router-dom";
 
 const currentMonth = new Date().getMonth() + 1;
 
 const MonthlyPopupSection = () => {
   const [swiper, setSwiper] = useState();
   const [monthlyPopups, setMonthlyPopups] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMonthlyPopups = async () => {
@@ -27,6 +29,10 @@ const MonthlyPopupSection = () => {
 
     fetchMonthlyPopups();
   }, []);
+
+  const handleCardClick = (id) => {
+    navigate(`/popup/${id}`); // 클릭 시 해당 경로로 이동
+  };
 
   return (
     <div className={styles.monthlyPopupSection}>
@@ -74,7 +80,10 @@ const MonthlyPopupSection = () => {
           >
             {monthlyPopups.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className={styles.card}>
+                <div
+                  className={styles.card}
+                  onClick={() => handleCardClick(item.id)}
+                >
                   <img src={item.poster} alt={item.title} />
                 </div>
               </SwiperSlide>
