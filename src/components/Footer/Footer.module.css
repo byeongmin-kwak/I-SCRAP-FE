@@ -1,12 +1,39 @@
 .footer {
-  position: relative;
-  height: 100px;
-  background-color: #4AC7CF;
+  padding: 40px 20% 40px 20%;
+  border-radius: 180px 0px 0px 0px;
+  margin-top: -180px;
+  background-color: white;
 }
 
-.footer img {
-  position: absolute;
-  top: -80px;
-  right: 160px;
-  width: 680px;
+.content {
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.textSection {
+  color: #898989;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'Noto Sans KR Medium', sans-serif;
+}
+
+.line {
+  border: 1px solid #898989;
+}
+
+.logoSection {
+  display: flex;
+  padding-top: 10px;
+}
+
+.logo {
+
+}
+
+.logoSection p {
+  font-family: 'Noto Sans KR Medium', sans-serif;
+  font-size: 12px;
+  color: #898989;
+  margin-left: 40px;
 }
