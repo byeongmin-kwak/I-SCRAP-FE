@@ -53,11 +53,9 @@ const Nav = ({ isLoggedIn, username }) => {
       <div className={styles.navbarLogo}>
         <img src={logo} alt="Logo" onClick={handleLogoClick} />
       </div>
-
       <div className={styles.menuIcon} onClick={toggleMenu}>
         {menuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
       </div>
-
       <ul className={`${styles.navbarMenu} ${menuOpen ? styles.active : ""}`}>
         <li onClick={handleHomeClick}>홈</li>
         <li onClick={handleSearchClick}>찾기</li>

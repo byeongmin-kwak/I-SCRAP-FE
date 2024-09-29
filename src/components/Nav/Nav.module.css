@@ -2,32 +2,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
   background-color: #4AC7CF;
   position: fixed;
-  width: 100%;
+  width: 100vw;
   z-index: 100;
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
+  padding-top: 18px;
+  padding-bottom: 10px;
 }
 
 .navbarLogo {
-  margin-right: 100px;
   cursor: pointer;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .navbarLogo img {
   height: 40px;
-  margin-left: 10%;
+
 }
 
 .navbarMenu {
+  flex: 2;
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
   gap: 100px;
-  margin-right: 10%;
   align-items: center;
+  justify-content: center;
 }
 
 .navbarMenu li {
@@ -68,7 +72,6 @@
   }
 
   .navbarLogo {
-    margin-right: 50px;
   }
 }
 

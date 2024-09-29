@@ -1,15 +1,18 @@
 .nonLoginSection {
-  padding: 150px 50px 150px 50px;
-  background-color: #FEDC74;
+  padding: 150px 50px 600px 50px;
+  background: linear-gradient(to bottom, #FEDC74, #ffefbb); /* 위쪽은 노란색, 아래쪽은 흰색 */
 }
 
 .headerText {
   font-family: 'Noto Sans KR Bold', sans-serif;
   text-align: right;
   font-size: 24px;
-  margin-right: 16%;
   color: #B4643A;
   margin-bottom: 80px;
+  padding: 0 80px;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 60px;
 }
 
 /* 전체 컨테이너 레이아웃 수정: 더 유연한 그리드로 변경 */
