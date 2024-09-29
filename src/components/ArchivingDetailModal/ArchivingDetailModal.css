@@ -144,7 +144,7 @@
     color: white;
     margin-top: 5px;
     font-size: 24px;
-    font-family: Noto Sans KR;
+    font-family: Noto Sans KR Medium;
     font-weight: 500;
     line-height: 20px;
     word-wrap: break-word;
@@ -177,7 +177,7 @@
 
 .archiving-modal-popupName {
     font-family: Noto Sans KR Light;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 11px;
 }
 
