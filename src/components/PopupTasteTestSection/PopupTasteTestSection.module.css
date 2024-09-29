@@ -1,0 +1,72 @@
+.PopupTasteTestSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4AC7CF;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  padding: 100px;
+  padding-bottom: 0;
+}
+
+.PopupTasteTestSection div {
+  z-index: 10;
+}
+
+.text1, .text3 {
+  font-family: 'Noto Sans KR SemiBold', sans-serif;
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+}
+
+.text1 {
+  text-align: start;
+  margin-right: 480px;
+}
+
+.text3 {
+  text-align: end;
+  margin-left: 480px;
+}
+
+.text2 {
+  font-family: 'SBAggroM', sans-serif;
+  font-size: 100px;
+  font-weight: bold;
+  color: #FEDC74;
+  margin: 0;
+  margin-bottom: -18px;
+}
+
+@font-face {
+  font-family: 'SBAggroM';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.character {
+  width: 300px;
+  margin: 20px 0;
+  position: absolute;
+  top: 10%;
+}
+
+.button {
+  width: 120px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin-top: 340px;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.bottomImage {
+  bottom: 0;
+  width: 100vw;
+}

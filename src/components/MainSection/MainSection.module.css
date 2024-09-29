@@ -2,33 +2,50 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 100px;
   background-color: #4AC7CF;
-  height: 100vh;
-  width: 100%; 
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden; /* 좌우로 이동할 때 콘텐츠가 잘리지 않도록 */
+  padding: 10px;
 }
 
-.mainContent {
+.slider {
   display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  align-items: flex-start;
+  height: 100vh; /* 화면 높이 전체를 차지 */
+  width: 100vw; /* 화면 너비 전체를 차지 */
 }
 
-.mainTitle {
-  font-size: 100px;
-  color: #FEDC74;
-  margin: 0;
-  font-family: 'LOTTERIACHAB', sans-serif;
+.image1, .image2, .image3 {
+  height: 100%; /* 화면 높이에 맞게 */
+  width: 100%; /* 화면 너비에 맞게 */
 }
 
-.mainSubtitle {
-  font-size: 24px;
-  color: white;
-  margin: 10px 0;
+.image1 {
+  position: relative;
+}
+
+.image2 {
+  margin-left: 10%;
+  margin-top: 6%;
+  width: 88%;
+}
+
+.image3 {
 }
 
 .searchBar {
+  position: absolute;
+  left: 8%;
+  top: 54%;
+  width: 10%;
   display: flex;
   align-items: center;
   margin-top: 20px;
@@ -37,9 +54,9 @@
 }
 
 .searchBar input {
+  width: 100%;
   margin: 10px;
   outline: none;
-  width: 300px;
   background-color: #4AC7CF;
   border: 0;
   color: white;
@@ -49,7 +66,7 @@
   color: white;
 }
 
- .searchButton {
+.searchButton {
   padding: 10px 20px;
   border: 0px white;
   border-radius: 0 50px 50px 0;
@@ -59,133 +76,35 @@
   background-color: #4AC7CF;
 }
 
-.mainImage {
-  width: 500px;
-  height: auto;
+/* 화살표 컨테이너 스타일 */
+.arrowContainer {
+  position: absolute;
+  height: 80%;
+  width: 20%; /* 전체 화면의 20% */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
 }
 
-@media (max-width: 1024px) {
-  .mainSection {
-    padding: 50px;
-  }
-
-  .mainContent {
-    align-items: center;
-    text-align: center;
-    padding: 50px;
-  }
-
-  .mainTitle {
-    font-size: 70px;
-  }
-
-  .mainSubtitle {
-    font-size: 20px;
-  }
-
-  .searchBar input {
-    width: 250px;
-  }
-
-  .mainImage {
-    width: 400px;
-  }
+.arrowContainer.left {
+  left: 0;
 }
 
-@media (max-width: 840px) {
-  .mainSection {
-    padding: 50px;
-  }
-
-  .mainContent {
-    align-items: center;
-    text-align: center;
-    padding: 50px;
-  }
-
-  .mainTitle {
-    font-size: 70px;
-  }
-
-  .mainSubtitle {
-    font-size: 20px;
-  }
-
-  .searchBar input {
-    width: 250px;
-  }
-
-  .mainImage {
-    width: 320px;
-  }
+.arrowContainer.right {
+  right: 0;
 }
 
-@media (max-width: 768px) {
-  .mainSection {
-    padding: 40px;
-  }
-
-  .mainTitle {
-    font-size: 50px;
-  }
-
-  .mainSubtitle {
-    font-size: 18px;
-  }
-
-  .searchBar input {
-    width: 200px;
-  }
-
-  .mainImage {
-    width: 250px;
-  }
+.arrow {
+  width: 68%;
 }
 
-@media (max-width: 640px) {
-  .mainSection {
-    padding: 40px;
-  }
-
-  .mainTitle {
-    font-size: 50px;
-  }
-
-  .mainSubtitle {
-    font-size: 18px;
-  }
-
-  .searchBar input {
-    width: 200px;
-  }
-
-  .mainImage {
-    width: 200px;
-  }
+.arrow:hover {
+  opacity: 1;
 }
 
-@media (max-width: 586px) {
-  .mainSection {
-    flex-direction: column;
-    padding-top: 60px;
-  }
-  
-  .mainContent {
-    padding: 0;
-  }
-  .mainTitle {
-    font-size: 50px;
-  }
-
-  .mainSubtitle {
-    font-size: 18px;
-  }
-
-  .searchBar input {
-    width: 200px;
-  }
-
-  .mainImage {
-    width: 200px;
-  }
+/* 화살표는 호버할 때만 보이게 */
+.arrowContainer:not(:hover) .arrow {
+  display: none;
 }
