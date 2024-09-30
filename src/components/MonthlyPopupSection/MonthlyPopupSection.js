@@ -1,31 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./MonthlyPopupSection.module.css";
+import axios from "axios";
 import topImage from "../../assets/mainPageImage2.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { useNavigate } from "react-router-dom";
 
-const dummyData = [
-  {
-    id: 1,
-    imgSrc:
-      "https://www.walkerhillstory.com/wp-content/uploads/2020/09/2-1.jpg",
-    title: "Card 1",
-  },
-  { id: 2, imgSrc: "", title: "Card 2" },
-  { id: 3, imgSrc: "", title: "Card 3" },
-  { id: 4, imgSrc: "", title: "Card 4" },
-  { id: 5, imgSrc: "", title: "Card 5" },
-  { id: 6, imgSrc: "", title: "Card 6" },
-  { id: 7, imgSrc: "", title: "Card 7" },
-  { id: 8, imgSrc: "", title: "Card 8" },
-  { id: 9, imgSrc: "", title: "Card 9" },
-  { id: 10, imgSrc: "", title: "Card 10" },
-];
 const currentMonth = new Date().getMonth() + 1;
 
 const MonthlyPopupSection = () => {
   const [swiper, setSwiper] = useState();
+  const [monthlyPopups, setMonthlyPopups] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchMonthlyPopups = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/popups/monthly`
+        );
+        setMonthlyPopups(response.data);
+        console.log("monthlyPopups", response.data);
+      } catch (error) {
+        console.error("데이터를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchMonthlyPopups();
+  }, []);
+
+  const handleCardClick = (id) => {
+    navigate(`/popup/${id}`); // 클릭 시 해당 경로로 이동
+  };
 
   return (
     <div className={styles.monthlyPopupSection}>
@@ -71,10 +78,13 @@ const MonthlyPopupSection = () => {
             loop={true}
             speed={6000}
           >
-            {dummyData.map((item) => (
+            {monthlyPopups.map((item) => (
               <SwiperSlide key={item.id}>
-                <div className={styles.card}>
-                  <img src={item.imgSrc} alt={item.title} />
+                <div
+                  className={styles.card}
+                  onClick={() => handleCardClick(item.id)}
+                >
+                  <img src={item.poster} alt={item.title} />
                 </div>
               </SwiperSlide>
             ))}

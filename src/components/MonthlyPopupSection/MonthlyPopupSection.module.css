@@ -11,7 +11,7 @@
 }
 
 .textOverlay {
-  font-family: 'Noto Sans KR Bold', sans-serif;
+  font-family: 'Noto Sans KR SemiBold', sans-serif;
   font-size: 42px;
   color: #4AC7CF;
   text-align: center;
@@ -28,6 +28,10 @@
   height: 430px;
   border-radius: 16px;
   background-color: aliceblue;
+}
+
+.card:hover {
+  cursor: pointer;
 }
 
 .card img {

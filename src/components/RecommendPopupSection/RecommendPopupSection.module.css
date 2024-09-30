@@ -35,6 +35,65 @@
   gap: 30px;
 }
 
+
+.popupImage {
+  background-color: white;
+  border-radius: 16px;
+  width: 300px;
+  height: 180px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.popupItem {
+  position: relative;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.popupImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.popupDetails {
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  transition: all 0.4s ease; /* 애니메이션 효과 추가 */
+}
+
+.popupItem:hover .popupDetails {
+  right: 0; /* 호버 시 오른쪽에서 왼쪽으로 슬라이드 */
+}
+
+.popupTitle {
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Noto Sans KR Medium', sans-serif;
+  text-align: left;
+
+
+}
+
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -49,24 +108,4 @@
     grid-template-columns: 1fr;
     place-items: center;
   }
-}
-
-.popupItem {
-  border-radius: 20px;
-  text-align: center;
-}
-
-.popupImage {
-  background-color: white;
-  border-radius: 16px;
-  width: 300px;
-  height: 150px;
-  margin-bottom: 10px;
-}
-
-.popupTitle {
-  font-size: 16px;
-  font-family: 'Noto Sans KR Medium', sans-serif;
-  color: #333;
-  text-align: left;
 }

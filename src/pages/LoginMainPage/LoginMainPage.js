@@ -9,19 +9,6 @@ import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 
 const LoginMainPage = () => {
-  useEffect(() => {
-    // 서버에 요청 보낼 때 쿠키 포함하기 위해 credentials 설정
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/auth/profile`, {
-        withCredentials: true, // 쿠키 포함
-      })
-      .then((response) => {
-        console.log("login--------", response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching profile:", error);
-      });
-  }, []);
   return (
     <div className={styles.LoginMainPage}>
       <MainSection />
