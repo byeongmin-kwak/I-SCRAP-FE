@@ -16,6 +16,7 @@ export default function CardWritingCustom() {
     const savedBackImage = useSelector((state) => state.card.savedBackImage);
     const comment = useSelector((state) => state.backInfo.comment);
     const title = useSelector((state) => state.backInfo.title); // 제목 가져오기
+    const reviewId = useSelector((state) => state.backInfo.reviewId);
     const detailedReview = useSelector((state) => state.backInfo.detailedReview); // 상세 리뷰 가져오기
     const photos = useSelector((state) => state.backInfo.photos); // 사진 배열 가져오기
     const [isFlipped, setIsFlipped] = useState(false); // 카드가 뒤집혔는지 여부를 관리하는 상태
@@ -46,70 +47,73 @@ export default function CardWritingCustom() {
     };
 
     return (
-        <div className='card-writing'>
-            <div className='card-writing-container'>
-                <div className='making-card-text'>
-                    <p>기록쓰기</p>
-                    <p className='making-card-option'>{selectedPopup.name}</p>
+        <div className='card-writing-page-container'>
+            <div className='card-writing'>
+                <div className='card-writing-container'>
+                    <div className='making-card-text'>
+                        <p>기록쓰기</p>
+                        <p className='making-card-option'>{selectedPopup.name}</p>
+                    </div>
                 </div>
-            </div>
 
-            <div className={`writing-card ${isFlipped ? 'flipped' : ''}`}>
-                <div className="writing-card-front">
-                    {savedCardImage ? (
-                        <img src={savedCardImage} alt="Saved card front" className='writing-card-view' />
-                    ) : (
-                        <p>저장된 카드 이미지가 없습니다.</p>
-                    )}
+                <div className={`writing-card ${isFlipped ? 'flipped' : ''}`}>
+                    <div className="writing-card-front">
+                        {savedCardImage ? (
+                            <img src={savedCardImage} alt="Saved card front" className='writing-card-view' />
+                        ) : (
+                            <p>저장된 카드 이미지가 없습니다.</p>
+                        )}
+                    </div>
+                    <div className="writing-card-back">
+                        {savedBackImage ? (
+                            <img src={savedBackImage} alt="Saved card back" className='writing-card-view' />
+                        ) : (
+                            <p>저장된 카드 뒷면 이미지가 없습니다.</p>
+                        )}
+                    </div>
+                    <img src={FlippedButton} alt="Flip Button" className="flipped-button" onClick={handleFlip} />
                 </div>
-                <div className="writing-card-back">
-                    {savedBackImage ? (
-                        <img src={savedBackImage} alt="Saved card back" className='writing-card-view' />
-                    ) : (
-                        <p>저장된 카드 뒷면 이미지가 없습니다.</p>
-                    )}
-                </div>
-                <img src={FlippedButton} alt="Flip Button" className="flipped-button" onClick={handleFlip} />
-            </div>
-            <div className='writing-info-container'>
-                <div className='add-photo-container'>
-                    <button className='add-photo' onClick={handleModalOpen}>사진추가</button>
-                </div>
-                <div className='popup-info'>
-                    <div>
-                        <div className='writing-date'>{date}</div>
-                        <input
-                            placeholder='제목'
-                            className='writing-title'
-                            value={title} // 제목을 전역 상태로부터 가져옴
-                            onChange={handleTitleChange} // 제목이 변경될 때 상태 업데이트
-                        />
-                        <div className='market-locaton-container'>
-                            <div className='market-container'>
-                                <img src={Market} alt="Market" />
-                                <div className='writing-popName'>{selectedPopup.name}</div>
-                            </div>
-                            <div className='location-container'>
-                                <img src={Location} alt="Location" />
-                                <div className='writing-place'>{place}</div>
+                <div className='writing-info-container'>
+                    <div className='add-photo-container'>
+                        <button className='add-photo' onClick={handleModalOpen}>사진추가</button>
+                    </div>
+                    <div className='popup-info'>
+                        <div>
+                            <div className='writing-date'>{date}</div>
+                            <input
+                                placeholder='제목'
+                                className='writing-title'
+                                value={title} // 제목을 전역 상태로부터 가져옴
+                                onChange={handleTitleChange} // 제목이 변경될 때 상태 업데이트
+                            />
+                            <div className='market-locaton-container'>
+                                <div className='market-container'>
+                                    <img src={Market} alt="Market" />
+                                    <div className='writing-popName'>{selectedPopup.name}</div>
+                                </div>
+                                <div className='location-container'>
+                                    <img src={Location} alt="Location" />
+                                    <div className='writing-place'>{place}</div>
+                                </div>
                             </div>
                         </div>
+                        <div className='writing-comment'>" {comment} "</div>
                     </div>
-                    <div className='writing-comment'>" {comment} "</div>
                 </div>
+                <textarea
+                    className='popup-writing'
+                    placeholder='팝업 스토어에서의 경험을 더 자세하게 글로 적어주세요.'
+                    rows="1"
+                    value={detailedReview} // 상세 리뷰를 전역 상태로부터 가져옴
+                    onChange={handleDetailedReviewChange} // 상세 리뷰가 변경될 때 상태 업데이트
+                    onInput={(e) => {
+                        e.target.style.height = 'auto'; // 높이를 자동으로 재설정
+                        e.target.style.height = `${e.target.scrollHeight}px`; // 콘텐츠에 맞춰 높이 조정
+                    }}
+                />
             </div>
-            <textarea
-                className='popup-writing'
-                placeholder='팝업 스토어에서의 경험을 더 자세하게 글로 적어주세요.'
-                rows="1"
-                value={detailedReview} // 상세 리뷰를 전역 상태로부터 가져옴
-                onChange={handleDetailedReviewChange} // 상세 리뷰가 변경될 때 상태 업데이트
-                onInput={(e) => {
-                    e.target.style.height = 'auto'; // 높이를 자동으로 재설정
-                    e.target.style.height = `${e.target.scrollHeight}px`; // 콘텐츠에 맞춰 높이 조정
-                }}
-            />
-            {isModalOpen && <PhotoModal onClose={handleModalClose} onPhotoAdd={handlePhotoAdd} />} {/* 모달에서 사진 추가 */}
+            {isModalOpen && <PhotoModal onClose={handleModalClose} onPhotoAdd={handlePhotoAdd} reviewId={reviewId}/>} {/* 모달에서 사진 추가 */}
         </div>
+
     );
 }

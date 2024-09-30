@@ -118,7 +118,7 @@ export default function CardBasicPage() {
                         ) : (
                             <>
                                 <div className='popup-post'> </div>
-                                <div className='popup-name'>팝업이름</div>
+                                <div className='popup-name'>팝업을 검색하세요!</div>
                             </>
                         )}
                     </div>

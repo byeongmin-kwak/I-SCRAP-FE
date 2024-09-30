@@ -130,10 +130,13 @@
     width: 1120px;
     font-size: 18px;
     font-family: Noto Sans KR Light;
+    line-height: 35px;
 }
 
 .photos {
     display: flex;
+    width: 1120px;
+    align-items: self-start;
     gap: 17px;
     margin-top: 61px;
 }

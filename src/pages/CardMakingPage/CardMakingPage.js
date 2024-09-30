@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import './CardMakingPage.css';
 import CardFront from '../../assets/CardMakingButtons/cardfront.svg';
 import CardFront_Click from '../../assets/CardMakingButtons/cardfront_click.svg';
@@ -21,9 +22,10 @@ export default function CardMakingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const selectedPopup = useSelector((state) => state.popup.selectedPopup); // popupId를 가져옴
   const open = useSelector((state) => state.publicSetting.open); // 전역 상태로부터 공개/비공개 상태 가져오기
-  const { place, date, price, companion, comment, rating, reviewId, title, detailedReview } = useSelector((state) => state.backInfo);
+  const { place, date, price, companion, comment, rating, reviewId, title, detailedReview, photosName } = useSelector((state) => state.backInfo);
   const { texts, stickers, savedCardImage, savedBackImage } = useSelector((state) => state.card);
   const { selectedLayout, backgroundColor } = useSelector((state) => state.frontLayout);
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   useEffect(() => {
     console.log(open, selectedPopup.id, place, date, price, companion, comment, texts, stickers, selectedLayout, backgroundColor);
@@ -109,7 +111,7 @@ const handleSaveCard = async () => {
       title: title,
       shortComment: comment,
       detailedReview: detailedReview,
-      photos: [], // 필요한 경우 사진 데이터 추가
+      photos: photosName, // 필요한 경우 사진 데이터 추가
       cardFront: frontImageFileName, // 파일 이름을 사용
       cardBack: backImageFileName, // 파일 이름을 사용
       layout: selectedLayout,
@@ -122,6 +124,89 @@ const handleSaveCard = async () => {
     // 최종 PATCH 요청
     await axios.patch(`${process.env.REACT_APP_SERVER_URL}/reviews/${reviewId}`, cardData);
     console.log('카드가 성공적으로 저장되었습니다.');
+    alert("카드가 성공적으로 저장되었습니다.")
+
+  } catch (error) {
+    console.error('카드 저장 중 오류가 발생했습니다:', error);
+  }
+};
+
+const handleSaveCard2 = async () => {
+  if (!selectedPopup) {
+    alert('필수 정보가 부족합니다.');
+    return;
+  }
+
+  try {
+    // savedCardImage를 Blob으로 변환
+    const frontImageFileName = `${selectedPopup.id}-cardFront`;  // 파일 이름 생성
+    const frontBlob = base64ToBlob(savedCardImage, 'image/png'); // Blob으로 변환
+    
+    const frontUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${frontImageFileName}`);
+    const frontUploadUrl = frontUploadResponse.data.uploadUrl;
+
+    await axios.put(frontUploadUrl, frontBlob, { headers: { 'Content-Type': 'image/png' } });
+
+    console.log('카드 앞면 이미지 업로드 성공');
+    
+    // savedBackImage도 Blob으로 변환하여 업로드
+    const backImageFileName = `${selectedPopup.id}-cardBack`;  // 파일 이름 생성
+    const backBlob = base64ToBlob(savedBackImage, 'image/png'); // Blob으로 변환
+
+    const backUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${backImageFileName}`);
+    const backUploadUrl = backUploadResponse.data.uploadUrl;
+
+    await axios.put(backUploadUrl, backBlob, { headers: { 'Content-Type': 'image/png' } });
+
+    console.log('카드 뒷면 이미지 업로드 성공');
+
+    // 파일 업로드가 성공하면 카드 데이터를 저장
+    const textElements = texts.map((text) => ({
+      type: 'text',
+      content: text.text,
+      font: text.fontFamily,
+      size: text.fontSize,
+      color: text.color,
+      position: { x: text.x, y: text.y },
+      rotation: text.rotation,
+    }));
+
+    const stickerElements = stickers.map((sticker) => ({
+      type: 'sticker',
+      sticker_id: sticker.src, // 서버에서 요구하는 sticker_id로 매핑
+      size: { width: sticker.width, height: sticker.height },
+      rotation: sticker.rotation,
+      position: {
+        x: Math.round(sticker.x), // x 좌표를 반올림
+        y: Math.round(sticker.y), // y 좌표를 반올림
+      },
+    }));
+
+    const elements = [...textElements, ...stickerElements];
+
+    const cardData = {
+      place: place,
+      visitDate: date,
+      amount: Number(price),
+      companions: companion,
+      rating: rating,
+      title: title,
+      shortComment: comment,
+      detailedReview: detailedReview,
+      photos: photosName, // 필요한 경우 사진 데이터 추가
+      cardFront: frontImageFileName, // 파일 이름을 사용
+      cardBack: backImageFileName, // 파일 이름을 사용
+      layout: selectedLayout,
+      backgroundColor: backgroundColor,
+      elements, // 변환된 텍스트와 스티커 요소들
+    };
+
+    console.log(cardData);
+
+    // 최종 PATCH 요청
+    await axios.patch(`${process.env.REACT_APP_SERVER_URL}/reviews/${reviewId}`, cardData);
+    console.log('카드가 성공적으로 저장되었습니다.');
+    navigate("/archiving");
 
   } catch (error) {
     console.error('카드 저장 중 오류가 발생했습니다:', error);
@@ -168,7 +253,7 @@ const handleSaveCard = async () => {
 
       </div>
       <img src={Cloud} className="cloud-image" alt="Cloud Background" />
-      <PopupModal isOpen={isModalOpen} onClose={closeModal} />
+      <PopupModal isOpen={isModalOpen} onClose={closeModal} onConfirm={handleSaveCard2}/>
     </div>
   );
 }

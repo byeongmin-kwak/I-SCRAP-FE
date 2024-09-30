@@ -12,6 +12,7 @@ const initialState = {
     title: '',
     detailedReview: '',
     photos: [],
+    photosName: [],
 };
 
 const backInfoSlice = createSlice({
@@ -51,6 +52,12 @@ const backInfoSlice = createSlice({
         setPhotos: (state, action) => {
             state.photos = action.payload;
         },
+        setPhotosName: (state, action) => {
+            state.photosName = [...state.photosName, ...action.payload]; // 새 값 배열로 추가
+        },
+        removePhotoName: (state, action) => {
+            state.photosName = state.photosName.filter((_, index) => index !== action.payload); // index로 삭제
+        },
         resetBackInfo: (state) => {
             return initialState;
         }
@@ -61,7 +68,7 @@ export const {
     setPopName, setPlace, setDate, setPrice, 
     setCompanion, setRating, setComment, 
     setReviewId, setTitle, setDetailedReview, 
-    setPhotos, resetBackInfo 
+    setPhotos, setPhotosName, removePhotoName, resetBackInfo 
 } = backInfoSlice.actions;
 
 export default backInfoSlice.reducer;
