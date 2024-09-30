@@ -19,17 +19,21 @@
     height: 550px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.cardContainer{
+.cardContainer {
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
-    
+    gap: 15px;
+
 }
 
 .svgContainer {
     position: relative;
-    width: 100%;
     height: auto;
 }
 
@@ -47,7 +51,7 @@
     /* SVG 상호작용을 방해하지 않도록 */
 }
 
-.img{
+.img {
     width: 290px;
     height: 430px;
     border-radius: 15px;
@@ -62,4 +66,103 @@
     font-family: Noto Sans KR Light;
     font-size: 10px;
     color: white;
+}
+
+.closeContainer {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+
+.close {
+    font-size: 22px;
+    font-family: Noto Sans KR Regular;
+    margin-right: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.modalContainer {
+    justify-content: center;
+    display: flex;
+}
+
+.saveContainer {
+    margin-top: 180px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.saveText {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 310px;
+    font-family: Noto Sans KR Medium;
+    line-height: 25px;
+
+}
+
+.state {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    padding: 5px 20px;
+    border-radius: 30px;
+    border: 2px #BBBBBB solid;
+    color: #BBBBBB;
+    font-size: 12px;
+    font-family: Noto Sans KR Light;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word;
+
+}
+
+.submitButton {
+    width: 183px;
+    height: 42px;
+    background: #BBBBBB;
+    border-radius: 15px;
+    border: 1px #BBBBBB solid;
+    font-size: 16px;
+    font-family: Noto Sans KR Light;
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+.closeButton {
+    width: 183px;
+    height: 42px;
+    background: transparent;
+    border-radius: 15px;
+    border: 2px #BBBBBB solid;
+    color: #BBBBBB;
+    font-size: 16px;
+    font-family: Noto Sans KR Light;
+    cursor: pointer;
+}
+
+.line {
+    display: flex;
+    border: 1px #BBBBBB solid;
+    border-radius: 8px;
+    padding: 21px 70px;
+}
+
+.buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

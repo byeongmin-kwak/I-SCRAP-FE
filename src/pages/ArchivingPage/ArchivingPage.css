@@ -10,7 +10,6 @@
 .popup-search-input {
     width: 1021px;
     height: 50px;
-    padding-left: 20px;
     border-radius: 25px;
     border: 3px #A2A2A2 solid;
 }
@@ -25,16 +24,17 @@
 }
 
 .popup-search-button {
-    margin-left: 56px;
-    width: 143px;
-    height: 50px;
+    margin-top: 40px;
+    margin-left: 620px;
+    width: 163px;
+    height: 40px;
     background: #FEDC74;
     border-radius: 25px;
     border: none;
     text-align: center;
     color: #B4643A;
-    font-size: 14px;
-    font-family: Noto Sans KR;
+    font-size: 12px;
+    font-family: Noto Sans KR Medium;
     font-weight: 500;
     line-height: 14px;
     word-wrap: break-word;
@@ -71,15 +71,15 @@
 
 .delete-complete-button {
     margin-right: 100px;
-    margin-top: 45px;
-    width: 52px;
-    height: 29px;
+    margin-top: 40px;
+    width: 62px;
+    height: 40px;
     border: none;
     background: #898989;
     border-radius: 27.98px; 
     color: white;
-    font-size: 9.33px;
-    font-family: Noto Sans KR;
+    font-size: 12px;
+    font-family: Noto Sans KR Medium;
     font-weight: 500;
     line-height: 18.65px;
     word-wrap: break-word
@@ -89,9 +89,8 @@
     margin-left: 115px;
     margin-top: 60px;
     color: black;
-    font-size: 19px;
-    font-family: Noto Sans KR;
-    font-weight: 400;
+    font-size: 18.65px;
+    font-family: Noto Sans KR Regular;
     line-height: 18.65px;
     word-wrap: break-word;
 
@@ -104,7 +103,7 @@
 
 .note-container1 {
     margin-left: 112px;
-    margin-top: 19px;
+    margin-top: 17px;
     width: 450px;
     display: flex;
     flex-wrap: wrap; /* 팝업이 자동으로 줄을 넘어가도록 설정 */

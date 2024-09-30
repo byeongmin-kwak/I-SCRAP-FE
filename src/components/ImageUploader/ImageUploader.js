@@ -53,6 +53,9 @@ export default function ImageUploader({
                             className={styles.hiddenInput} // 숨긴 input
                         />
                     </label>
+                    <div className={styles.effectText}>편집</div>
+                    <div className={styles.slideContainer}></div>
+
                     <div className={styles.effectText}>효과</div>
                     <div className={styles.slideContainer}>
                         <div className={styles.imageCustom}>
