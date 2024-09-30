@@ -25,9 +25,9 @@ export default function FontColor() {
                 <div className='font-background-color7' onClick={() => handleColorClick('#D1E8E5')}></div>
                 <div className='font-background-color8' onClick={() => handleColorClick('#95DAC1')}></div>
                 <div className='font-background-color9' onClick={() => handleColorClick('#FBF0CF')}></div>
-                <div className='font-background-color10' onClick={() => handleColorClick('white')}></div>
+                <div className='font-background-color10' onClick={() => handleColorClick('#FFFFFF')}></div>
                 <div className='font-background-color11' onClick={() => handleColorClick('#E9DBD0')}></div>
-                <div className='font-background-color12' onClick={() => handleColorClick('black')}></div>
+                <div className='font-background-color12' onClick={() => handleColorClick('#000000')}></div>
             </div>
         </div>
     );

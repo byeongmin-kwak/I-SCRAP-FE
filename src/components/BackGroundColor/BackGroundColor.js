@@ -23,9 +23,9 @@ export default function BackGroundColor() {
             <div className='background-color7' onClick={() => handleColorClick('#D1E8E5')}></div>
             <div className='background-color8' onClick={() => handleColorClick('#95DAC1')}></div>
             <div className='background-color9' onClick={() => handleColorClick('#FBF0CF')}></div>
-            <div className='background-color10' onClick={() => handleColorClick('white')}></div>
+            <div className='background-color10' onClick={() => handleColorClick('#FFFFFF')}></div>
             <div className='background-color11' onClick={() => handleColorClick('#E9DBD0')}></div>
-            <div className='background-color12' onClick={() => handleColorClick('black')}></div>
+            <div className='background-color12' onClick={() => handleColorClick('#000000')}></div>
         </div>
     );
 }

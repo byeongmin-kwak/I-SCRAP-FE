@@ -2,9 +2,10 @@
     position: relative;
     display: flex;
     height: 100vh;
+    width: 100%;
     justify-content: center;
     background-color: #FEDC74;
-    z-index: -1;
+    z-index: 0;
 }
 
 .img {
@@ -29,6 +30,7 @@
 }
 
 .text {
+    width: 100%;
     position: absolute;
     top: 31%;
     /* 말풍선 안에서 텍스트의 위치 조정 */
@@ -54,13 +56,13 @@
     border-radius: 9999px;
     opacity: 0;
     transition: opacity 1s ease-in;
-    margin-top: 20px;
-    z-index: 1;
+    cursor: pointer;
+
 }
 
 .circleButton1.show {
     opacity: 1;
-  }
+}
 
 .circleButton2 {
     width: 104px;
@@ -77,7 +79,105 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 86px;
     font-family: Noto Sans KR Medium;
     font-size: 18px;
 }
+
+.buttonContainer {
+    display: flex;
+    gap: 40px;
+}
+
+.answer {
+    width: 343px;
+    height: 87px;
+    transform-origin: 0 0;
+    background: #4AC7CF;
+    border-radius: 60px;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-family: Noto Sans KR Medium;
+    cursor: pointer;
+}
+
+.answerContainer {
+    display: flex;
+    align-items: end;
+    height: 250px;
+}
+
+.answerShowContainer {
+    position: relative;
+    top: -70px;
+}
+
+.answerShowText {
+    position: absolute;
+    top: 31%;
+    /* 말풍선 안에서 텍스트의 위치 조정 */
+    left: 50%;
+    transform: translate(-50%, -20%);
+    color: white;
+    /* 글씨 색상 */
+    font-size: 14px;
+    text-align: center;
+    pointer-events: none;
+    /* 클릭 불가 */
+    font-family: Noto Sans KR Medium;
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 3s forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 2s forwards;
+}
+
+.startTest1 {
+    width: 152px;
+    height: 152px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(73.66, 199.17, 207.18, 0.50);
+    border-radius: 9999px;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    cursor: pointer;
+}
+
+.startTest2 {
+    width: 104px;
+    height: 104px;
+    background: #4AC7CF;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+}
+

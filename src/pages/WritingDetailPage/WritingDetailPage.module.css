@@ -37,20 +37,59 @@
     align-items: center;
 }
 
-.cardContainer {
+.cardInfo{
     display: flex;
+}
 
+.cardContainer {
+    width: 248.94px; /* 카드 크기 조정 */
+    height: 369.12px;
+    perspective: 1000px; /* 3D 공간 효과 */
+}
+
+.cardImage{
+    width: 248.94px; /* 카드 크기 조정 */
+    height: 369.12px;
 }
 
 .card {
-    width: 248.94px;
-    height: 369.12px;
-    border-radius: 12.88px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
 }
+
+.flipped {
+    transform: rotateY(180deg); /* 카드가 뒤집힐 때의 회전 효과 */
+}
+
+.cardFront, .cardBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* 뒷면이 앞면을 가리지 않도록 설정 */
+}
+
+.cardBack {
+    transform: rotateY(180deg); /* 뒷면을 180도 회전 */
+}
+
+.flippedButton {
+    position: absolute;
+    left: -60px;
+    bottom: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
 
 .titleContainer {
     margin-top: 55px;
     margin-left: 55px;
+    width: 700px;
 }
 
 .date {
@@ -81,7 +120,7 @@
 }
 
 .comment {
-    margin-top: 96px;
+    margin-top: 86px;
     font-size: 18px;
     font-family: Noto Sans KR Medium;
 }
@@ -91,10 +130,13 @@
     width: 1120px;
     font-size: 18px;
     font-family: Noto Sans KR Light;
+    line-height: 35px;
 }
 
 .photos {
     display: flex;
+    width: 1120px;
+    align-items: self-start;
     gap: 17px;
     margin-top: 61px;
 }
@@ -103,6 +145,11 @@
     width: 267px;
     height: 166px;
     border-radius: 10px;
+}
+
+.name{
+    font-family: Noto Sans KR Regular;
+    font-size: 13px;
 }
 
 .buttons {
