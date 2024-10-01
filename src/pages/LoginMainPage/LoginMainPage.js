@@ -16,6 +16,7 @@ const LoginMainPage = () => {
       <RecommendPopupSection />
       <BookmarkPopupSection />
       <RecentHistorySection />
+      <Footer />
     </div>
   );
 };
