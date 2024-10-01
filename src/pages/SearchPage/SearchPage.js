@@ -3,9 +3,10 @@ import styles from "./SearchPage.module.css";
 import { AiOutlineSearch } from "react-icons/ai";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { CiBookmark } from "react-icons/ci";
-import { IoIosArrowDown } from "react-icons/io";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // 필터 옵션 데이터
 const dateOptions = ["오늘", "+1주", "+2주", "직접입력"];
@@ -31,7 +32,7 @@ const typeOptions = [
 ];
 
 const SearchPage = () => {
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState("오늘");
   const [selectedRegion, setSelectedRegion] = useState("전체");
   const [selectedType, setSelectedType] = useState("전체");
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,12 +40,15 @@ const SearchPage = () => {
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
   const [results, setResults] = useState([]);
+  const [showSortOptions, setShowSortOptions] = useState(false);
+  const [sortBy, setSortBy] = useState("popularity");
+  const navigate = useNavigate();
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     fetchFilteredData();
-  }, [selectedDate, selectedRegion, selectedType, fromDate, toDate]); // 필터 관련 상태 의존성 배열 추가
+  }, [selectedDate, selectedRegion, selectedType, fromDate, toDate, sortBy]); // 필터 관련 상태 의존성 배열 추가
 
   const fetchFilteredData = async () => {
     try {
@@ -69,8 +73,10 @@ const SearchPage = () => {
 
       // 검색어 필터 추가
       if (searchQuery) {
-        params.append("query", searchQuery);
+        params.append("popupName", searchQuery);
       }
+
+      params.append("sortBy", sortBy); // 인기순 or 평점순
 
       // 필터에 맞는 데이터 요청
       const response = await axios.get(
@@ -93,8 +99,56 @@ const SearchPage = () => {
     }
   };
 
+  const handleDateSelection = (option) => {
+    if (option === "+1주") {
+      const from = new Date();
+      const to = new Date();
+      to.setDate(to.getDate() + 7);
+      setFromDate(from);
+      setToDate(to);
+    } else if (option === "+2주") {
+      const from = new Date();
+      const to = new Date();
+      to.setDate(to.getDate() + 14);
+      setFromDate(from);
+      setToDate(to);
+    }
+    setSelectedDate(option);
+  };
+
   const toggleFilter = (filter) => {
     setActiveFilter(activeFilter === filter ? "" : filter);
+  };
+
+  const toggleSortDropdown = () => {
+    setShowSortOptions(!showSortOptions);
+  };
+
+  const handleSortChange = (option) => {
+    setSortBy(option);
+    setShowSortOptions(false); // Close the dropdown after selection
+  };
+
+  const handleCardClick = (id) => {
+    navigate(`/popup/${id}`); // 클릭 시 해당 경로로 이동
+  };
+
+  const toggleBookmark = async (id, isBookmarked) => {
+    try {
+      // Toggle the local bookmark state
+      setResults((prevResults) =>
+        prevResults.map((store) =>
+          store.id === id ? { ...store, isBookmarked: !isBookmarked } : store
+        )
+      );
+
+      // Send POST request to update the bookmark status
+      await axios.post(`${serverURL}/bookmarks/${id}`, {
+        withCredentials: true,
+      });
+    } catch (error) {
+      console.error("Error updating bookmark:", error);
+    }
   };
 
   return (
@@ -125,7 +179,7 @@ const SearchPage = () => {
               {dateOptions.map((option, index) => (
                 <button
                   key={index}
-                  onClick={() => setSelectedDate(option)}
+                  onClick={() => handleDateSelection(option)}
                   className={
                     selectedDate === option ? styles.selectedOption : ""
                   }
@@ -210,14 +264,36 @@ const SearchPage = () => {
           )}
         </div>
       </div>
-      <div className={styles.button}>
-        <button>
-          인기순 <IoIosArrowDown />
+      <div className={styles.sortButtonContainer}>
+        <button onClick={toggleSortDropdown} className={styles.sortButton}>
+          <p>{sortBy === "popularity" ? "인기순" : "평점순"}</p>
+          {showSortOptions ? (
+            <IoIosArrowUp className={styles.IoIosArrow} />
+          ) : (
+            <IoIosArrowDown className={styles.IoIosArrow} />
+          )}
+          {showSortOptions && (
+            <div className={styles.sortOptions}>
+              <p
+                onClick={() =>
+                  handleSortChange(
+                    sortBy === "popularity" ? "rating" : "popularity"
+                  )
+                }
+              >
+                {sortBy === "popularity" ? "평점순" : "인기순"}
+              </p>
+            </div>
+          )}
         </button>
       </div>
       <div className={styles.resultsSection}>
         {results.map((store) => (
-          <div key={store.id} className={styles.resultCard}>
+          <div
+            key={store.id}
+            className={styles.resultCard}
+            onClick={() => handleCardClick(store.id)}
+          >
             <img src={store.poster} alt="" className={styles.resultImage} />
             <div className={styles.resultDetails}>
               <p>{store.address}</p>
@@ -229,8 +305,18 @@ const SearchPage = () => {
               </p>
             </div>
             <div className={styles.bookmarkAndTag}>
-              <div className={styles.bookmark}>
-                <CiBookmark size="30" />
+              <div
+                className={styles.bookmark}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent triggering card click
+                  toggleBookmark(store.id, store.isBookmarked);
+                }}
+              >
+                {store.isBookmarked ? (
+                  <FaBookmark size="30" />
+                ) : (
+                  <FaRegBookmark size="30" />
+                )}
               </div>
               <div className={styles.tag}>{store.category}</div>
             </div>
