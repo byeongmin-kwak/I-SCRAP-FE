@@ -12,22 +12,9 @@
 }
 
 .boldText {
-  font-family: 'Noto Sans KR Bold', sans-serif;
+  font-family: 'Noto Sans KR SemiBold', sans-serif;
   color: #4AC7CF;
   font-size: 32px;
-}
-
-.button {
-  position: absolute;
-  right: 22%;
-  top: 10%;
-  background-color: #FEDC74;
-  padding: 10px 20px;
-  border-radius: 20px;
-  color: #B4643A;
-  font-family: 'Noto Sans KR Regular', sans-serif;
-  cursor: pointer;
-  border: none;
 }
 
 .calendarWrapper {
@@ -40,6 +27,23 @@
   margin-right: auto;
   background-color: #4ac7cf;
   border-radius: 18px;
+  position: relative;
+}
+
+.button {
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  background-color: #FEDC74;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #B4643A;
+  font-family: 'Noto Sans KR Regular', sans-serif;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: -80px;
 }
 
 .calendarImage {
@@ -91,6 +95,11 @@
   font-weight: bold;
   margin: 0;
   flex: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .popupDate {
