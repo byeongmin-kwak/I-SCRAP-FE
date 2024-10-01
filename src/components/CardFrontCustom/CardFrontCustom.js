@@ -15,6 +15,7 @@ import {
   setImage, addText, addSticker, updateText, updateSticker,
   setSavedCardImage, removeSticker, setBrightness, setContrast, setSaturation, setHue, setCropScale, setRotation
 } from '../../store/cardSlice';
+import { setFont, setSelectedFontColor } from '../../store/fontSlice';
 
 export default function CardFrontCustom() {
   const dispatch = useDispatch();
@@ -34,9 +35,9 @@ export default function CardFrontCustom() {
   const hue = useSelector((state) => state.card.hue);
   const cropScale = useSelector((state) => state.card.cropScale);
   const rotation = useSelector((state) => state.card.rotation);
-  
-  
-  
+
+
+
   const cardRef = useRef(null);
 
   // 글자의 크기를 측정하는 함수
@@ -54,6 +55,7 @@ export default function CardFrontCustom() {
       const fontSize = 16;
       const { width, height } = measureTextSize(text, fontSize);
 
+      // 새 텍스트는 기본 폰트와 기본 색상으로 설정
       const newText = {
         text: text,
         x: 50,
@@ -61,12 +63,13 @@ export default function CardFrontCustom() {
         width: width,
         height: height,
         fontSize: fontSize,
-        fontFamily: 'Cafe24 Simplehae',
-        color: '#000',
+        fontFamily: 'Cafe24 Simplehae',  // 기본 폰트
+        color: '#000',  // 기본 색상
         rotation: 0,
       };
 
       dispatch(addText(newText));
+      setSelectedTextIndex(texts.length);  // 새로 추가한 텍스트를 선택된 텍스트로 설정
     }
   };
 
@@ -76,11 +79,15 @@ export default function CardFrontCustom() {
 
   const applyFontAndColorToText = () => {
     if (selectedTextIndex !== null) {
+      const currentText = texts[selectedTextIndex];
+
+      // 기존 텍스트에 대해서만 폰트와 색상을 선택한 값으로 업데이트
       const updatedText = {
-        ...texts[selectedTextIndex],
-        fontFamily: selectedFont,  // 사용자가 선택한 폰트 적용
-        color: selectedFontColor,  // 사용자가 선택한 색상 적용
+        ...currentText,
+        fontFamily: selectedFont || currentText.fontFamily,  // 폰트 적용
+        color: selectedFontColor || currentText.color,  // 색상 적용
       };
+
       dispatch(updateText({ index: selectedTextIndex, newText: updatedText }));
     }
   };
@@ -120,6 +127,7 @@ export default function CardFrontCustom() {
   const handleStickerDelete = (index) => {
     dispatch(removeSticker(index));  // removeSticker 액션 호출
   };
+
 
   useEffect(() => {
     if (selectedPopup && !image) {
@@ -199,7 +207,7 @@ export default function CardFrontCustom() {
                       };
                       dispatch(updateSticker({ index, newSticker: updatedSticker }));
                     }}
-                    style={{ transform: `rotate(${sticker.rotation}deg)` }}
+                    style={{ transform: `rotate(${sticker.rotation}deg)` }} // 회전 적용
                   >
                     <img
                       src={sticker.src}
@@ -261,7 +269,7 @@ export default function CardFrontCustom() {
       <div className='front-custom-canvas-container'>
         <div className='front-custom-canvas'>
           {activeButton === 'image' &&
-            <ImageUploader/>
+            <ImageUploader />
           }
           {activeButton === 'rayout' &&
             <CardFrontRayout />

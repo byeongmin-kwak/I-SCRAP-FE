@@ -250,6 +250,8 @@
 
 .card-image-wrapper{
     overflow: hidden;
+    width: 290px;
+    height: 430px;
     border-radius: 15px;
 }
 
@@ -263,7 +265,7 @@
     border-radius: 40px;
     background-color: #E0E0E0;
     margin-left: 50px;
-    margin-top: 90px;
+   
     gap: 16px;
     font-weight: 400;
     overflow-x: auto;
@@ -314,3 +316,15 @@
     height: 80%;
     width: 80%;
 }
+
+.rotate-handle {
+    width: 15px;
+    height: 15px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -20px; /* 모서리 위치 조정 */
+    right: -20px;
+    cursor: grab;
+  }
+  

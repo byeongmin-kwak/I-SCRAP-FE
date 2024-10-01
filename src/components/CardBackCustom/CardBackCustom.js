@@ -58,7 +58,6 @@ export default function CardBackCustom() {
                     <p className='making-card-option'>Back</p>
                 </div>
                 <div className='making-back-view' ref={backViewRef}>
-                    {/* 캡처할 영역 */}
                     <CardBackLayoutRender selectedLayout={selectedLayout} selectedColor={selectedColor} />
                 </div>
             </div>
