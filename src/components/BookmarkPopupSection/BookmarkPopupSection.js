@@ -304,10 +304,11 @@ const BookmarkPopupSection = () => {
         내가 북마크한 팝업을 한눈에! <br />
         <span className={styles.boldText}>‘oo’의 팝업 일정</span>
       </div>
-      <div className={styles.button}>북마크 관리</div>
 
       {/* 이미지가 캘린더 헤더 위에 배치됨 */}
       <div className={styles.calendarWrapper}>
+        <div className={styles.button}>북마크 관리</div>
+
         <img
           src={calendarImage}
           alt="Calendar Decoration"
