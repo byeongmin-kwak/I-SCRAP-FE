@@ -11,7 +11,10 @@ import CardFrontRayout from '../CardFrontRayout/CardFrontRayout';
 import CardFrontLayoutRender from '../CardFrontLayoutRender/CardFrontLayoutRender';
 import TextEditor from '../TextEditor/TextEditor';
 import html2canvas from 'html2canvas';
-import { setImage, addText, addSticker, updateText, updateSticker, setSavedCardImage, removeSticker } from '../../store/cardSlice';
+import {
+  setImage, addText, addSticker, updateText, updateSticker,
+  setSavedCardImage, removeSticker, setBrightness, setContrast, setSaturation, setHue, setCropScale, setRotation
+} from '../../store/cardSlice';
 
 export default function CardFrontCustom() {
   const dispatch = useDispatch();
@@ -25,10 +28,15 @@ export default function CardFrontCustom() {
   const selectedPopup = useSelector((state) => state.popup.selectedPopup);
   const [activeButton, setActiveButton] = useState('image');
   const [selectedTextIndex, setSelectedTextIndex] = useState(null); // 선택된 텍스트 인덱스
-  const [brightness, setBrightness] = useState(100);
-  const [contrast, setContrast] = useState(100);
-  const [saturation, setSaturation] = useState(100);
-  const [hue, setHue] = useState(0);
+  const brightness = useSelector((state) => state.card.brightness);
+  const contrast = useSelector((state) => state.card.contrast);
+  const saturation = useSelector((state) => state.card.saturation);
+  const hue = useSelector((state) => state.card.hue);
+  const cropScale = useSelector((state) => state.card.cropScale);
+  const rotation = useSelector((state) => state.card.rotation);
+  
+  
+  
   const cardRef = useRef(null);
 
   // 글자의 크기를 측정하는 함수
@@ -162,6 +170,8 @@ export default function CardFrontCustom() {
                   className="card-image"
                   style={{
                     filter: `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) hue-rotate(${hue}deg)`,
+                    transform: `scale(${cropScale}) rotate(${rotation}deg)`, // 자르기 및 회전 적용
+                    transformOrigin: 'center', // 회전 중심을 이미지의 중앙으로 설정
                     width: '100%',
                     height: '100%',
                   }}
@@ -251,18 +261,7 @@ export default function CardFrontCustom() {
       <div className='front-custom-canvas-container'>
         <div className='front-custom-canvas'>
           {activeButton === 'image' &&
-            <ImageUploader
-              image={image}
-              setImage={handleImageUpload}
-              brightness={brightness}
-              setBrightness={setBrightness}
-              contrast={contrast}
-              setContrast={setContrast}
-              saturation={saturation}
-              setSaturation={setSaturation}
-              hue={hue}
-              setHue={setHue}
-            />
+            <ImageUploader/>
           }
           {activeButton === 'rayout' &&
             <CardFrontRayout />

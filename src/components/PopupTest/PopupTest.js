@@ -3,12 +3,14 @@ import Arrow from '../../assets/arrow.svg';
 import styles from './PopupTest.module.css';
 import Icon from '../../assets/test-icon.svg';
 import CategorySelector from '../CategorySelector/CategorySelector';
+import { useNavigate } from 'react-router-dom';
 
 export default function PopupTest() {
     const [answers, setAnswers] = useState([null, null, null, null]);
     const [step, setStep] = useState(1);
     const [showCategorySelector, setShowCategorySelector] = useState(false);
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const navigate = useNavigate(); // useNavigate 사용
 
     const handleAnswer = (questionIndex, answerIndex) => {
         const updatedAnswers = [...answers];
@@ -16,8 +18,23 @@ export default function PopupTest() {
         setAnswers(updatedAnswers);
     };
 
+    
+
     const getButtonStyle = (questionIndex, answerIndex) => {
         return answers[questionIndex] === answerIndex ? styles.selectedOptionButton : styles.optionButton;
+    };
+
+    const handleResultClick = () => {
+        // 원하는 순서로 배열에서 요소 추출 후 문자열로 결합
+        const reorderedAnswers = [
+            answers[1], // 2번째 요소 (index 1)
+            answers[3], // 4번째 요소 (index 3)
+            answers[2], // 3번째 요소 (index 2)
+            answers[0]  // 1번째 요소 (index 0)
+        ].join(''); // 문자열로 묶기
+
+        // /result 페이지로 이동하면서 쿼리 파라미터로 전송
+        navigate(`/result/${reorderedAnswers}`);
     };
 
     useEffect(() => {
@@ -27,7 +44,7 @@ export default function PopupTest() {
     useEffect(() => {
         if (step === 6) {
             const timer = setTimeout(() => {
-                setStep(7);
+                handleResultClick();
             }, 3000);
 
             return () => clearTimeout(timer);
@@ -48,15 +65,15 @@ export default function PopupTest() {
                         </div>
                         <div className={styles.optionButtons}>
                             <button
-                                className={getButtonStyle(0, 0)}
-                                onClick={() => handleAnswer(0, 0)}
+                                className={getButtonStyle(0, 'J')}
+                                onClick={() => handleAnswer(0, 'J')}
                             >
                                 ‘응? 갑자기? 나랑 다른 할 일 약속 잡혔는데...<br></br>
                                 다음에 가자고 해야겠다.’
                             </button>
                             <button
-                                className={getButtonStyle(0, 1)}
-                                onClick={() => handleAnswer(0, 1)}
+                                className={getButtonStyle(0, 'P')}
+                                onClick={() => handleAnswer(0, 'P')}
                             >
                                 ‘오, 내일 할 일은,, 다음에 하지 뭐~<br></br>
                                 마침 심심했는데 잘됐다!’
@@ -81,15 +98,15 @@ export default function PopupTest() {
                         </div>
                         <div className={styles.optionButtons}>
                             <button
-                                className={getButtonStyle(1, 0)}
-                                onClick={() => handleAnswer(1, 0)}
+                                className={getButtonStyle(1, 'I')}
+                                onClick={() => handleAnswer(1, 'I')}
                             >
                                 '다들 지켜보니까 사진찍기 부끄러워..<br></br>
                                 그냥 다른 곳에서 찍자'
                             </button>
                             <button
-                                className={getButtonStyle(1, 1)}
-                                onClick={() => handleAnswer(1, 1)}
+                                className={getButtonStyle(1, 'E')}
+                                onClick={() => handleAnswer(1, 'E')}
                             >
                                 '오~ 여기가 핫한 스팟인가 보네!!<br></br>
                                 사진 많이 찍고야겠다!'
@@ -113,15 +130,15 @@ export default function PopupTest() {
                         </div>
                         <div className={styles.optionButtons}>
                             <button
-                                className={getButtonStyle(2, 0)}
-                                onClick={() => handleAnswer(2, 0)}
+                                className={getButtonStyle(2, 'F')}
+                                onClick={() => handleAnswer(2, 'F')}
                             >
                                 “어.. 그 것도 괜찮은데<br></br>
                                 다른 게 더 잘 어울릴 것 같은데??”
                             </button>
                             <button
-                                className={getButtonStyle(2, 1)}
-                                onClick={() => handleAnswer(2, 1)}
+                                className={getButtonStyle(2, 'T')}
+                                onClick={() => handleAnswer(2, 'T')}
                             >
                                 “오.. 나였으면 다른 거 산다 ㅋㅋㅋㅋ”
                             </button>
@@ -145,15 +162,15 @@ export default function PopupTest() {
                         </div>
                         <div className={styles.optionButtons}>
                             <button
-                                className={getButtonStyle(3, 0)}
-                                onClick={() => handleAnswer(3, 0)}
+                                className={getButtonStyle(3, 'N')}
+                                onClick={() => handleAnswer(3, 'S')}
                             >
                                 '우와.. 이런 건 어떻게 만드는 거지?<br></br>
                                 누가 만든 거지? 신기하다!'
                             </button>
                             <button
-                                className={getButtonStyle(3, 1)}
-                                onClick={() => handleAnswer(3, 1)}
+                                className={getButtonStyle(3, 'N')}
+                                onClick={() => handleAnswer(3, 'S')}
                             >
                                 '우와 신기하다!'
                             </button>
@@ -205,13 +222,6 @@ export default function PopupTest() {
             {step === 6 &&
                 <div className={styles.iconContainer}>
                     <img src={Icon} className={styles.animatedIcon} />
-                </div>
-            }
-            {step === 7 &&
-                <div>
-                    캐릭터 선택페이지, 아예 페이지로 넘아가게 구현하겠음
-                    그 캐릭터 창 틀은 그림으로 따고
-                    배경색은 캐릭터에 따라 바꾸게,아래 그림도
                 </div>
             }
         </div>

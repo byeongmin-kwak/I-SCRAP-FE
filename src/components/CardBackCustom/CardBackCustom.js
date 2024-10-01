@@ -68,8 +68,8 @@ export default function CardBackCustom() {
                     {activeButton === 'layout' && <CardBackLayout />}
                 </div>
                 <div className='back-custom-button-container'>
-                    <button className={`back-custom-button-a ${activeButton === 'info' ? 'active' : ''}`} onClick={() => setActiveButton('info')}>정보</button>
                     <button className={`back-custom-button-b ${activeButton === 'layout' ? 'active' : ''}`} onClick={() => setActiveButton('layout')}>레이아웃</button>
+                    <button className={`back-custom-button-a ${activeButton === 'info' ? 'active' : ''}`} onClick={() => setActiveButton('info')}>정보</button>
                 </div>
             </div>
         </div>

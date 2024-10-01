@@ -247,6 +247,12 @@
     border-radius: 15px;
 }
 
+
+.card-image-wrapper{
+    overflow: hidden;
+    border-radius: 15px;
+}
+
 .used-sticker-list {
     display: flex;
     width: 530px;

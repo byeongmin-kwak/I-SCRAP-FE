@@ -12,8 +12,8 @@ export default function CardBackLayoutRender() {
     const selectedLayout = useSelector((state) => state.backLayout.selectedBackLayout);
     const selectedColor = useSelector((state) => state.backLayout.backLayoutColor);
     const selectedPopup = useSelector((state) => state.popup.selectedPopup);
-    const popName = selectedPopup? selectedPopup.name: "";
-    const {place, date, price, companion} = useSelector((state) => state.backInfo);
+    const popName = selectedPopup ? selectedPopup.name : "";
+    const { place, date, price, companion } = useSelector((state) => state.backInfo);
 
     const variations = [
         ['#F8CDCC', '#FFF4F4'],
@@ -40,15 +40,25 @@ export default function CardBackLayoutRender() {
         return parts[0].slice(2) + parts[1] + parts[2];
     };
 
+    // 글자를 15자로 제한하는 함수 (15자가 넘으면 '...' 추가)
+    const truncateText = (text, maxLength = 22) => {
+        return text.length > maxLength ? text.substring(0, maxLength) : text;
+    };
+
+    const truncateText2 = (text, maxLength = 15) => {
+        return text.length > maxLength ? text.substring(0, maxLength): text;
+    };
+
+
     return (
         <div>
             {selectedLayout === 'layout1' && (
                 <div className='svg-container1'>
                     <div className="text-overlay1">
-                        <div className='info1'>
-                            <div>{popName}</div>
+                        <div className={firstColor === '#FFFFFF'? 'info-white' : 'info1'}>
+                            <div>{truncateText(popName)}</div>
                             <div>{date}</div>
-                            <div>{place}</div>
+                            <div>{truncateText(place)}</div>
                             <div>{price}</div>
                             <div>{companion}</div>
                         </div>
@@ -59,10 +69,10 @@ export default function CardBackLayoutRender() {
             {selectedLayout === 'layout2' && (
                 <div className='svg-container1'>
                     <div className="text-overlay1">
-                        <div className='info2'>
-                            <div>{popName}</div>
+                        <div className={firstColor === '#000000'? 'info2-black' : 'info2'}>
+                            <div>{truncateText(popName)}</div>
                             <div>{date}</div>
-                            <div>{place}</div>
+                            <div>{truncateText(place)}</div>
                             <div>{price}</div>
                             <div>{companion}</div>
                         </div>
@@ -73,10 +83,10 @@ export default function CardBackLayoutRender() {
             {selectedLayout === 'layout3' && (
                 <div className='svg-container1'>
                     <div className="text-overlay1">
-                        <div className='info3'>
-                            <div>{popName}</div>
+                        <div className={firstColor === '#000000'? 'info3-black' : 'info3'}>
+                            <div>{truncateText(popName)}</div>
                             <div>{date}</div>
-                            <div>{place}</div>
+                            <div>{truncateText(place)}</div>
                             <div>{price}</div>
                             <div>{companion}</div>
                         </div>
@@ -87,14 +97,14 @@ export default function CardBackLayoutRender() {
             {selectedLayout === 'layout4' && (
                 <div className='svg-container1'>
                     <div className="text-overlay1">
-                        <div className='info4'>
-                            <div>{popName}</div>
+                        <div className={firstColor === '#000000'? 'info4-black' : 'info4'}>
+                            <div>{truncateText(popName)}</div>
                             <div className='info4-bundle'>
                                 <div>{companion}</div>
                                 <div>{date}</div>
                                 <div>{price}</div>
                             </div>
-                            <div>{place}</div>
+                            <div>{truncateText(place)}</div>
                         </div>
                     </div>
                     <CustomSVG4 firstColor={firstColor} secondColor={secondColor} />
@@ -103,10 +113,10 @@ export default function CardBackLayoutRender() {
             {selectedLayout === 'layout5' && (
                 <div className='svg-container1'>
                     <div className="text-overlay1">
-                        <div className='info5'>
-                            <div>{popName}</div>
+                        <div className={firstColor === '#000000'? 'info5-black' : 'info5'}>
+                            <div>{truncateText(popName)}</div>
                             <div>{date}</div>
-                            <div>{place}</div>
+                            <div>{truncateText(place)}</div>
                             <div className='info5-bundle'>
                                 <div>{price}</div>
                                 <div>{companion}</div>
@@ -123,9 +133,9 @@ export default function CardBackLayoutRender() {
                             <div className='info6-bundle1'>
                                 <div className='info6-bundle3'>
                                     <div className='info6-date'>{formatDate(date)}</div>
-                                    <div className='info6-place'>{place}</div>
+                                    <div className='info6-place'>{truncateText2(place)}</div>
                                 </div>
-                                <div className='info6-popName'>{popName}</div>
+                                <div className='info6-popName'>{truncateText2(popName)}</div>
                             </div>
                             <div className='info6-bundle2'>
                                 <div className='info6-companion'>{companion}</div>
