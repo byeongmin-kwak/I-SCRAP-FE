@@ -1,12 +1,14 @@
+.RecentHistorySection {}
+
 .topImage {
   display: block;
   width: 100%;
 }
 
 .container {
-  background-color: #FEDC74;
+  height: 1200px;
+  background: linear-gradient(to bottom, #FEDC74, #ffefbb); /* 위쪽은 노란색, 아래쪽은 흰색 */
   padding: 100px 20%;
-
 }
 
 .topText {
