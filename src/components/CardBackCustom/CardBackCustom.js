@@ -11,7 +11,7 @@ export default function CardBackCustom() {
     const dispatch = useDispatch();
     const selectedLayout = useSelector((state) => state.backLayout.selectedLayout);
     const selectedColor = useSelector((state) => state.backLayout.backgroundColor);
-    const [activeButton, setActiveButton] = useState('info');
+    const [activeButton, setActiveButton] = useState('layout');
     const backViewRef = useRef(null); // 캡처할 영역 참조
 
     const handleCapture = () => {
