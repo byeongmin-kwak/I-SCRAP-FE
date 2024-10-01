@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 import basicLayout from '../../assets/CardBackLayout/layout1_new.svg';
 import styles from './BasicMakingModal.module.css'; // 스타일은 별도 파일로 관리
 import axios from 'axios'; // 파일 업로드를 위한 axios 사용
+import { useNavigate } from 'react-router-dom';
 
 export default function BasicMakingModal({ isOpen, onClose }) {
     const selectedPopup = useSelector((state) => state.popup.selectedPopup); // popupId를 가져옴
@@ -13,6 +14,7 @@ export default function BasicMakingModal({ isOpen, onClose }) {
     const popName = selectedPopup ? selectedPopup.name : "";
     const [frontFileName, setFrontFileName] = useState(null); // 파일 이름만 저장
     const [backFileName, setBackFileName] = useState(null); // 파일 이름만 저장
+    const navigate =   useNavigate();
 
     // 캡처할 DOM 요소에 대한 ref 생성
     const posterRef = useRef(null);
@@ -98,6 +100,8 @@ export default function BasicMakingModal({ isOpen, onClose }) {
         try {
             const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/reviews`, reviewData);
             console.log('리뷰 등록 성공:', response.data);
+            navigate("/archiving");
+
         } catch (error) {
             console.error('리뷰 등록 실패:', error);
         }

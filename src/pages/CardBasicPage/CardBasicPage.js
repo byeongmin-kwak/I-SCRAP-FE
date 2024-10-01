@@ -90,8 +90,11 @@ export default function CardBasicPage() {
     }
 
     useEffect(() => {
-        console.log(selectedPopup);
-    }, [selectedPopup])
+        if (selectedPopup) {
+            dispatch(setPlace(selectedPopup.address));
+            dispatch(setPrice(selectedPopup.fee));
+        }
+    }, [selectedPopup, dispatch]);
 
     return (
         <>

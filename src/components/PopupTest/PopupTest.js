@@ -2,20 +2,20 @@ import React, { useState, useEffect } from 'react';
 import Arrow from '../../assets/arrow.svg';
 import styles from './PopupTest.module.css';
 import Icon from '../../assets/test-icon.svg';
+import CategorySelector from '../CategorySelector/CategorySelector';
 
 export default function PopupTest() {
-    // 각 질문에 대한 선택 상태를 저장하는 배열
     const [answers, setAnswers] = useState([null, null, null, null]);
     const [step, setStep] = useState(1);
+    const [showCategorySelector, setShowCategorySelector] = useState(false);
+    const [selectedCategories, setSelectedCategories] = useState([]);
 
-    // 답변 선택 핸들러
     const handleAnswer = (questionIndex, answerIndex) => {
         const updatedAnswers = [...answers];
-        updatedAnswers[questionIndex] = answerIndex; // 선택한 답변 저장
+        updatedAnswers[questionIndex] = answerIndex;
         setAnswers(updatedAnswers);
     };
 
-    // 버튼에 스타일을 적용해주는 함수
     const getButtonStyle = (questionIndex, answerIndex) => {
         return answers[questionIndex] === answerIndex ? styles.selectedOptionButton : styles.optionButton;
     };
@@ -25,13 +25,12 @@ export default function PopupTest() {
     }, [answers]);
 
     useEffect(() => {
-        if (step === 5) {
-            // 5초 후에 step 7로 변경
+        if (step === 6) {
             const timer = setTimeout(() => {
-                setStep(6);
-            }, 3000); // 5초 동안 애니메이션 실행 후 step 7로 이동
+                setStep(7);
+            }, 3000);
 
-            return () => clearTimeout(timer); // 컴포넌트가 unmount 되면 타이머를 정리
+            return () => clearTimeout(timer);
         }
     }, [step]);
 
@@ -166,11 +165,49 @@ export default function PopupTest() {
                     </div>
                 </div>}
             {step === 5 &&
+                <div className={styles.mainContainer}>
+                    <div className={styles.mainText}>
+                        팝업스토어를 간다면 어떤 종류의 팝업을 가고 싶은가?(어떤 종류의 팝업스토어를 좋아하는가?)
+                    </div>
+                    <div className={styles.testAnswer}>
+                        <div className={styles.arrowContainer} onClick={() => setStep(4)}>
+                            <img src={Arrow} />
+                            <div>이전으로</div>
+                        </div>
+                        {!showCategorySelector ? (
+                            <div className={styles.keywordOptionButtons}>
+                                <button
+                                    className={styles.keywordButton}
+                                    onClick={() => setShowCategorySelector(true)}
+                                >
+                                    {selectedCategories.length > 0 ? (
+                                        selectedCategories.join(', ')
+                                    ) : (
+                                        '선택하기'
+                                    )}
+                                </button>
+                            </div>
+                        ) : (
+                            <div className={styles.keywordOptionButtons2}>
+                                <CategorySelector
+                                    selectedCategories={selectedCategories}
+                                    setSelectedCategories={setSelectedCategories}
+                                    onComplete={() => setShowCategorySelector(false)} // 선택완료 시 다시 선택하기 버튼 표시
+                                />
+                            </div>
+                        )}
+                        <div className={styles.arrowContainer} onClick={() => setStep(6)}>
+                            <div>결과보기</div>
+                            <img src={Arrow} className={styles.flippedArrow} />
+                        </div>
+                    </div>
+                </div>}
+            {step === 6 &&
                 <div className={styles.iconContainer}>
                     <img src={Icon} className={styles.animatedIcon} />
                 </div>
             }
-             {step === 6 &&
+            {step === 7 &&
                 <div>
                     캐릭터 선택페이지, 아예 페이지로 넘아가게 구현하겠음
                     그 캐릭터 창 틀은 그림으로 따고
