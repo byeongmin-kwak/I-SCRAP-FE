@@ -22,6 +22,8 @@
 .white div {
   flex: 1;
   align-content: center;
+  font-family: 'Noto Sans KR SemiBold', sans-serif;
+  font-size: 30px;
 }
 
 .white a {
