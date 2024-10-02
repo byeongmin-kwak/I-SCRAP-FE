@@ -9,23 +9,24 @@ export default function PhotoModal({ onClose, reviewId }) {
     const dispatch = useDispatch();
     const photos = useSelector((state) => state.backInfo.photos); // 전역 상태에서 가져온 사진 목록
     const photosName = useSelector((state) => state.backInfo.photosName); // 전역 상태의 photosName 가져오기
-    const [selectedImages, setSelectedImages] = useState(photos || []);  // 업로드할 이미지의 URL (미리보기용)
     const [files, setFiles] = useState([]); // 실제 파일을 저장
 
     // 파일 업로드 처리 (Base64 URL로 미리보기, 파일 자체는 별도 저장)
     const handleImageChange = (event) => {
         const filesArray = Array.from(event.target.files); // 여러 파일을 배열로 변환
         const newImages = filesArray.map(file => URL.createObjectURL(file)); // 이미지 미리보기 URL 생성
-        setSelectedImages([...selectedImages, ...newImages].slice(0, 4)); // 최대 4개까지 미리보기
+        const updatedPhotos = [...photos, ...newImages].slice(0, 4); // 기존 전역 상태에 새 이미지를 추가 (최대 4개)
+
+        dispatch(setPhotos(updatedPhotos)); // 전역 상태에 이미지 URL 저장
         setFiles([...files, ...filesArray].slice(0, 4)); // 파일은 별도로 저장
     };
 
-    // 사진 삭제 처리
     const handleRemoveImage = (indexToRemove) => {
-        setSelectedImages(selectedImages.filter((_, index) => index !== indexToRemove));
-        setFiles(files.filter((_, index) => index !== indexToRemove)); // 실제 파일도 같이 삭제
+        const updatedPhotos = photos.filter((_, index) => index !== indexToRemove); // 전역 상태에서 사진 삭제
         const updatedPhotosName = photosName.filter((_, index) => index !== indexToRemove); // 이름도 같이 삭제
-        dispatch(setPhotosName(updatedPhotosName)); // 이름 상태 업데이트
+        dispatch(setPhotos(updatedPhotos)); // 전역 상태 업데이트
+        dispatch(setPhotosName(updatedPhotosName)); // 이름 상태도 업데이트
+        setFiles(files.filter((_, index) => index !== indexToRemove)); // 실제 파일도 같이 삭제
     };
 
     // 이미지 파일을 S3에 저장하는 함수
@@ -65,13 +66,12 @@ export default function PhotoModal({ onClose, reviewId }) {
             }
         }
 
-        dispatch(setPhotosName(uploadedNames)); // local state에도 저장
-
+        dispatch(setPhotosName(uploadedNames)); // 이름을 전역 상태에 저장
         onClose(); // 모달을 닫음
     };
 
     // 4개의 슬롯을 만들고, 선택된 이미지만큼 채우고 남은 공간에 빈 네모 추가
-    const emptySlots = Array(4 - selectedImages.length).fill(null);
+    const emptySlots = Array(4 - photos.length).fill(null);
 
     return (
         <div className={styles.modalOverlay}>
@@ -101,7 +101,7 @@ export default function PhotoModal({ onClose, reviewId }) {
                     </div>
 
                     <div className={styles.previewContainer}>
-                        {selectedImages.map((image, index) => (
+                        {photos.map((image, index) => (
                             <div key={index} className={styles.imageWrapper}>
                                 <img src={image} alt={`Selected ${index}`} className={styles.previewImage} />
                                 {/* 'x' 버튼 추가 */}

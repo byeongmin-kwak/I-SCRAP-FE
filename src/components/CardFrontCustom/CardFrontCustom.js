@@ -5,6 +5,7 @@ import './CardFrontCustom.css';
 import StickerCanvas from '../StickerCanvas/StickerCanvas';
 import GoForward from '../../assets/goforward.svg';
 import GoBack from '../../assets/reset.svg';
+import Reset from '../../assets/reset-new.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import ImageUploader from '../ImageUploader/ImageUploader';
 import CardFrontRayout from '../CardFrontRayout/CardFrontRayout';
@@ -36,7 +37,8 @@ export default function CardFrontCustom() {
   const cropScale = useSelector((state) => state.card.cropScale);
   const rotation = useSelector((state) => state.card.rotation);
 
-
+  const [undoStack, setUndoStack] = useState([]); // undo를 위한 상태 기록
+  const [redoStack, setRedoStack] = useState([]);
 
   const cardRef = useRef(null);
 
@@ -48,6 +50,49 @@ export default function CardFrontCustom() {
     const width = context.measureText(text).width * 1.2;
     const height = fontSize * 1.2;
     return { width, height };
+  };
+
+  const saveCurrentState = () => {
+    setUndoStack((prevStack) => [
+      ...prevStack,
+      { texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation },
+    ]);
+  };
+
+  const handleUndo = () => {
+    if (undoStack.length > 0) {
+      const lastState = undoStack[undoStack.length - 1];
+      setRedoStack((prevStack) => [
+        ...prevStack,
+        { texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation },
+      ]);
+      // 마지막 상태로 복원
+      setUndoStack((prevStack) => prevStack.slice(0, -1));
+      dispatch(setImage(lastState.image));
+      // 기타 상태들도 복원
+    }
+  };
+
+  // Redo 기능
+  const handleRedo = () => {
+    if (redoStack.length > 0) {
+      const nextState = redoStack[redoStack.length - 1];
+      setUndoStack((prevStack) => [
+        ...prevStack,
+        { texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation },
+      ]);
+      setRedoStack((prevStack) => prevStack.slice(0, -1));
+      dispatch(setImage(nextState.image));
+      // 기타 상태들도 복원
+    }
+  };
+
+  // Reset 기능
+  const handleReset = () => {
+    // 카드 상태 초기화
+    dispatch(setImage(null));
+    setUndoStack([]);
+    setRedoStack([]);
   };
 
   const handleTextAdd = (text) => {
@@ -120,9 +165,6 @@ export default function CardFrontCustom() {
     setSelectedTextIndex(null);
   };
 
-  const handleImageUpload = (newImage) => {
-    dispatch(setImage(newImage));
-  };
 
   const handleStickerDelete = (index) => {
     dispatch(removeSticker(index));  // removeSticker 액션 호출
@@ -134,6 +176,10 @@ export default function CardFrontCustom() {
       dispatch(setImage(selectedPopup.poster));
     }
   }, [selectedPopup]);
+
+  useEffect(() => {
+    saveCurrentState();
+  }, [texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation]);
 
   useEffect(() => {
     handleCapture();
@@ -154,8 +200,9 @@ export default function CardFrontCustom() {
         </div>
         <div className='making-card-view'>
           <div className='adjust-buttons'>
-            <img src={GoBack} alt="Go back" />
-            <img src={GoForward} alt="Go forward" />
+            <img src={GoBack} alt="Go back" onClick={handleUndo} />
+            <img src={GoForward} alt="Go forward" onClick={handleRedo} />
+            <img src={Reset} alt="Reset" onClick={handleReset} />
           </div>
           <div>
             <div
@@ -170,6 +217,7 @@ export default function CardFrontCustom() {
                   position: 'relative',
                   width: '100%',
                   height: '100%',
+                  boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.2)'
                 }}
               >
                 <img

@@ -13,11 +13,13 @@ const StickerCanvas = ({ onStickerSelect }) => {
 
   // '하트' 카테고리의 스티커 불러오기
   const stickers = importAll(require.context('../../assets/HeartSticker', false, /\.svg$/));
+  const stickers2 = importAll(require.context('../../assets/SpaceSticker', false, /\.svg$/));
+
 
   // 카테고리별 스티커 설정
   const categories = {
     "하트": Object.values(stickers),  // stickers 객체에서 값만 추출
-    "우주": [],
+    "우주": Object.values(stickers2),
     "동물": [],
     "자연": [],
     "선/화살표": [],

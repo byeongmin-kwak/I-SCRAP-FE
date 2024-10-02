@@ -11,6 +11,8 @@ import { setOpen } from '../../store/publicSlice';  // Redux 액션 추가
 import { setDate, setPlace, setPrice, setComment, setRating, setCompanion, setReviewId } from '../../store/backInfoSlice';
 import BasicMakingModal from '../../components/BasicMakingModal/BasicMakingModal';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 import
+import { format } from 'date-fns'; // 날짜 포맷팅을 위한 date-fns 사용
+
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale'; // 한국어 로케일 가져오기
@@ -96,7 +98,7 @@ export default function CardBasicPage() {
         if (day === 0) return 'sunday'; // 일요일
         if (day === 6) return 'saturday'; // 토요일
         return '';
-      };
+    };
 
     useEffect(() => {
         if (selectedPopup) {
@@ -151,8 +153,9 @@ export default function CardBasicPage() {
                             <DatePicker
                                 selected={startDate}
                                 onChange={(date) => {
-                                    setStartDate(date);
-                                    dispatch(setDate(date)); // 선택된 날짜를 Redux로 전달
+                                    const formattedDate = format(date, 'yyyy-MM-dd'); // 날짜를 yyyy-MM-dd 형식으로 변환
+                                    setStartDate(date); // 로컬 상태는 그대로 Date 객체로 유지
+                                    dispatch(setDate(formattedDate)); // Redux에 문자열로 저장
                                 }}
                                 dateFormat="yyyy-MM-dd"
                                 placeholderText="날짜를 선택하세요"

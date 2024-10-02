@@ -60,10 +60,15 @@ const handleSaveCard = async () => {
     const frontImageFileName = `${selectedPopup.id}-cardFront`;  // 파일 이름 생성
     const frontBlob = base64ToBlob(savedCardImage, 'image/png'); // Blob으로 변환
     
-    const frontUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${frontImageFileName}`);
+    const frontUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${frontImageFileName}`, null, {
+      withCredentials: true, // withCredentials 추가
+    });
     const frontUploadUrl = frontUploadResponse.data.uploadUrl;
 
-    await axios.put(frontUploadUrl, frontBlob, { headers: { 'Content-Type': 'image/png' } });
+    await axios.put(frontUploadUrl, frontBlob, { 
+      headers: { 'Content-Type': 'image/png' },
+      withCredentials: true,  // withCredentials 추가
+    });
 
     console.log('카드 앞면 이미지 업로드 성공');
     
@@ -71,10 +76,15 @@ const handleSaveCard = async () => {
     const backImageFileName = `${selectedPopup.id}-cardBack`;  // 파일 이름 생성
     const backBlob = base64ToBlob(savedBackImage, 'image/png'); // Blob으로 변환
 
-    const backUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${backImageFileName}`);
+    const backUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${backImageFileName}`, null, {
+      withCredentials: true, // withCredentials 추가
+    });
     const backUploadUrl = backUploadResponse.data.uploadUrl;
 
-    await axios.put(backUploadUrl, backBlob, { headers: { 'Content-Type': 'image/png' } });
+    await axios.put(backUploadUrl, backBlob, { 
+      headers: { 'Content-Type': 'image/png' },
+      withCredentials: true,  // withCredentials 추가
+    });
 
     console.log('카드 뒷면 이미지 업로드 성공');
 
@@ -95,8 +105,8 @@ const handleSaveCard = async () => {
       size: { width: sticker.width, height: sticker.height },
       rotation: sticker.rotation,
       position: {
-        x: Math.round(sticker.x), // x 좌표를 반올림
-        y: Math.round(sticker.y), // y 좌표를 반올림
+        x: sticker.x, // x 좌표를 반올림
+        y: sticker.y, // y 좌표를 반올림
       },
     }));
 
@@ -122,14 +132,18 @@ const handleSaveCard = async () => {
     console.log(cardData);
 
     // 최종 PATCH 요청
-    await axios.patch(`${process.env.REACT_APP_SERVER_URL}/reviews/${reviewId}`, cardData);
-    console.log('카드가 성공적으로 저장되었습니다.');
-    alert("카드가 성공적으로 저장되었습니다.")
+    await axios.patch(`${process.env.REACT_APP_SERVER_URL}/reviews/${reviewId}`, cardData, {
+      withCredentials: true, // withCredentials 추가
+    });
 
+    console.log('카드가 성공적으로 저장되었습니다.');
+    alert("카드가 성공적으로 저장되었습니다.");
+    
   } catch (error) {
     console.error('카드 저장 중 오류가 발생했습니다:', error);
   }
 };
+
 
 const handleSaveCard2 = async () => {
   if (!selectedPopup) {
@@ -142,10 +156,15 @@ const handleSaveCard2 = async () => {
     const frontImageFileName = `${selectedPopup.id}-cardFront`;  // 파일 이름 생성
     const frontBlob = base64ToBlob(savedCardImage, 'image/png'); // Blob으로 변환
     
-    const frontUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${frontImageFileName}`);
+    const frontUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${frontImageFileName}`, null, {
+      withCredentials: true, // withCredentials 추가
+    });
     const frontUploadUrl = frontUploadResponse.data.uploadUrl;
 
-    await axios.put(frontUploadUrl, frontBlob, { headers: { 'Content-Type': 'image/png' } });
+    await axios.put(frontUploadUrl, frontBlob, { 
+      headers: { 'Content-Type': 'image/png' },
+      withCredentials: true,  // withCredentials 추가
+    });
 
     console.log('카드 앞면 이미지 업로드 성공');
     
@@ -153,10 +172,15 @@ const handleSaveCard2 = async () => {
     const backImageFileName = `${selectedPopup.id}-cardBack`;  // 파일 이름 생성
     const backBlob = base64ToBlob(savedBackImage, 'image/png'); // Blob으로 변환
 
-    const backUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${backImageFileName}`);
+    const backUploadResponse = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${backImageFileName}`, null, {
+      withCredentials: true, // withCredentials 추가
+    });
     const backUploadUrl = backUploadResponse.data.uploadUrl;
 
-    await axios.put(backUploadUrl, backBlob, { headers: { 'Content-Type': 'image/png' } });
+    await axios.put(backUploadUrl, backBlob, { 
+      headers: { 'Content-Type': 'image/png' },
+      withCredentials: true,  // withCredentials 추가
+    });
 
     console.log('카드 뒷면 이미지 업로드 성공');
 
@@ -204,14 +228,19 @@ const handleSaveCard2 = async () => {
     console.log(cardData);
 
     // 최종 PATCH 요청
-    await axios.patch(`${process.env.REACT_APP_SERVER_URL}/reviews/${reviewId}`, cardData);
-    console.log('카드가 성공적으로 저장되었습니다.');
-    navigate("/archiving");
+    await axios.patch(`${process.env.REACT_APP_SERVER_URL}/reviews/${reviewId}`, cardData, {
+      withCredentials: true, // withCredentials 추가
+    });
 
+    console.log('카드가 성공적으로 저장되었습니다.');
+    alert("카드가 성공적으로 저장되었습니다.");
+    navigate("/archiving");
+    
   } catch (error) {
     console.error('카드 저장 중 오류가 발생했습니다:', error);
   }
 };
+
 
   
   return (

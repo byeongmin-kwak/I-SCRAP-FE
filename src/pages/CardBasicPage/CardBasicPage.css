@@ -147,7 +147,7 @@
     font-family: 'Noto Sans KR', sans-serif;
     width: 300px;
     position: fixed;
-    top: -100px;
+    top: -95px;
     left: -140px;
     
   }
@@ -175,7 +175,7 @@
 
   .react-datepicker__navigation {
     border: 1px #BBBBBB solid;
-    top: 23px;
+    top: 19px;
   }
 
   .react-datepicker__navigation--previous {
