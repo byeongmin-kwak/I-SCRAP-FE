@@ -17,7 +17,10 @@ const PopupPage = () => {
     const fetchPopupData = async () => {
       try {
         const response = await axios.get(
-          `${serverURL}/popups/detail/${popupId}` // 받아온 ID로 API 요청
+          `${serverURL}/popups/detail/${popupId}`,
+          {
+            withCredentials: true,
+          } // 받아온 ID로 API 요청
         );
         setPopupData(response.data); // 데이터를 상태에 저장
         console.log("popupData", response.data);
@@ -65,7 +68,7 @@ const PopupPage = () => {
           <div className={styles.searchBar}>
             <input
               type="text"
-              placeholder="팝업명"
+              placeholder={popupData.name}
               className={styles.searchInput}
             />
           </div>
@@ -88,7 +91,7 @@ const PopupPage = () => {
                 </div>
                 <button>관련 페이지 바로가기</button>
               </div>
-              <div>{popupData.name}</div>
+              <div className={styles.popupName}>{popupData.name}</div>
               <div className={styles.tags}>
                 <span className={styles.tag}>{popupData.category}</span>
               </div>
