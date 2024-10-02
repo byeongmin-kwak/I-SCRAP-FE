@@ -199,21 +199,21 @@ const BookmarkPopupSection = () => {
   const [date, setDate] = useState(new Date());
   const [swiper, setSwiper] = useState();
   const [popupData, setPopupData] = useState([]); // 데이터를 저장할 상태
+  const [username, setUsername] = useState();
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     const fetchPopupData = async () => {
       try {
-        const response = await axios.get(
-          `${serverURL}/bookmarks/popups?userId=64dcc0e7f001b623d8a71ba2`,
-          {
-            withCredentials: true,
-          }
-        );
+        const response = await axios.get(`${serverURL}/bookmarks/popups`, {
+          withCredentials: true,
+        });
         // 받아온 데이터를 날짜별로 분류
-        const sortedData = sortDataByDate(response.data);
+        const sortedData = sortDataByDate(response.data.popups);
+        console.log("bookmark", response.data);
         setPopupData(sortedData);
+        setUsername(response.data.userName);
       } catch (error) {
         console.error("Error fetching popup data:", error);
       }
@@ -293,7 +293,7 @@ const BookmarkPopupSection = () => {
 
   const selectedPopups = popupData[selectedDateString] || [];
 
-  if (!popupData || popupData.length === 0) {
+  if (!popupData || popupData.length === undefined) {
     return (
       <div>
         <img src={noBookmark} alt="" className={styles.noBookmark} />
@@ -305,7 +305,7 @@ const BookmarkPopupSection = () => {
     <div className={styles.BookmarkPopupSection}>
       <div className={styles.title}>
         내가 북마크한 팝업을 한눈에! <br />
-        <span className={styles.boldText}>‘oo’의 팝업 일정</span>
+        <span className={styles.boldText}>‘{username}’의 팝업 일정</span>
       </div>
 
       {/* 이미지가 캘린더 헤더 위에 배치됨 */}
