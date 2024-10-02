@@ -143,13 +143,9 @@ const SearchPage = () => {
       );
 
       // Send POST request to update the bookmark status
-      await axios.post(
-        `${serverURL}/bookmarks/${id}`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
+      await axios.get(`${serverURL}/bookmarks/${id}`, {
+        withCredentials: true,
+      });
     } catch (error) {
       console.error("Error updating bookmark:", error);
     }
