@@ -5,13 +5,18 @@ import './CardFrontCustom.css';
 import StickerCanvas from '../StickerCanvas/StickerCanvas';
 import GoForward from '../../assets/goforward.svg';
 import GoBack from '../../assets/reset.svg';
+import Reset from '../../assets/reset-new.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import ImageUploader from '../ImageUploader/ImageUploader';
 import CardFrontRayout from '../CardFrontRayout/CardFrontRayout';
 import CardFrontLayoutRender from '../CardFrontLayoutRender/CardFrontLayoutRender';
 import TextEditor from '../TextEditor/TextEditor';
 import html2canvas from 'html2canvas';
-import { setImage, addText, addSticker, updateText, updateSticker, setSavedCardImage, removeSticker } from '../../store/cardSlice';
+import {
+  setImage, addText, addSticker, updateText, updateSticker,
+  setSavedCardImage, removeSticker, setBrightness, setContrast, setSaturation, setHue, setCropScale, setRotation
+} from '../../store/cardSlice';
+import { setFont, setSelectedFontColor } from '../../store/fontSlice';
 
 export default function CardFrontCustom() {
   const dispatch = useDispatch();
@@ -25,10 +30,16 @@ export default function CardFrontCustom() {
   const selectedPopup = useSelector((state) => state.popup.selectedPopup);
   const [activeButton, setActiveButton] = useState('image');
   const [selectedTextIndex, setSelectedTextIndex] = useState(null); // 선택된 텍스트 인덱스
-  const [brightness, setBrightness] = useState(100);
-  const [contrast, setContrast] = useState(100);
-  const [saturation, setSaturation] = useState(100);
-  const [hue, setHue] = useState(0);
+  const brightness = useSelector((state) => state.card.brightness);
+  const contrast = useSelector((state) => state.card.contrast);
+  const saturation = useSelector((state) => state.card.saturation);
+  const hue = useSelector((state) => state.card.hue);
+  const cropScale = useSelector((state) => state.card.cropScale);
+  const rotation = useSelector((state) => state.card.rotation);
+
+  const [undoStack, setUndoStack] = useState([]); // undo를 위한 상태 기록
+  const [redoStack, setRedoStack] = useState([]);
+
   const cardRef = useRef(null);
 
   // 글자의 크기를 측정하는 함수
@@ -41,11 +52,55 @@ export default function CardFrontCustom() {
     return { width, height };
   };
 
+  const saveCurrentState = () => {
+    setUndoStack((prevStack) => [
+      ...prevStack,
+      { texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation },
+    ]);
+  };
+
+  const handleUndo = () => {
+    if (undoStack.length > 0) {
+      const lastState = undoStack[undoStack.length - 1];
+      setRedoStack((prevStack) => [
+        ...prevStack,
+        { texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation },
+      ]);
+      // 마지막 상태로 복원
+      setUndoStack((prevStack) => prevStack.slice(0, -1));
+      dispatch(setImage(lastState.image));
+      // 기타 상태들도 복원
+    }
+  };
+
+  // Redo 기능
+  const handleRedo = () => {
+    if (redoStack.length > 0) {
+      const nextState = redoStack[redoStack.length - 1];
+      setUndoStack((prevStack) => [
+        ...prevStack,
+        { texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation },
+      ]);
+      setRedoStack((prevStack) => prevStack.slice(0, -1));
+      dispatch(setImage(nextState.image));
+      // 기타 상태들도 복원
+    }
+  };
+
+  // Reset 기능
+  const handleReset = () => {
+    // 카드 상태 초기화
+    dispatch(setImage(null));
+    setUndoStack([]);
+    setRedoStack([]);
+  };
+
   const handleTextAdd = (text) => {
     if (text.trim()) {
       const fontSize = 16;
       const { width, height } = measureTextSize(text, fontSize);
 
+      // 새 텍스트는 기본 폰트와 기본 색상으로 설정
       const newText = {
         text: text,
         x: 50,
@@ -53,12 +108,13 @@ export default function CardFrontCustom() {
         width: width,
         height: height,
         fontSize: fontSize,
-        fontFamily: 'Cafe24 Simplehae',
-        color: '#000',
+        fontFamily: 'Cafe24 Simplehae',  // 기본 폰트
+        color: '#000',  // 기본 색상
         rotation: 0,
       };
 
       dispatch(addText(newText));
+      setSelectedTextIndex(texts.length);  // 새로 추가한 텍스트를 선택된 텍스트로 설정
     }
   };
 
@@ -68,11 +124,15 @@ export default function CardFrontCustom() {
 
   const applyFontAndColorToText = () => {
     if (selectedTextIndex !== null) {
+      const currentText = texts[selectedTextIndex];
+
+      // 기존 텍스트에 대해서만 폰트와 색상을 선택한 값으로 업데이트
       const updatedText = {
-        ...texts[selectedTextIndex],
-        fontFamily: selectedFont,  // 사용자가 선택한 폰트 적용
-        color: selectedFontColor,  // 사용자가 선택한 색상 적용
+        ...currentText,
+        fontFamily: selectedFont || currentText.fontFamily,  // 폰트 적용
+        color: selectedFontColor || currentText.color,  // 색상 적용
       };
+
       dispatch(updateText({ index: selectedTextIndex, newText: updatedText }));
     }
   };
@@ -105,19 +165,21 @@ export default function CardFrontCustom() {
     setSelectedTextIndex(null);
   };
 
-  const handleImageUpload = (newImage) => {
-    dispatch(setImage(newImage));
-  };
 
   const handleStickerDelete = (index) => {
     dispatch(removeSticker(index));  // removeSticker 액션 호출
   };
+
 
   useEffect(() => {
     if (selectedPopup && !image) {
       dispatch(setImage(selectedPopup.poster));
     }
   }, [selectedPopup]);
+
+  useEffect(() => {
+    saveCurrentState();
+  }, [texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation]);
 
   useEffect(() => {
     handleCapture();
@@ -138,8 +200,9 @@ export default function CardFrontCustom() {
         </div>
         <div className='making-card-view'>
           <div className='adjust-buttons'>
-            <img src={GoBack} alt="Go back" />
-            <img src={GoForward} alt="Go forward" />
+            <img src={GoBack} alt="Go back" onClick={handleUndo} />
+            <img src={GoForward} alt="Go forward" onClick={handleRedo} />
+            <img src={Reset} alt="Reset" onClick={handleReset} />
           </div>
           <div>
             <div
@@ -154,6 +217,7 @@ export default function CardFrontCustom() {
                   position: 'relative',
                   width: '100%',
                   height: '100%',
+                  boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.2)'
                 }}
               >
                 <img
@@ -162,6 +226,8 @@ export default function CardFrontCustom() {
                   className="card-image"
                   style={{
                     filter: `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) hue-rotate(${hue}deg)`,
+                    transform: `scale(${cropScale}) rotate(${rotation}deg)`, // 자르기 및 회전 적용
+                    transformOrigin: 'center', // 회전 중심을 이미지의 중앙으로 설정
                     width: '100%',
                     height: '100%',
                   }}
@@ -189,7 +255,7 @@ export default function CardFrontCustom() {
                       };
                       dispatch(updateSticker({ index, newSticker: updatedSticker }));
                     }}
-                    style={{ transform: `rotate(${sticker.rotation}deg)` }}
+                    style={{ transform: `rotate(${sticker.rotation}deg)` }} // 회전 적용
                   >
                     <img
                       src={sticker.src}
@@ -251,18 +317,7 @@ export default function CardFrontCustom() {
       <div className='front-custom-canvas-container'>
         <div className='front-custom-canvas'>
           {activeButton === 'image' &&
-            <ImageUploader
-              image={image}
-              setImage={handleImageUpload}
-              brightness={brightness}
-              setBrightness={setBrightness}
-              contrast={contrast}
-              setContrast={setContrast}
-              saturation={saturation}
-              setSaturation={setSaturation}
-              hue={hue}
-              setHue={setHue}
-            />
+            <ImageUploader />
           }
           {activeButton === 'rayout' &&
             <CardFrontRayout />

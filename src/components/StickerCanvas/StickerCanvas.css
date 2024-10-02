@@ -3,6 +3,7 @@
     flex-direction: column;
     padding: 33px 31px;
     gap: 8px;
+
 }
 
 .sticker-text {
@@ -11,8 +12,45 @@
     color: #2E2E2E;
 }
 
-.sticker-item {
-    margin-right: 25px;
-    margin-top: 25px;
+.sticker-category{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
 
+.sticker-categories{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.stickers{
+    margin-top: 5px;
+    width: 482px;
+    height: 271px;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #eeeeee;
+    background-image: url('../../assets/sticker-background.svg'); /* 여기에 배경 이미지 경로 설정 */
+}
+
+.sticker-item {
+    margin: 10px;
+}
+
+.category-item{
+    font-size: 12px;
+    font-family: Noto Sans KR Medium;
+    color: #898989;
+}
+
+.category-item.active{
+    font-size: 13px;
+    font-family: Noto Sans KR Bold;
+    color: #B4643A;
+   
 }

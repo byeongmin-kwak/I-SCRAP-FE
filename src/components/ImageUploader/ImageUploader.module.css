@@ -2,15 +2,22 @@
     padding: 25px 31px;
 }
 
-.image {
+.imageWrapper {
     width: 225px;
-    height: 335px;
+    height: 350px;
+    overflow: hidden; /* 이미지가 영역을 벗어나지 않게 설정 */
     border-radius: 10px;
 }
 
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지 비율을 유지하면서 잘리게 설정 */
+}
 .imageContainer {
     display: flex;
     margin-top: 30px;
+    position: relative;
 }
 
 .imageBorder {
@@ -183,6 +190,17 @@ input[type="range"]::-ms-track {
 
 }
 
+.customText2 {
+    text-align: center;
+    color: black;
+    font-size: 11px;
+    font-family: Noto Sans KR Light;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin-right: 17px;
+
+}
+
 .slideContainer{
     margin-left: 30px;
 }
@@ -195,5 +213,5 @@ input[type="range"]::-ms-track {
     line-height: 15px;
     word-wrap: break-word;
     margin-bottom: 12px;
-    margin-top: 50px;
+    margin-top: 20px;
 }

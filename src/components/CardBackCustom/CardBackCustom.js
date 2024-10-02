@@ -11,7 +11,7 @@ export default function CardBackCustom() {
     const dispatch = useDispatch();
     const selectedLayout = useSelector((state) => state.backLayout.selectedLayout);
     const selectedColor = useSelector((state) => state.backLayout.backgroundColor);
-    const [activeButton, setActiveButton] = useState('info');
+    const [activeButton, setActiveButton] = useState('layout');
     const backViewRef = useRef(null); // 캡처할 영역 참조
 
     const handleCapture = () => {
@@ -58,7 +58,6 @@ export default function CardBackCustom() {
                     <p className='making-card-option'>Back</p>
                 </div>
                 <div className='making-back-view' ref={backViewRef}>
-                    {/* 캡처할 영역 */}
                     <CardBackLayoutRender selectedLayout={selectedLayout} selectedColor={selectedColor} />
                 </div>
             </div>
@@ -68,8 +67,8 @@ export default function CardBackCustom() {
                     {activeButton === 'layout' && <CardBackLayout />}
                 </div>
                 <div className='back-custom-button-container'>
-                    <button className={`back-custom-button-a ${activeButton === 'info' ? 'active' : ''}`} onClick={() => setActiveButton('info')}>정보</button>
                     <button className={`back-custom-button-b ${activeButton === 'layout' ? 'active' : ''}`} onClick={() => setActiveButton('layout')}>레이아웃</button>
+                    <button className={`back-custom-button-a ${activeButton === 'info' ? 'active' : ''}`} onClick={() => setActiveButton('info')}>정보</button>
                 </div>
             </div>
         </div>

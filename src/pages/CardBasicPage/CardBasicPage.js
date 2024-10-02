@@ -11,6 +11,11 @@ import { setOpen } from '../../store/publicSlice';  // Redux 액션 추가
 import { setDate, setPlace, setPrice, setComment, setRating, setCompanion, setReviewId } from '../../store/backInfoSlice';
 import BasicMakingModal from '../../components/BasicMakingModal/BasicMakingModal';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 import
+import { format } from 'date-fns'; // 날짜 포맷팅을 위한 date-fns 사용
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { ko } from 'date-fns/locale'; // 한국어 로케일 가져오기
 import './CardBasicPage.css';
 
 export default function CardBasicPage() {
@@ -19,6 +24,7 @@ export default function CardBasicPage() {
     const [modalOpen, setModalOpen] = useState(false);
     const [searchInput, setSearchInput] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [startDate, setStartDate] = useState(new Date()); // DatePicker 상태 관리
     const dispatch = useDispatch();
     const open = useSelector((state) => state.publicSetting.open); // 전역 상태로부터 공개/비공개 상태 가져오기
     const selectedPopup = useSelector((state) => state.popup.selectedPopup); // popupId를 가져옴
@@ -51,8 +57,6 @@ export default function CardBasicPage() {
         }
         return stars;
     };
-
-
 
     const handleSearch = async () => {
         try {
@@ -89,9 +93,19 @@ export default function CardBasicPage() {
         }
     }
 
+    const getDayClassName = (date) => {
+        const day = date.getDay(); // 요일을 가져옴 (0 = 일요일, 6 = 토요일)
+        if (day === 0) return 'sunday'; // 일요일
+        if (day === 6) return 'saturday'; // 토요일
+        return '';
+    };
+
     useEffect(() => {
-        console.log(selectedPopup);
-    }, [selectedPopup])
+        if (selectedPopup) {
+            dispatch(setPlace(selectedPopup.address));
+            dispatch(setPrice(selectedPopup.fee));
+        }
+    }, [selectedPopup, dispatch]);
 
     return (
         <>
@@ -135,12 +149,19 @@ export default function CardBasicPage() {
                         </div>
                         <div className='details-container'>
                             <p className='popup-detail-title'>관람 날짜</p>
-                            <input
+                            {/* DatePicker 사용 부분 */}
+                            <DatePicker
+                                selected={startDate}
+                                onChange={(date) => {
+                                    const formattedDate = format(date, 'yyyy-MM-dd'); // 날짜를 yyyy-MM-dd 형식으로 변환
+                                    setStartDate(date); // 로컬 상태는 그대로 Date 객체로 유지
+                                    dispatch(setDate(formattedDate)); // Redux에 문자열로 저장
+                                }}
+                                dateFormat="yyyy-MM-dd"
+                                placeholderText="날짜를 선택하세요"
+                                locale={ko}  // 한국어 로케일 적용
                                 className='popup-detail-input'
-                                type='date'
-                                value={date}
-                                onChange={(e) => dispatch(setDate(e.target.value))}
-                                required
+                                dayClassName={(date) => getDayClassName(date)}
                             />
                         </div>
                         <div className='details-container'>

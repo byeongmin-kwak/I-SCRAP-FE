@@ -32,7 +32,7 @@
     width: 660px;
 }
 
-.back-custom-button-a {
+.back-custom-button-b {
     width: 50%;
     height: 35px;
     background: white;
@@ -48,7 +48,7 @@
     cursor: pointer;
 }
 
-.back-custom-button-a.active {
+.back-custom-button-b.active {
     width: 50%;
     height: 35px;
     border-bottom-left-radius: 20px;
@@ -64,7 +64,7 @@
     cursor: pointer;
 }
 
-.back-custom-button-b {
+.back-custom-button-a {
     width: 50%;
     height: 35px;
     background-color: white;
@@ -80,7 +80,7 @@
     cursor: pointer;
 }
 
-.back-custom-button-b.active {
+.back-custom-button-a.active {
     width: 50%;
     height: 35px;
     text-align: center;

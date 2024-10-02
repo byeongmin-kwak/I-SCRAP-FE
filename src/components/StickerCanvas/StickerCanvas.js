@@ -1,44 +1,65 @@
 import React, { useState } from 'react';
-import Sticker from '../../components/Sticker/Sticker';
-import Avocado from '../../assets/Sticker/Avocado.svg';
-import Bear from '../../assets/Sticker/Bear.svg';
-import Cherry from '../../assets/Sticker/Cherry.svg';
-import Clubber from '../../assets/Sticker/Clubber.svg';
-import CupCake from '../../assets/Sticker/CupCake.svg';
-import Panda from '../../assets/Sticker/Panda.svg';
-import Smile from '../../assets/Sticker/Smile.svg';
-import Star from '../../assets/Sticker/Star.svg';
-import Apple from '../../assets/Sticker/Apple.svg';
-import Banana from '../../assets/Sticker/Banana.svg';
-import Chocolate1 from '../../assets/Sticker/Chocolate1.svg';
-import Chocolate2 from '../../assets/Sticker/Chocolate2.svg';
-import Chocolate3 from '../../assets/Sticker/Chocolate3.svg';
-import Glass from '../../assets/Sticker/Glass.svg';
-import Peach from '../../assets/Sticker/Peach.svg';
-import Strawberry from '../../assets/Sticker/Strawberry.svg';
 import './StickerCanvas.css';
 
 const StickerCanvas = ({ onStickerSelect }) => {
-  const stickers = [Avocado, Bear, Cherry, Clubber, CupCake, Panda, Smile, Star, Apple, Banana, Chocolate1, Chocolate2, Chocolate3, Glass, Peach, Strawberry];
+  // 폴더 내의 모든 svg 파일을 불러오는 함수
+  const importAll = (r) => {
+    let images = {};
+    r.keys().forEach((item) => {
+      images[item.replace('./', '')] = r(item); // .default를 사용하지 않고 접근
+    });
+    return images;
+  };
+
+  // '하트' 카테고리의 스티커 불러오기
+  const stickers = importAll(require.context('../../assets/HeartSticker', false, /\.svg$/));
+  const stickers2 = importAll(require.context('../../assets/SpaceSticker', false, /\.svg$/));
+
+
+  // 카테고리별 스티커 설정
+  const categories = {
+    "하트": Object.values(stickers),  // stickers 객체에서 값만 추출
+    "우주": Object.values(stickers2),
+    "동물": [],
+    "자연": [],
+    "선/화살표": [],
+    "도형/라벨": [],
+    "말풍선": [],
+    "캐릭터": []
+    // 추가적인 카테고리와 스티커 추가 가능
+  };
+
+  const [selectedCategory, setSelectedCategory] = useState("하트"); // 기본 선택 카테고리
 
   return (
-
     <div className='sticker-canvas'>
       <div className='sticker-text'>스티커</div>
-      <div className='stickers'>
-        {stickers.map((sticker, index) => (
-          <img
-            key={index}
-            src={sticker}
-            alt="sticker"
-            className="sticker-item"
-            draggable="true"
-            onDragStart={(e) => onStickerSelect(sticker)}
-          />
-        ))}
+      <div className='sticker-category'>
+        <div className='sticker-categories'>
+          {Object.keys(categories).map((category, index) => (
+            <div
+              key={index}
+              className={`category-item ${selectedCategory === category ? 'active' : ''}`}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </div>
+          ))}
+        </div>
+        <div className='stickers'>
+          {categories[selectedCategory].map((sticker, index) => (
+            <img
+              key={index}
+              src={sticker}
+              alt="sticker"
+              className="sticker-item"
+              draggable="true"
+              onDragStart={() => onStickerSelect(sticker)}
+            />
+          ))}
+        </div>
       </div>
     </div>
-
   );
 };
 

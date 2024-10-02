@@ -1,0 +1,71 @@
+.container {
+    background-color: white;
+    border: 3px #4AC7CF solid;
+    border-radius: 55px;
+    width: 536px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+    height: 394px;
+  }
+  
+  .categoryContainer {
+    display: flex;
+    height: 328px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .leftCategories, .rightCategories {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .categoryItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4AC7CF;
+    width: 136px;
+    height: 55px;
+    font-size: 23px;
+    font-family: Noto Sans KR Medium;
+    cursor: pointer;
+  }
+  
+  .selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4AC7CF;
+    color: #ffffff;
+    border-radius: 50px;
+    width: 136px;
+    height: 55px;
+  }
+  
+  .divider {
+    width: 1px;
+    background-color: #4AC7CF;
+    height: 70%;
+    margin: 0 15px;
+  }
+  
+  .footer {
+    height: 63px;
+    background-color: #4AC7CF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 55px;
+    border-bottom-right-radius: 55px;
+    color: white;
+    font-family: Noto Sans KR Medium;
+    cursor: pointer;
+  }
+  
+ 

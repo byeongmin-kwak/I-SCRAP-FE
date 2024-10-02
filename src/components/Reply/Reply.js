@@ -17,7 +17,7 @@ export default function Reply({ id }) {
 
                 setComments(response.data); // 댓글 데이터를 상태에 저장
             } catch (error) {
-                setError('댓글을 가져오는 중 오류가 발생했습니다.');
+                console.log("댓글 오류 발생");
             } finally {
                 setLoading(false); // 로딩 상태 해제
             }
