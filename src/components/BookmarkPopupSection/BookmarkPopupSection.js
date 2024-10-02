@@ -293,7 +293,7 @@ const BookmarkPopupSection = () => {
 
   const selectedPopups = popupData[selectedDateString] || [];
 
-  if (!popupData || popupData.length === undefined) {
+  if (!popupData || Object.keys(popupData).length === 0) {
     return (
       <div>
         <img src={noBookmark} alt="" className={styles.noBookmark} />
