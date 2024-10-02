@@ -68,6 +68,10 @@ export default function ArchivingDetailModal({ id, isOpen, onClose }) {
         setIsDeleteModalOpen(false);
     };
 
+    const handleEdit = () => {
+
+    };
+
     return (
         <div className="archiving-modal-overlay" onClick={onClose}>
             <div className="archiving-modal-container" onClick={(e) => e.stopPropagation()}>
@@ -104,7 +108,7 @@ export default function ArchivingDetailModal({ id, isOpen, onClose }) {
                             </div>
                         </div>
                         <div className="archiving-modal-button-container">
-                            <button className="archiving-modal-edit">수정하기</button>
+                            <button className="archiving-modal-edit" onClick={handleEdit}>수정하기</button>
                             <button className="archiving-modal-delete" onClick={openDeleteModal}>
                                 삭제하기
                             </button>

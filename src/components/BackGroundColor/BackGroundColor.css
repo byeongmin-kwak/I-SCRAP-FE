@@ -6,6 +6,13 @@
     margin-top: 10px;
 }
 
+.background-colors div {
+    width: 44px; 
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
+
 .background-color1 {
     width: 44px; 
     height: 25px;
@@ -100,4 +107,19 @@
     background: black;
     border-radius: 5px;
     border: 1px #7B7B7B solid
+}
+
+.background-colors div.disabled::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(95, 95, 95, 0.5); /* 불투명한 회색 레이어 */
+    pointer-events: none; /* 클릭 방지 */
+}
+
+.background-colors div.disabled {
+    pointer-events: none; /* 클릭 방지 */
 }

@@ -1,137 +1,168 @@
 .mainContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -250px;
+  transform: scale(0.8);
 
 }
 
 .mainText {
-    font-family: Noto Sans KR Bold;
-    color: white;
-    font-size: 36px;
-    width: 730px;
-    margin-bottom: 20px;
-    text-align: center;
-    line-height: 60px;
+  font-family: Noto Sans KR Bold;
+  color: white;
+  font-size: 36px;
+  width: 810px;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 60px;
 }
 
 .optionButtons {
-    margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 20px;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 20px;
 }
 
 .optionButton {
-    background-color: white;
-    color: #4AC7CF;
-    border-radius: 60px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    width: 536px;
-    height: 106px;
-    margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Noto Sans KR Medium;
-    font-size: 18px;
-    line-height: 30px;
+  background-color: white;
+  color: #4AC7CF;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 536px;
+  height: 106px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Noto Sans KR Medium;
+  font-size: 18px;
+  line-height: 30px;
 }
 
 .selectedOptionButton {
-    background-color: #4AC7CF;
-    color: white;
-    border-radius: 60px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    width: 536px;
-    height: 106px;
-    margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Noto Sans KR Medium;
-    font-size: 18px;
-    line-height: 30px;
-  }
+  background-color: #4AC7CF;
+  color: white;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 536px;
+  height: 106px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Noto Sans KR Medium;
+  font-size: 18px;
+  line-height: 30px;
+}
 
 .optionButton:hover {
-    background-color: #4AC7CF;
-    color: white;
+  background-color: #4AC7CF;
+  color: white;
 }
 
 .testAnswer {
-    display: flex;
-    align-items: center;
-    gap: 81px;
+  display: flex;
+  align-items: center;
+  gap: 81px;
 }
 
 .arrowLeft,
 .arrowRight {
-    background-color: transparent;
-    border: none;
-    color: #333;
-    cursor: pointer;
-    font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .arrowLeft:hover,
 .arrowRight:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .arrow {
-    width: 21px;
-    height: 35px;
-    border-radius: 2px;
-    border: 5px #B4643A solid;
+  width: 21px;
+  height: 35px;
+  border-radius: 2px;
+  border: 5px #B4643A solid;
 }
 
 .arrowContainer {
-    width: 110px;
-    height: 35px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    color: #B4643A;
-    font-size: 20px;
-    font-family: Noto Sans KR Medium;
-    cursor: pointer;
+  width: 110px;
+  height: 35px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #B4643A;
+  font-size: 20px;
+  font-family: Noto Sans KR Medium;
+  cursor: pointer;
 
 }
 
 .flippedArrow {
-    transform: scaleX(-1); /* 이미지를 오른쪽으로 뒤집음 */
+  transform: scaleX(-1);
+  /* 이미지를 오른쪽으로 뒤집음 */
+}
+
+.iconContainer {
+  display: flex;
+  margin-top: -230px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  .iconContainer{
-    display: flex;
-    margin-top: -230px;
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  to {
+    transform: rotate(360deg);
   }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  
-  .animatedIcon {
-    width: 100%;
-    height: 100%;
-    animation: fadeIn 2s ease-in-out, rotate 3s linear infinite;
-  }
-  
+}
+
+
+.animatedIcon {
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 2s ease-in-out, rotate 3s linear infinite;
+}
+
+.keywordOptionButtons {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.keywordOptionButtons2 {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.keywordButton {
+  width: 563px;
+  height: 110px;
+  background: #4AC7CF;
+  border-radius: 60px;
+  font-size: 25px;
+  font-family: Noto Sans KR Medium;
+  border: none;
+  color: white;
+  cursor: pointer;
+}

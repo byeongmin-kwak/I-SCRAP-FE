@@ -4,6 +4,7 @@ import html2canvas from 'html2canvas';
 import basicLayout from '../../assets/CardBackLayout/layout1_new.svg';
 import styles from './BasicMakingModal.module.css'; // 스타일은 별도 파일로 관리
 import axios from 'axios'; // 파일 업로드를 위한 axios 사용
+import { useNavigate } from 'react-router-dom';
 
 export default function BasicMakingModal({ isOpen, onClose }) {
     const selectedPopup = useSelector((state) => state.popup.selectedPopup); // popupId를 가져옴
@@ -13,6 +14,7 @@ export default function BasicMakingModal({ isOpen, onClose }) {
     const popName = selectedPopup ? selectedPopup.name : "";
     const [frontFileName, setFrontFileName] = useState(null); // 파일 이름만 저장
     const [backFileName, setBackFileName] = useState(null); // 파일 이름만 저장
+    const navigate = useNavigate();
 
     // 캡처할 DOM 요소에 대한 ref 생성
     const posterRef = useRef(null);
@@ -31,7 +33,9 @@ export default function BasicMakingModal({ isOpen, onClose }) {
     const getUploadUrlAndUpload = async (blob, fileName, setFileName) => {
         try {
             // 1. POST 요청으로 업로드 URL을 받아옴
-            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${fileName}`);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/files/upload-url/${fileName}`, null, {
+                withCredentials: true, // withCredentials 추가
+            });
             const uploadUrl = response.data.uploadUrl;
 
             // 2. 받아온 URL로 PUT 요청을 통해 이미지 파일 업로드
@@ -39,6 +43,7 @@ export default function BasicMakingModal({ isOpen, onClose }) {
                 headers: {
                     'Content-Type': 'image/png', // PNG 파일 형식으로 업로드
                 },
+                withCredentials: true, // withCredentials 추가
             });
 
             console.log('파일 업로드 성공:', fileName);
@@ -96,8 +101,12 @@ export default function BasicMakingModal({ isOpen, onClose }) {
         console.log(reviewData);
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/reviews`, reviewData);
+            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/reviews`, reviewData, {
+                withCredentials: true, // withCredentials 추가
+            });
             console.log('리뷰 등록 성공:', response.data);
+            navigate("/archiving");
+
         } catch (error) {
             console.error('리뷰 등록 실패:', error);
         }

@@ -15,6 +15,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import OnboardingPage from "./pages/OnboardingPage/OnboardingPage";
 import MyPage from "./pages/MyPage/MyPage";
 import axios from "axios"; // axios import 추가
+import TestResultPage1 from "./pages/TestResultPage/TestResultPage1";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -83,6 +84,7 @@ function App() {
         <Route path="/popup/:popupId" element={<PopupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/my" element={<MyPage />} />
+        <Route path="/result/:answers" element={<TestResultPage1/>}/>
       </Routes>
     </div>
   );
