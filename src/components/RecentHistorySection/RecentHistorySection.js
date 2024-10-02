@@ -16,10 +16,14 @@ const RecentHistorySection = () => {
 
   useEffect(() => {
     // API로부터 데이터 가져오기
-    axios.get(`${serverURL}/reviews/recent`).then((response) => {
-      setHistory(response.data);
-      console.log(response.data);
-    });
+    axios
+      .get(`${serverURL}/reviews/recent`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setHistory(response.data);
+        console.log(response.data);
+      });
   }, []);
 
   return (
