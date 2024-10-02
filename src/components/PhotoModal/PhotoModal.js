@@ -65,8 +65,6 @@ export default function PhotoModal({ onClose, reviewId }) {
             }
         }
 
-        // 2. 업로드된 사진 파일 이름을 전역 상태에 저장
-        dispatch(setPhotos(uploadedNames)); // 전체 사진 이름을 전역 상태에 저장
         dispatch(setPhotosName(uploadedNames)); // local state에도 저장
 
         onClose(); // 모달을 닫음
