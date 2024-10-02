@@ -206,7 +206,10 @@ const BookmarkPopupSection = () => {
     const fetchPopupData = async () => {
       try {
         const response = await axios.get(
-          `${serverURL}/bookmarks/popups?userId=64dcc0e7f001b623d8a71ba2`
+          `${serverURL}/bookmarks/popups?userId=64dcc0e7f001b623d8a71ba2`,
+          {
+            withCredentials: true,
+          }
         );
         // 받아온 데이터를 날짜별로 분류
         const sortedData = sortDataByDate(response.data);
