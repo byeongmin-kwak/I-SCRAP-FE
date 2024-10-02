@@ -33,26 +33,33 @@ const Nav = ({ isLoggedIn, username }) => {
     window.location.href = "/login";
   };
 
-  const deleteCookie = (name) => {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.i-scrap-fe.vercel.app; secure; samesite=None`;
-  };
-
   const handleLogoutClick = async () => {
     try {
-      // 쿠키 삭제 (id_token, refresh_token)
-      deleteCookie("id_token");
-      deleteCookie("refresh_token");
-
-      // 로그아웃 후 메인 페이지로 이동
-      window.location.href = "/";
+      await axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/logout`, {
+        withCredentials: true,
+      });
+      window.location.href = "/"; // 로그아웃 후 메인 페이지로 이동
     } catch (error) {
       console.error("로그아웃 중 오류 발생:", error);
     }
   };
 
-  const handleArchiving = () => {
-    window.location.href = "/archiving";
-  };
+  // const deleteCookie = (name) => {
+  //   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.i-scrap-fe.vercel.app; secure; samesite=None`;
+  // };
+
+  // const handleLogoutClick = async () => {
+  //   try {
+  //     // 쿠키 삭제 (id_token, refresh_token)
+  //     deleteCookie("id_token");
+  //     deleteCookie("refresh_token");
+
+  //     // 로그아웃 후 메인 페이지로 이동
+  //     window.location.href = "/";
+  //   } catch (error) {
+  //     console.error("로그아웃 중 오류 발생:", error);
+  //   }
+  // };
 
   return (
     <nav className={styles.navbar}>
@@ -65,7 +72,7 @@ const Nav = ({ isLoggedIn, username }) => {
       <ul className={`${styles.navbarMenu} ${menuOpen ? styles.active : ""}`}>
         <li onClick={handleHomeClick}>홈</li>
         <li onClick={handleSearchClick}>찾기</li>
-        <li onClick={handleArchiving}>기록</li>
+        <li>기록</li>
         <li onClick={handleMyClick}>My</li>
         {isLoggedIn ? (
           <>

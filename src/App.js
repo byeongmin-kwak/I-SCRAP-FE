@@ -40,7 +40,7 @@ function App() {
           }
         );
         console.log("fetchUserProfile", response.data);
-        if (response.data) {
+        if (response.data.name !== null) {
           setIsLoggedIn(true); // 유저 정보가 있으면 로그인 상태로 설정
           setUsername(response.data.name); // 유저 이름 상태에 저장
         } else {
@@ -79,12 +79,12 @@ function App() {
         <Route path="/card-making" element={<CardMakingPage />} />
         <Route path="/archiving" element={<ArchivingPage />} />
         <Route path="/writing/:id" element={<WritingDetailPage />} />
-        <Route path='/test' element={<TestPage />} />
+        <Route path="/test" element={<TestPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/popup/:popupId" element={<PopupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/my" element={<MyPage />} />
-        <Route path="/result/:answers" element={<TestResultPage1/>}/>
+        <Route path="/result/:answers" element={<TestResultPage1 />} />
       </Routes>
     </div>
   );
