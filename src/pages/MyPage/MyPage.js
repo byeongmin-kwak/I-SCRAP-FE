@@ -12,59 +12,31 @@ import {
   differenceInDays,
 } from "date-fns";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import calendarImage from "../../assets/calendarImage.svg";
 
-const StyledCalendar2 = styled(Calendar)`
+const StyledCalendar1 = styled(Calendar)`
   .react-calendar {
-    width: 350px;
-    max-width: 100%;
-    background: beige;
-    border: 1px solid #a0a096;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.125em;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    padding: 20px;
+    padding-top: 32px;
+    background-color: #4ac7cf; /* 흰색 배경 */
   }
 
-  .react-calendar--doubleView {
-    width: 700px;
-  }
-
-  .react-calendar--doubleView .react-calendar__viewContainer {
-    display: flex;
-    margin: -0.5em;
-  }
-
-  .react-calendar--doubleView .react-calendar__viewContainer > * {
-    width: 50%;
-    margin: 0.5em;
-  }
-
-  .react-calendar,
-  .react-calendar *,
-  .react-calendar *:before,
-  .react-calendar *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-  .react-calendar button {
-    margin: 0;
-    border: 0;
-    outline: none;
-  }
-
-  .react-calendar button:enabled:hover {
-    cursor: pointer;
-  }
-
+  /* 상단의 월과 연도 표시 영역 */
   .react-calendar__navigation {
     display: flex;
-    height: 44px;
-    margin-bottom: 1em;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   .react-calendar__navigation button {
+    color: black;
     min-width: 44px;
     background: none;
+    font-size: 16px;
+    border: none;
+    font-family: "Noto Sans KR Bold", sans-serif;
   }
 
   .react-calendar__navigation button:disabled {
@@ -73,159 +45,271 @@ const StyledCalendar2 = styled(Calendar)`
 
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
-    background-color: #e6e6e6;
+    background-color: #e6f7f9;
+    border-radius: 8px;
   }
 
+  .react-calendar__viewContainer {
+    background-color: white;
+    border-radius: 12px;
+  }
+
+  /* 요일 헤더 스타일 */
   .react-calendar__month-view__weekdays {
     text-align: center;
     text-transform: uppercase;
-    font: inherit;
-    font-size: 0.75em;
+    font-size: 12px;
+    color: #777777;
     font-weight: bold;
   }
 
   .react-calendar__month-view__weekdays__weekday {
-    padding: 0.5em;
+    font-family: "Noto Sans KR Medium", sans-serif;
+    padding: 10px 0;
   }
 
-  .react-calendar__month-view__weekNumbers .react-calendar__tile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font: inherit;
-    font-size: 0.75em;
-    font-weight: bold;
+  .react-calendar__month-view__days__day {
+    font-family: "Noto Sans KR Medium", sans-serif;
   }
 
-  .react-calendar__month-view__days__day--weekend {
-    color: #d10000;
-  }
-
-  .react-calendar__month-view__days__day--neighboringMonth,
-  .react-calendar__decade-view__years__year--neighboringDecade,
-  .react-calendar__century-view__decades__decade--neighboringCentury {
-    color: #757575;
-  }
-
-  .react-calendar__year-view .react-calendar__tile,
-  .react-calendar__decade-view .react-calendar__tile,
-  .react-calendar__century-view .react-calendar__tile {
-    padding: 2em 0.5em;
-  }
-
+  /* 날짜 타일 스타일 */
   .react-calendar__tile {
-    max-width: 100%;
-    padding: 10px 6.6667px;
+    padding: 15px 0;
     background: none;
     text-align: center;
-    line-height: 16px;
-    font: inherit;
-    font-size: 0.833em;
+    line-height: 20px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
   }
 
-  .react-calendar__tile:disabled {
-    background-color: #f0f0f0;
-    color: #ababab;
+  .react-calendar__tile:hover {
+    cursor: pointer;
+    background-color: rgb(231, 231, 231);
+  }
+  .react-calendar__tile abbr {
+    position: relative;
+    z-index: 10 !important;
   }
 
-  .react-calendar__month-view__days__day--neighboringMonth:disabled,
-  .react-calendar__decade-view__years__year--neighboringDecade:disabled,
-  .react-calendar__century-view__decades__decade--neighboringCentury:disabled {
-    color: #cdcdcd;
-  }
-
+  /* 기본 날짜 타일 hover 효과 */
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
-    background-color: #e6e6e6;
+  }
+
+  /* 선택된 날짜 스타일 */
+  .react-calendar__tile--active {
   }
 
   .react-calendar__tile--now {
-    background: #ffff76;
+    position: relative;
   }
 
-  .react-calendar__tile--now:enabled:hover,
-  .react-calendar__tile--now:enabled:focus {
-    background: #ffffa9;
+  .react-calendar__tile--now::before {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
-  .react-calendar__tile--hasActive {
-    background: #76baff;
+  /* 비활성화된 날짜 스타일 */
+  .react-calendar__tile--disabled {
+    color: #d6d6d6 !important;
   }
 
-  .react-calendar__tile--hasActive:enabled:hover,
-  .react-calendar__tile--hasActive:enabled:focus {
-    background: #a9d4ff;
+  /* 주말 날짜 스타일 */
+  .react-calendar__month-view__days__day--weekend {
+    color: #f44336;
   }
 
-  .react-calendar__tile--active {
-    background: #006edc;
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #777777;
+  }
+
+  /* 전체 캘린더의 패딩 및 반응형 스타일 */
+  @media (max-width: 600px) {
+    .react-calendar {
+      padding: 10px;
+    }
+
+    .react-calendar__tile {
+      padding: 10px 0;
+    }
+
+    .react-calendar__navigation button {
+      font-size: 14px;
+    }
+  }
+
+  /* 팝업이 1개 있는 날짜 */
+  .react-calendar__tile.single-popup::before {
+    content: "";
+    position: absolute;
+    width: 28px; /* 크기 조정 */
+    height: 28px;
+    border-radius: 50%;
+    background-color: #4ac7cf;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  .react-calendar__tile.single-popup {
+    color: white;
+  }
+  /* 팝업이 2개 있는 날짜 */
+  .react-calendar__tile.double-popup::before {
+    content: "";
+    position: absolute;
+    width: 28px; /* 크기 조정 */
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(0deg, #fedc74 0%, #4ac7cf 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .react-calendar__tile.double-popup {
     color: white;
   }
 
-  .react-calendar__tile--active:enabled:hover,
-  .react-calendar__tile--active:enabled:focus {
-    background: #1087ff;
+  /* 팝업이 3개 이상 있는 날짜 */
+  .react-calendar__tile.multiple-popup::before {
+    content: "";
+    position: absolute;
+    width: 28px; /* 크기 조정 */
+    height: 28px;
+    border-radius: 50%;
+    background: conic-gradient(#eea984 0%, #fedc74 50%, #4ac7cf 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-
-  .react-calendar--selectRange .react-calendar__tile--hover {
-    background-color: #e6e6e6;
+  .react-calendar__tile.multiple-popup {
+    color: white;
   }
 `;
 
 const MyPage = () => {
-  const [expanded, setExpanded] = useState(false); // 캘린더 확장 상태를 관리하는 상태 변수
   const [date, setDate] = useState(new Date()); // 선택된 날짜 상태
   const [currentStatus, setCurrentStatus] = useState("all");
   const [loading, setLoading] = useState(true);
   const [weekPopupsLoading, setWeekPopupsLoading] = useState(true);
   const [popups, setPopups] = useState([]);
   const [weekPopups, setWeekPopups] = useState([]);
+  const [profileData, setProfileData] = useState(null); // 프로필 데이터를 저장할 상태
+  const [popupData, setPopupData] = useState([]); // 데이터를 저장할 상태
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
-  console.log(weekPopups);
-
-  // 북마크된 팝업 데이터를 가져오는 함수
-  const fetchPopups = async (status) => {
+  // 사용자 프로필 데이터를 가져오는 함수
+  const fetchProfile = async () => {
     try {
-      setLoading(true); // 데이터 로딩 상태 시작
-      const response = await axios.get(
-        `${serverURL}/bookmarks/bookmarked-popups?page=1&status=${status}`
-      );
-      setPopups(response.data); // 받아온 데이터 상태에 저장
-      console.log(response.data);
+      const response = await axios.get(`${serverURL}/users/profile`, {
+        withCredentials: true,
+      });
+      setProfileData(response.data); // 받아온 프로필 데이터 상태에 저장
+      console.log("profile", response.data);
     } catch (error) {
-      console.error("데이터를 불러오는 중 오류 발생:", error);
-    } finally {
-      setLoading(false); // 데이터 로딩 상태 종료
+      console.error("프로필 데이터를 불러오는 중 오류 발생:", error);
     }
   };
 
-  // 주간 팝업 데이터를 가져오는 함수
-  const fetchWeekPopups = async (startDate, endDate) => {
-    try {
-      setWeekPopupsLoading(true);
-      const response = await axios.get(
-        `${serverURL}/bookmarks/date-range?startDate=${startDate}&endDate=${endDate}`
-      );
-      setWeekPopups(response.data);
-    } catch (error) {
-      console.error("데이터를 불러오는 중 오류 발생:", error);
-    } finally {
-      setWeekPopupsLoading(false);
-    }
+  useEffect(() => {
+    const fetchPopupData = async () => {
+      try {
+        const response = await axios.get(`${serverURL}/bookmarks/popups`, {
+          withCredentials: true,
+        });
+        // 받아온 데이터를 날짜별로 분류
+        const sortedData = sortDataByDate(response.data.popups);
+        console.log("bookmark", response.data);
+        setPopupData(sortedData);
+      } catch (error) {
+        console.error("Error fetching popup data:", error);
+      }
+    };
+
+    fetchPopupData(); // 컴포넌트 마운트 시 데이터 가져오기
+  }, []);
+
+  // 날짜별로 팝업 데이터 분류하는 함수
+  const sortDataByDate = (data) => {
+    const sorted = {};
+
+    data.forEach((popup) => {
+      const startDate = new Date(popup.dateRange.start);
+      const endDate = new Date(popup.dateRange.end);
+
+      // 날짜 범위 내의 모든 날짜를 추출하여 sorted 객체에 추가
+      for (
+        let date = startDate;
+        date <= endDate;
+        date.setDate(date.getDate() + 1)
+      ) {
+        const dateString = date.toISOString().split("T")[0];
+        if (!sorted[dateString]) {
+          sorted[dateString] = [];
+        }
+        sorted[dateString].push(popup);
+      }
+    });
+
+    return sorted;
   };
 
-  // 주간 범위에 맞는 데이터 요청
-  useEffect(() => {
-    const start = startOfWeek(date, { weekStartsOn: 0 });
-    const end = addDays(start, 6);
-    fetchWeekPopups(format(start, "yyyy-MM-dd"), format(end, "yyyy-MM-dd"));
-  }, [date]);
+  // 날짜에 맞는 팝업 데이터를 필터링하는 함수
+  const getPopupsForDate = (dateString) => {
+    return popupData.filter((popup) => {
+      const startDate = new Date(popup.dateRange.start);
+      const endDate = new Date(popup.dateRange.end);
+      const currentDate = new Date(dateString);
 
-  useEffect(() => {
-    fetchPopups(currentStatus); // 컴포넌트 마운트 시 데이터 요청
-  }, [currentStatus]); // 상태 변경 시 데이터 다시 요청
+      return currentDate >= startDate && currentDate <= endDate;
+    });
+  };
+
+  // 선택한 날짜에 따른 팝업 개수 계산
+  const tileClassName = ({ date, view }) => {
+    const dateString = date
+      .toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .replace(/\.\s*/g, "-")
+      .slice(0, -1);
+
+    if (popupData[dateString]) {
+      const popupCount = popupData[dateString].length;
+      if (popupCount === 1) {
+        return "single-popup";
+      } else if (popupCount === 2) {
+        return "double-popup";
+      } else if (popupCount >= 3) {
+        return "multiple-popup";
+      }
+    }
+    return null;
+  };
+
+  const selectedDateString = date
+    .toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replace(/\.\s*/g, "-")
+    .slice(0, -1);
+
+  const selectedPopups = popupData[selectedDateString] || [];
 
   const handleStatusChange = (status) => {
     if (currentStatus === status) {
@@ -235,126 +319,66 @@ const MyPage = () => {
     }
   };
 
-  const renderWeekView = () => {
-    const start = startOfWeek(date, { weekStartsOn: 0 });
-    const end = addDays(start, 6);
-    const weekDays = eachDayOfInterval({ start, end });
-
-    const sortedPopups = [...weekPopups].sort(
-      (a, b) => new Date(a.dateRange.start) - new Date(b.dateRange.start)
-    );
-
-    return (
-      <div className={styles.weekView}>
-        <div className={styles.weekNav}>
-          <AiOutlineLeft
-            onClick={() => setDate(subDays(date, 7))}
-            className={styles.navIcon}
-          />
-          {weekDays.map((day) => (
-            <div key={day} className={styles.weekDay}>
-              <div
-                className={`${styles.dayNumber} ${
-                  format(day, "E") === "Sun" ? styles.sunday : ""
-                } ${format(day, "E") === "Sat" ? styles.saturday : ""}`}
-              >
-                {format(day, "d")}
-              </div>{" "}
-              <div className={styles.dayName}>{format(day, "E")}</div>
-            </div>
-          ))}
-          <AiOutlineRight
-            onClick={() => setDate(addDays(date, 7))}
-            className={styles.navIcon}
-          />
-        </div>
-        <div className={styles.weekPopupsContainer}>
-          {sortedPopups.slice(0, 3).map((popup, index) => {
-            const popupStartDate = new Date(popup.dateRange.start);
-            const popupEndDate = new Date(popup.dateRange.end);
-
-            const gridStart = Math.max(
-              differenceInDays(popupStartDate, start) + 1,
-              1
-            );
-            const gridEnd = Math.min(
-              differenceInDays(popupEndDate, start) + 2,
-              8
-            );
-
-            return (
-              <div
-                key={popup.id}
-                className={`${styles.popupBar} ${
-                  gridEnd === 8 ? styles.lastDay : ""
-                }`}
-                style={{
-                  gridColumn: `${gridStart} / ${gridEnd}`, // 끝에 여유 공간 확보
-                }}
-              >
-                {popup.name}
-              </div>
-            );
-          })}
-          {sortedPopups.length > 3 && (
-            <div className={styles.morePopup}>...</div>
-          )}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className={styles.myPage}>
       {/* 왼쪽 사용자 프로필 섹션 */}
       <div className={styles.profileSection}>
-        <img
-          src={
-            "https://i.namu.wiki/i/3-KkBTJPKKcJhZ843jaHKml1ACBrS76wyrtrNIpXgOgApnxW0a9FOdwcIewvu1mmUY0-8uQRoz2ulAr-1pbrmw.webp"
-          } // 실제 사용자 프로필 이미지 URL로 변경 필요
-          alt="User Profile"
-          className={styles.profileImage}
-        />
-        <h2>ㅇㅇㅇ</h2>
-        <p>ㅇㅇㅇ@gmail.com</p>
-        <div className={styles.profileStats}>
-          <div>방문한 팝업: 21</div>
-          <div>작성한 기록: 18</div>
-          <div>받은 좋아요: 176</div>
+        <div className={styles.profile}>PROFILE</div>
+        {profileData ? (
+          <>
+            <img
+              src={profileData.profileImage} // 사용자 프로필 이미지 URL
+              alt="User Profile"
+              className={styles.profileImage}
+            />
+            <div className={styles.userInfo}>
+              <p>{profileData.name}</p>
+              <p>{profileData.email}</p>
+            </div>
+
+            <div className={styles.profileStats}>
+              <div>
+                <div>{profileData.bookmarks.count}</div>
+                <p>방문한 팝업</p>
+              </div>
+              <div>
+                <div>{profileData.reviews.count}</div>
+                <p>작성한 기록</p>
+              </div>
+              <div>
+                <div>{profileData.reviews.totalLikes}</div>
+                <p>받은 좋아요</p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div>로딩 중...</div>
+        )}
+        <div>
+          <button className={styles.editButton}>회원정보 수정</button>
+          <button className={styles.notificationButton}>팝업 알림 설정</button>
+          <button className={styles.logoutButton}>로그아웃</button>
         </div>
-        <button className={styles.editButton}>회원정보 수정</button>
-        <button className={styles.notificationButton}>팝업 알림 설정</button>
-        <button className={styles.logoutButton}>로그아웃</button>
       </div>
 
       {/* 오른쪽 북마크 섹션 */}
       <div className={styles.bookmarkSection}>
         <h2>북마크한 팝업</h2>
         <div className={styles.calendarContainer}>
-          <h3>다가오는 팝업</h3>
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className={styles.expandButton}
-          >
-            {expanded ? "접기" : "펼쳐보기"}
-          </button>
-          <div
-            className={`${styles.calendar} ${expanded ? styles.expanded : ""}`}
-          >
-            {expanded ? (
-              // 월간 달력
-              <StyledCalendar2
-                onChange={setDate}
-                value={date}
-                className={styles.calendarComponent} // 커스텀 CSS 클래스 추가
-                view="month" // 월간 뷰
-                showNeighboringMonth={false} // 이웃하는 달의 날짜 숨김
-              />
-            ) : (
-              // 주간 달력
-              renderWeekView()
-            )}
-          </div>
+          <img
+            src={calendarImage}
+            alt="Calendar Decoration"
+            className={styles.calendarImage}
+          />
+          <StyledCalendar1
+            className={styles.calendar}
+            onChange={setDate}
+            value={date}
+            locale="en"
+            next2Label={null}
+            prev2Label={null}
+            tileClassName={tileClassName}
+          />
         </div>
         <div className={styles.filterButtons}>
           <button
