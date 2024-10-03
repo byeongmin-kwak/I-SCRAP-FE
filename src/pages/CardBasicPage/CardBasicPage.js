@@ -83,7 +83,13 @@ export default function CardBasicPage() {
             shortComment: comment || '', // 한줄평 (빈 값 처리)
         };
         try {
-            const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/reviews`, reviewData);
+            const response = await axios.post(
+                `${process.env.REACT_APP_SERVER_URL}/reviews`,
+                reviewData,
+                {
+                    withCredentials: true, // 쿠키 전달 설정
+                }
+            );
             console.log(response.data);
             dispatch(setReviewId(response.data));
             console.log('리뷰가 성공적으로 저장되었습니다:', response.data);
@@ -91,7 +97,8 @@ export default function CardBasicPage() {
         } catch (error) {
             console.error('리뷰 저장 중 오류가 발생했습니다:', error);
         }
-    }
+    };
+    
 
     const getDayClassName = (date) => {
         const day = date.getDay(); // 요일을 가져옴 (0 = 일요일, 6 = 토요일)
