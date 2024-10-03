@@ -90,7 +90,7 @@ export default function TestResultPage1() {
             <div className={`my-categories`}>
                 {selectedCategories.join(', ')}
             </div>
-            <div className="test-button" onClick={handleButtonClick}>Update Preferences</div>
+            <div className="test-button" onClick={handleButtonClick}></div>
             {answers === 'ISTJ' && <img src={ISTJ} className='test-image' alt="ISTJ" />}
             {answers === 'ISTP' && <img src={ISTP} className='test-image' alt="ISTP" />}
             {answers === 'ISFP' && <img src={ISFP} className='test-image' alt="ISFP" />}
