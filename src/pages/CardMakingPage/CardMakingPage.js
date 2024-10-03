@@ -242,7 +242,6 @@ const handleSaveCard2 = async () => {
     });
 
     console.log('카드가 성공적으로 저장되었습니다.');
-    alert("카드가 성공적으로 저장되었습니다.");
     navigate("/archiving");
     
   } catch (error) {

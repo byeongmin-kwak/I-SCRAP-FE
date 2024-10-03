@@ -9,7 +9,7 @@
     width: 290px;
     height: 430px;
     background: #E0E0E0;
-    border-radius: 15px
+    border-radius: 15px;
 }
 
 .writing-card {
@@ -132,6 +132,19 @@
     margin-top: 109px;
     font-size: 18px;
     font-family: Noto Sans KR Medium;
+    position: relative;
+    display: inline-block;
+}
+
+.writing-comment::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%; /* 글자의 길이에 맞춰 밑줄 길이 조정 */
+    height: 10px; /* 밑줄의 두께 */
+    background-color: #FEDC74; /* 밑줄 색상 */
 }
 
 

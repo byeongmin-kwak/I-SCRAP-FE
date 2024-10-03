@@ -12,11 +12,102 @@ import { setDate, setPlace, setPrice, setComment, setRating, setCompanion, setRe
 import BasicMakingModal from '../../components/BasicMakingModal/BasicMakingModal';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 import
 import { format } from 'date-fns'; // 날짜 포맷팅을 위한 date-fns 사용
-
+import styled from 'styled-components';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale'; // 한국어 로케일 가져오기
 import './CardBasicPage.css';
+
+const StyledDatePickerWrapper = styled.div`
+  .react-datepicker {
+    border: 2px solid #4AC7CF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 25px;
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 300px;
+    position: fixed;
+    top: -95px;
+    left: -140px;
+  }
+
+  .react-datepicker__month-container {
+    margin-top: 40px;
+    width: 100%;
+    border-radius: 10px; 
+    border: 1px #BBBBBB solid;
+  }
+
+  .react-datepicker__header {
+    background-color: transparent;
+    border-bottom: none;
+    padding-top: 10px;
+  }
+
+  .react-datepicker__current-month {
+    position: fixed;
+    top: -70px;
+    background-color: transparent;
+    font-size: 16px;
+    font-family: 'Noto Sans KR Light';
+  }
+
+  .react-datepicker__navigation {
+    border: 1px #BBBBBB solid;
+    top: 19px;
+  }
+
+  .react-datepicker__navigation--previous {
+    left: 110px;
+    border-bottom-left-radius: 15px; 
+    border-top-left-radius: 15px;
+  }
+
+  .react-datepicker__navigation--next {
+    right: 176px;
+    border-bottom-right-radius: 15px; 
+    border-top-right-radius: 15px;
+  }
+
+  .react-datepicker__day {
+    font-size: 12px;
+    font-family: 'Noto Sans KR Light';
+    color: #333;
+  }
+
+  .react-datepicker__day.sunday {
+    color: #FF2B2B;
+  }
+
+  .react-datepicker__day.saturday {
+    color: #215CFF;
+  }
+
+  .react-datepicker__day--today {
+    border: 2px solid #FEDC74;
+    color: #215CFF;
+    border-radius: 50%;
+  }
+
+  .react-datepicker__day--selected {
+    background-color: #f0b429;
+    color: white;
+    border-radius: 50%;
+  }
+
+  .react-datepicker__day:hover {
+    background-color: #f3f3f3;
+    border-radius: 50%;
+  }
+
+  .react-datepicker__day-name {
+    font-weight: bold;
+  }
+
+  .react-datepicker__triangle {
+    display: none;
+  }
+`;
 
 export default function CardBasicPage() {
     const navigate = useNavigate(); // useNavigate 훅 사용
@@ -98,7 +189,7 @@ export default function CardBasicPage() {
             console.error('리뷰 저장 중 오류가 발생했습니다:', error);
         }
     };
-    
+
 
     const getDayClassName = (date) => {
         const day = date.getDay(); // 요일을 가져옴 (0 = 일요일, 6 = 토요일)
@@ -162,19 +253,21 @@ export default function CardBasicPage() {
                         <div className='details-container'>
                             <p className='popup-detail-title'>관람 날짜</p>
                             {/* DatePicker 사용 부분 */}
-                            <DatePicker
-                                selected={startDate}
-                                onChange={(date) => {
-                                    const formattedDate = format(date, 'yyyy-MM-dd'); // 날짜를 yyyy-MM-dd 형식으로 변환
-                                    setStartDate(date); // 로컬 상태는 그대로 Date 객체로 유지
-                                    dispatch(setDate(formattedDate)); // Redux에 문자열로 저장
-                                }}
-                                dateFormat="yyyy-MM-dd"
-                                placeholderText="날짜를 선택하세요"
-                                locale={ko}  // 한국어 로케일 적용
-                                className='popup-detail-input'
-                                dayClassName={(date) => getDayClassName(date)}
-                            />
+                            <StyledDatePickerWrapper>
+                                <DatePicker
+                                    selected={startDate}
+                                    onChange={(date) => {
+                                        const formattedDate = format(date, 'yyyy-MM-dd'); // 날짜를 yyyy-MM-dd 형식으로 변환
+                                        setStartDate(date); // 로컬 상태는 그대로 Date 객체로 유지
+                                        dispatch(setDate(formattedDate)); // Redux에 문자열로 저장
+                                    }}
+                                    dateFormat="yyyy-MM-dd"
+                                    placeholderText="날짜를 선택하세요"
+                                    locale={ko}  // 한국어 로케일 적용
+                                    className='popup-detail-input'
+                                    dayClassName={(date) => getDayClassName(date)}
+                                />
+                            </StyledDatePickerWrapper>
                         </div>
                         <div className='details-container'>
                             <p className='popup-detail-title'>금액</p>
