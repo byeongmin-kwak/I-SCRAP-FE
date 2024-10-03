@@ -11,6 +11,7 @@ import leftButton from "../../assets/leftButton.svg";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import noBookmark from "../../assets/mainPageImage5.svg";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const StyledCalendar1 = styled(Calendar)`
   .react-calendar {
@@ -200,6 +201,7 @@ const BookmarkPopupSection = () => {
   const [swiper, setSwiper] = useState();
   const [popupData, setPopupData] = useState([]); // 데이터를 저장할 상태
   const [username, setUsername] = useState();
+  const navigate = useNavigate();
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
@@ -221,6 +223,10 @@ const BookmarkPopupSection = () => {
 
     fetchPopupData(); // 컴포넌트 마운트 시 데이터 가져오기
   }, []);
+
+  const handlePopupClick = (id) => {
+    navigate(`/popup/${id}`); // 클릭 시 해당 경로로 이동
+  };
 
   // 날짜별로 팝업 데이터 분류하는 함수
   const sortDataByDate = (data) => {
@@ -293,6 +299,8 @@ const BookmarkPopupSection = () => {
 
   const selectedPopups = popupData[selectedDateString] || [];
 
+  console.log("selectedPopups", selectedPopups);
+
   if (!popupData || Object.keys(popupData).length === 0) {
     return (
       <div>
@@ -359,7 +367,10 @@ const BookmarkPopupSection = () => {
             >
               {selectedPopups.map((popup, index) => (
                 <SwiperSlide key={index}>
-                  <div className={styles.popupItem}>
+                  <div
+                    className={styles.popupItem}
+                    onClick={() => handlePopupClick(popup._id)}
+                  >
                     <div className={styles.popupIndicator}></div>
                     <p className={styles.popupName}>{popup.name}</p>
                     <p className={styles.popupDate}>
