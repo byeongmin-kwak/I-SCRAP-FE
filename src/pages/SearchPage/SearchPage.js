@@ -80,7 +80,10 @@ const SearchPage = () => {
 
       // 필터에 맞는 데이터 요청
       const response = await axios.get(
-        `${serverURL}/search/popups/filter?${params.toString()}`
+        `${serverURL}/search/popups/filter?${params.toString()}`,
+        {
+          withCredentials: true,
+        }
       );
       setResults(response.data); // 받은 데이터를 상태로 저장
       console.log(response.data);
