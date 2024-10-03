@@ -5,7 +5,7 @@ import rightArrow from "../../assets/MainPage/MainSectionRightArrow.svg";
 import leftArrow from "../../assets/MainPage/MainSectionLeftArrow.svg";
 import image1 from "../../assets/MainPage/MainSectionImage1.svg";
 import image2 from "../../assets/MainPage/MainSectionImage2.png";
-import image3 from "../../assets/MainPage/MainSectionImage3.svg";
+import image3 from "../../assets/MainPage/MainSectionImage3.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -46,6 +46,14 @@ const screens = (character, isCharacterLoaded, navigate) => [
     component: (
       <div className={styles.screen}>
         <img src={image3} alt="Main" className={styles.image3} />
+        <div
+          className={styles.clickCardBasic}
+          onClick={() => navigate("/card-basic")}
+        ></div>
+        <div
+          className={styles.clickArchiving}
+          onClick={() => navigate("/archiving")}
+        ></div>
       </div>
     ),
   },

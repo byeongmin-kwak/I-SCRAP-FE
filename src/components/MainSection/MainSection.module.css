@@ -37,7 +37,7 @@
   top: 50%;
   left: 24%;
   transform: translate(-50%, -50%);
-  width: 540px; /* 크기 조정 */
+  width: 680px; /* 크기 조정 */
   height: auto;
   z-index: 1; /* 겹쳐지게 설정 */
 }
@@ -46,6 +46,10 @@
   width: 68%;
   object-fit: contain;
   margin-top: -10px;
+}
+
+.image3 {
+  object-fit: contain;
 }
 
 .clickableArea {
@@ -58,7 +62,29 @@
   z-index: 2; /* 상위에 위치하도록 */
 }
 
-.image3 {
+.clickCardBasic {
+  position: absolute;
+  top: 42%; /* 원하는 위치로 조정 */
+  right: 15%; /* 원하는 위치로 조정 */
+  width: 220px; /* 클릭할 영역의 너비 */
+  height: 80px; /* 클릭할 영역의 높이 */
+  cursor: pointer;
+  z-index: 2; /* 상위에 위치하도록 */
+  background-color: beige;
+  opacity: 0.7;
+}
+
+.clickArchiving {
+  position: absolute;
+  top: 51%; /* 원하는 위치로 조정 */
+  right: 14%; /* 원하는 위치로 조정 */
+  width: 220px; /* 클릭할 영역의 너비 */
+  height: 80px; /* 클릭할 영역의 높이 */
+  cursor: pointer;
+  z-index: 2; /* 상위에 위치하도록 */
+  background-color: aqua;
+  opacity: 0.7;
+
 }
 
 .searchBar {
