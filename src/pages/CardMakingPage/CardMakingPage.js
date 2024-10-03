@@ -64,6 +64,10 @@ const handleSaveCard = async () => {
       withCredentials: true, // withCredentials 추가
     });
     const frontUploadUrl = frontUploadResponse.data.uploadUrl;
+    console.log("업로드 URL (카드 앞면):", frontUploadUrl);
+
+    // Blob 데이터와 업로드 URL 콘솔에 찍어보기
+    console.log("Blob 데이터 (카드 앞면):", frontBlob);
 
     await axios.put(frontUploadUrl, frontBlob, { 
       headers: { 'Content-Type': 'image/png' },
@@ -80,6 +84,10 @@ const handleSaveCard = async () => {
       withCredentials: true, // withCredentials 추가
     });
     const backUploadUrl = backUploadResponse.data.uploadUrl;
+    console.log("업로드 URL (카드 뒷면):", backUploadUrl);
+
+    // Blob 데이터와 업로드 URL 콘솔에 찍어보기
+    console.log("Blob 데이터 (카드 뒷면):", backBlob);
 
     await axios.put(backUploadUrl, backBlob, { 
       headers: { 'Content-Type': 'image/png' },
@@ -145,6 +153,7 @@ const handleSaveCard = async () => {
 };
 
 
+
 const handleSaveCard2 = async () => {
   if (!selectedPopup) {
     alert('필수 정보가 부족합니다.');
@@ -201,8 +210,8 @@ const handleSaveCard2 = async () => {
       size: { width: sticker.width, height: sticker.height },
       rotation: sticker.rotation,
       position: {
-        x: Math.round(sticker.x), // x 좌표를 반올림
-        y: Math.round(sticker.y), // y 좌표를 반올림
+        x: sticker.x, // x 좌표를 반올림
+        y: sticker.y, // y 좌표를 반올림
       },
     }));
 

@@ -25,13 +25,15 @@ export default function ArchivingDetailModal({ id, isOpen, onClose }) {
     useEffect(() => {
         const fetchReviewDetails = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}`, {
+                    withCredentials: true // 쿠키나 인증 정보를 포함하여 요청
+                });
                 setReviewData(response.data);
             } catch (error) {
                 console.error('리뷰 데이터를 가져오는 중 오류 발생:', error);
             }
         };
-
+    
         fetchReviewDetails();
     }, [id]);
 
@@ -48,7 +50,9 @@ export default function ArchivingDetailModal({ id, isOpen, onClose }) {
     // 삭제 요청을 처리하는 함수
     const handleDelete = async () => {
         try {
-            await axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}`);
+            await axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}`, {
+                withCredentials: true // 쿠키나 인증 정보를 포함하여 삭제 요청
+            });
             alert('리뷰가 성공적으로 삭제되었습니다.');
             onClose(); // 모달을 닫기 위해 onClose 호출
             window.location.href = '/archiving';

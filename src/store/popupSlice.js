@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const popupSlice = createSlice({
     name: 'popup',
     initialState: {
-        selectedPopup: null, // 선택된 팝업의 데이터를 저장
+        selectedPopup: { id: "", name: "" }, // null일 때 기본값을 설정
     },
     reducers: {
         setSelectedPopup: (state, action) => {

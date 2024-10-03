@@ -26,7 +26,9 @@ export default function WritingDetailPage() {
     useEffect(() => {
         const fetchReviewData = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}/text-review`);
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}/text-review`, {
+                    withCredentials: true  // 쿠키나 인증 정보를 포함하도록 설정
+                });
                 setReviewData(response.data); // 받아온 데이터를 상태에 저장
                 console.log(response.data);
             } catch (error) {
@@ -35,17 +37,18 @@ export default function WritingDetailPage() {
                 setLoading(false); // 로딩 상태 해제
             }
         };
-
+    
         const fetchEmotionCounts = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}/likes`);
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}/likes`, {
+                    withCredentials: true  // 쿠키나 인증 정보를 포함하도록 설정
+                });
                 const emotions = response.data.reduce((acc, emotion) => {
                     acc[emotion.type] = emotion.count;
                     return acc;
                 }, {});
                 setEmotionCounts(emotions); // 서버로부터 받은 감정 데이터를 상태에 저장
-
-                // 유저가 이미 누른 감정 데이터를 추출해서 상태에 저장
+    
                 const likedEmotions = response.data.reduce((acc, emotion) => {
                     if (emotion.liked) acc[emotion.type] = true;
                     return acc;
@@ -55,10 +58,10 @@ export default function WritingDetailPage() {
                 console.error('감정 데이터를 가져오는 중 오류가 발생했습니다.');
             }
         };
-
+    
         fetchReviewData();
         fetchEmotionCounts();
-    }, [id]); // id가 변경될 때마다 요청을 다시 보냄
+    }, [id]);
 
     const handleCardFlip = () => {
         setIsFlipped(!isFlipped); // 카드 뒤집기 상태를 토글
@@ -66,14 +69,13 @@ export default function WritingDetailPage() {
 
     const handleLikeToggle = async (type) => {
         if (likedEmotions[type]) {
-            // 이미 눌렀으면 취소 요청 (DELETE)
-            console.log("다시 누름");
             try {
                 const response = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}/likes`, {
                     data: {
                         reviewId: id,
                         type: type,
-                    }
+                    },
+                    withCredentials: true // withCredentials 추가
                 });
                 if (response.status === 200) {
                     setEmotionCounts((prevCounts) => ({
@@ -84,21 +86,18 @@ export default function WritingDetailPage() {
                         ...prev,
                         [type]: false, // 감정 취소 처리
                     }));
-                    setLikeError(null); // 오류 상태 초기화
+                    setLikeError(null);
                 }
             } catch (error) {
-                if (error.response && error.response.status === 404) {
-                    setLikeError('Like not found.');
-                } else {
-                    setLikeError('좋아요 취소 중 오류가 발생했습니다.');
-                }
+                setLikeError('좋아요 취소 중 오류가 발생했습니다.');
             }
         } else {
-            // 좋아요 추가 요청 (POST)
             try {
                 const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/reviews/likes`, {
                     reviewId: id,
                     type: type
+                }, {
+                    withCredentials: true // withCredentials 추가
                 });
                 if (response.status === 201) {
                     setEmotionCounts((prevCounts) => ({
@@ -107,16 +106,12 @@ export default function WritingDetailPage() {
                     }));
                     setLikedEmotions((prev) => ({
                         ...prev,
-                        [type]: true, // 해당 감정이 좋아요된 상태로 변경
+                        [type]: true,
                     }));
-                    setLikeError(null); // 오류 상태 초기화
+                    setLikeError(null);
                 }
             } catch (error) {
-                if (error.response && error.response.status === 409) {
-                    setLikeError('이미 이 감정 표현을 남겼습니다.');
-                } else {
-                    setLikeError('좋아요 추가 중 오류가 발생했습니다.');
-                }
+                setLikeError('좋아요 추가 중 오류가 발생했습니다.');
             }
         }
     };

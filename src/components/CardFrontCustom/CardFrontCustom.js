@@ -153,8 +153,8 @@ export default function CardFrontCustom() {
       src: stickerSrc,
       x: 50,
       y: 50,
-      width: 50,
-      height: 50,
+      width: stickerSrc.width,
+      height: stickerSrc.height,
       rotation: 0,
     };
     dispatch(addSticker(newSticker));
@@ -229,6 +229,7 @@ export default function CardFrontCustom() {
                     transformOrigin: 'center', // 회전 중심을 이미지의 중앙으로 설정
                     width: '100%',
                     height: '100%',
+                    objectFit: 'cover'
                   }}
                 />
 
