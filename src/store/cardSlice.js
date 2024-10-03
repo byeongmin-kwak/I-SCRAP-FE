@@ -46,6 +46,9 @@ const cardSlice = createSlice({
       const { index, newText } = action.payload;
       state.texts[index] = newText;
     },
+    removeText: (state, action) => {
+      state.texts = state.texts.filter((_, index) => index !== action.payload);
+    },
     // 스티커 수정 액션 (특정 스티커의 업데이트)
     updateSticker: (state, action) => {
       const { index, newSticker } = action.payload;
@@ -93,6 +96,7 @@ export const {
   setHue,
   setCropScale,
   setRotation,
+  removeText
 } = cardSlice.actions;
 
 export default cardSlice.reducer;

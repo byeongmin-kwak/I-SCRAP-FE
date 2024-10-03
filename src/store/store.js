@@ -6,6 +6,7 @@ import fontReducer from './fontSlice';
 import backInfoSlice from './backInfoSlice';
 import cardSlice from './cardSlice';
 import publicReducer from './publicSlice';
+import testReducer from './testSlice';
 
 
 const store = configureStore({
@@ -17,6 +18,7 @@ const store = configureStore({
         backInfo: backInfoSlice,
         card: cardSlice,
         publicSetting: publicReducer,
+        test: testReducer
         
     },
 });

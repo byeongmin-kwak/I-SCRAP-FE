@@ -1,17 +1,26 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategories } from '../../store/testSlice';  // 액션 불러오기
 import styles from './CategorySelector.module.css';
 
 const categoriesLeft = ['뷰티', '패션', '음식', '영화, 드라마'];
 const categoriesRight = ['스포츠', '음악', '캐릭터', '그 외'];
 
-const CategorySelector = ({ selectedCategories, setSelectedCategories, onComplete }) => {
+const CategorySelector = ({ onComplete }) => {
+    const dispatch = useDispatch();
+    const selectedCategories = useSelector((state) => state.test.selectedCategories);  // 전역 상태 가져오기
 
     const handleCategoryClick = (category) => {
         if (selectedCategories.includes(category)) {
-            setSelectedCategories(selectedCategories.filter((item) => item !== category));
+            dispatch(setCategories(selectedCategories.filter((item) => item !== category)));
         } else {
-            setSelectedCategories([...selectedCategories, category]);
+            dispatch(setCategories([...selectedCategories, category]));
         }
+    };
+
+    const handleComplete = () => {
+        // 카테고리 저장 완료
+        onComplete();
     };
 
     return (
@@ -41,7 +50,7 @@ const CategorySelector = ({ selectedCategories, setSelectedCategories, onComplet
                     ))}
                 </div>
             </div>
-            <div className={styles.footer} onClick={onComplete}>
+            <div className={styles.footer} onClick={handleComplete}>
                 선택완료
             </div>
         </div>

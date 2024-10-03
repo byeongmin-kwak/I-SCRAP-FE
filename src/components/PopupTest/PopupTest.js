@@ -3,13 +3,14 @@ import Arrow from '../../assets/arrow.svg';
 import styles from './PopupTest.module.css';
 import Icon from '../../assets/test-icon.svg';
 import CategorySelector from '../CategorySelector/CategorySelector';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export default function PopupTest() {
     const [answers, setAnswers] = useState([null, null, null, null]);
     const [step, setStep] = useState(1);
     const [showCategorySelector, setShowCategorySelector] = useState(false);
-    const [selectedCategories, setSelectedCategories] = useState([]);
+    const selectedCategories = useSelector((state) => state.test.selectedCategories);
     const navigate = useNavigate(); // useNavigate 사용
 
     const handleAnswer = (questionIndex, answerIndex) => {
@@ -208,7 +209,7 @@ export default function PopupTest() {
                             <div className={styles.keywordOptionButtons2}>
                                 <CategorySelector
                                     selectedCategories={selectedCategories}
-                                    setSelectedCategories={setSelectedCategories}
+                                    
                                     onComplete={() => setShowCategorySelector(false)} // 선택완료 시 다시 선택하기 버튼 표시
                                 />
                             </div>

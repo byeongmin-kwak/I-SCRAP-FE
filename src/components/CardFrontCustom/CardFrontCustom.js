@@ -14,7 +14,7 @@ import TextEditor from '../TextEditor/TextEditor';
 import html2canvas from 'html2canvas';
 import {
   setImage, addText, addSticker, updateText, updateSticker,
-  setSavedCardImage, removeSticker, setBrightness, setContrast, setSaturation, setHue, setCropScale, setRotation
+  setSavedCardImage, removeSticker, removeText, setBrightness, setContrast, setSaturation, setHue, setCropScale, setRotation
 } from '../../store/cardSlice';
 import { setFont, setSelectedFontColor } from '../../store/fontSlice';
 
@@ -57,6 +57,10 @@ export default function CardFrontCustom() {
       ...prevStack,
       { texts, stickers, image, brightness, contrast, saturation, hue, cropScale, rotation },
     ]);
+  };
+
+  const handleTextDelete = (index) => {
+    dispatch(removeText(index));  // 해당 텍스트를 삭제하는 액션 호출
   };
 
   const handleUndo = () => {
@@ -299,6 +303,7 @@ export default function CardFrontCustom() {
                         cursor: 'move',
                         overflow: 'visible',
                         border: selectedTextIndex === index ? '1px solid black' : 'none',
+                        position: 'relative' // 상대적 위치 설정
                       }}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -306,6 +311,31 @@ export default function CardFrontCustom() {
                       }}
                     >
                       {text.text}
+                      {/* 'x' 버튼 추가 */}
+                      {selectedTextIndex === index && (
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: '-10px',
+                            right: '-10px',
+                            backgroundColor: '#4AC7CF',
+                            color: 'white',
+                            borderRadius: '50%',
+                            width: '20px',
+                            height: '20px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            cursor: 'pointer',
+                            zIndex: '10',
+                            fontSize: '13px',
+                            
+                          }}
+                          onClick={() => handleTextDelete(index)}
+                        >
+                          x {/* 'x' 아이콘 */}
+                        </div>
+                      )}
                     </div>
                   </Rnd>
                 ))}

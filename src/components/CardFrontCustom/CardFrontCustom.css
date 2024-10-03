@@ -253,6 +253,7 @@
     width: 290px;
     height: 430px;
     border-radius: 15px;
+    object-fit: cover;
 }
 
 .used-sticker-list {

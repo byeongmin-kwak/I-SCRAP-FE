@@ -32,6 +32,7 @@
     line-height: 15px;
     word-wrap: break-word;
     width: 94px;
+    cursor: pointer;
 }
 
 .card-save-button {
@@ -47,6 +48,7 @@
     line-height: 15px;
     word-wrap: break-word;
     width: 94px;
+    cursor: pointer;
 
 }
 
@@ -96,17 +98,8 @@
 /* 클라우드를 화면 하단에 고정하는 스타일 */
 .cloud-image {
     position: fixed;
-    /* 화면에 고정 */
     bottom: 0;
-    /* 하단에 붙임 */
     left: 50%;
-    /* 중앙 정렬을 위해 50% 위치로 설정 */
     transform: translateX(-50%);
-    /* 중앙으로 정확히 정렬 */
-
-    /* 원하는 너비로 설정 */
-   
-    /* 최대 너비 설정 가능 */
     z-index: -1;
-    /* 다른 콘텐츠보다 뒤에 위치하도록 설정 */
 }
