@@ -90,7 +90,6 @@ export default function CardFrontCustom() {
   // Reset 기능
   const handleReset = () => {
     // 카드 상태 초기화
-    dispatch(setImage(null));
     setUndoStack([]);
     setRedoStack([]);
   };

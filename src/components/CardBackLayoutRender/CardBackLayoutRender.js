@@ -41,7 +41,7 @@ export default function CardBackLayoutRender() {
     };
 
     // 글자를 15자로 제한하는 함수 (15자가 넘으면 '...' 추가)
-    const truncateText = (text, maxLength = 22) => {
+    const truncateText = (text, maxLength = 20) => {
         return text.length > maxLength ? text.substring(0, maxLength) : text;
     };
 
@@ -51,7 +51,7 @@ export default function CardBackLayoutRender() {
 
 
     return (
-        <div>
+        <>
             {selectedLayout === 'layout1' && (
                 <div className='svg-container1'>
                     <div className="text-overlay1">
@@ -72,7 +72,7 @@ export default function CardBackLayoutRender() {
                         <div className={firstColor === '#000000'? 'info2-black' : 'info2'}>
                             <div>{truncateText(popName)}</div>
                             <div>{date}</div>
-                            <div>{truncateText(place)}</div>
+                            <div className='test222'>{truncateText(place)}</div>
                             <div>{price}</div>
                             <div>{companion}</div>
                         </div>
@@ -146,6 +146,6 @@ export default function CardBackLayoutRender() {
                     <CustomSVG6 firstColor={firstColor} secondColor={secondColor} />
                 </div>
             )}
-        </div>
+        </>
     );
 }

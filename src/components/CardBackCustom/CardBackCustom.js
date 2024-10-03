@@ -16,15 +16,20 @@ export default function CardBackCustom() {
 
     const handleCapture = () => {
         if (backViewRef.current) {
-            html2canvas(backViewRef.current, { scale: 2 }).then((canvas) => {
-                const imageData = canvas.toDataURL('image/png');
-
-                // 캡처한 이미지를 전역 상태에 저장
-                dispatch(setSavedBackImage(imageData));
-
+            document.fonts.ready.then(() => {
+                html2canvas(backViewRef.current, {
+                    scale: 2,
+                    letterRendering: true,
+                    useCORS: true
+                }).then((canvas) => {
+                    const imageData = canvas.toDataURL('image/png');
+                    dispatch(setSavedBackImage(imageData));
+                });
             });
         }
     };
+    
+    
 
     useEffect(() => {
         handleCapture();  // 처음 렌더링 시 캡처 실행

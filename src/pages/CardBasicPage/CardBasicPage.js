@@ -117,6 +117,11 @@ export default function CardBasicPage() {
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
                         required
+                        onKeyDown={(e) => {
+                            if (e.keyCode === 13) {
+                                handleSearch(); // 엔터를 누르면 검색 실행
+                            }
+                        }}
                     />
                     <img src={SearchButton} className='search-icon' onClick={handleSearch} />
                 </div>
