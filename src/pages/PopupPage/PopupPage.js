@@ -34,6 +34,8 @@ const PopupPage = () => {
 
   const clickBookmark = async () => {
     try {
+      popupData.isBookmarked = !popupData.isBookmarked;
+
       await axios.post(
         `${serverURL}/bookmarks/${popupData.id}`,
         {},
@@ -144,7 +146,7 @@ const PopupPage = () => {
                     <FaBookmark size="30" color="#4AC7CF" />
                   ) : (
                     <FaRegBookmark size="30" color="#4AC7CF" />
-                  )}{" "}
+                  )}
                 </div>
                 <button>관련 페이지 바로가기</button>
               </div>
