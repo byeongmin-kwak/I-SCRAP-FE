@@ -124,8 +124,14 @@ const StyledCalendar1 = styled(Calendar)`
   }
 
   /* 주말 날짜 스타일 */
-  .react-calendar__month-view__days__day--weekend {
-    color: #f44336;
+  /* 토요일 날짜 스타일 */
+  .react-calendar__month-view__days__day--weekend:nth-child(7n-1) {
+    color: blue; /* 토요일을 파란색으로 */
+  }
+
+  /* 일요일 날짜 스타일 */
+  .react-calendar__month-view__days__day--weekend:nth-child(7n) {
+    color: #f44336; /* 일요일은 빨간색 */
   }
 
   .react-calendar__month-view__days__day--neighboringMonth {
