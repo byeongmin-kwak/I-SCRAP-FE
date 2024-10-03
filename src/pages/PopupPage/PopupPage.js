@@ -12,6 +12,7 @@ const PopupPage = () => {
 
   const [popupData, setPopupData] = useState(null);
   const [error, setError] = useState("");
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const { popupId } = useParams();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const PopupPage = () => {
           } // 받아온 ID로 API 요청
         );
         setPopupData(response.data); // 데이터를 상태에 저장
+        setIsBookmarked(response.data.isBookmarked);
         console.log("popupData", response.data);
       } catch (err) {
         setError("데이터를 불러오는 데 실패했습니다.");
@@ -34,7 +36,7 @@ const PopupPage = () => {
 
   const clickBookmark = async () => {
     try {
-      popupData.isBookmarked = !popupData.isBookmarked;
+      setIsBookmarked(!isBookmarked);
 
       await axios.post(
         `${serverURL}/bookmarks/${popupData.id}`,
@@ -142,7 +144,7 @@ const PopupPage = () => {
             <div className={styles.titleInfo}>
               <div className={styles.top}>
                 <div className={styles.bookmark} onClick={clickBookmark}>
-                  {popupData.isBookmarked ? (
+                  {isBookmarked ? (
                     <FaBookmark size="30" color="#4AC7CF" />
                   ) : (
                     <FaRegBookmark size="30" color="#4AC7CF" />
