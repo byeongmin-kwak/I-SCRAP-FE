@@ -88,7 +88,6 @@ const SearchPage = () => {
         }
       );
       setResults(response.data); // 받은 데이터를 상태로 저장
-      console.log(response.data);
     } catch (error) {
       console.error("Failed to fetch data", error);
     }

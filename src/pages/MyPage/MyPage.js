@@ -230,7 +230,6 @@ const MyPage = () => {
         withCredentials: true,
       });
       setProfileData(response.data); // 받아온 프로필 데이터 상태에 저장
-      console.log("profile", response.data);
     } catch (error) {
       console.error("프로필 데이터를 불러오는 중 오류 발생:", error);
     }
@@ -243,7 +242,6 @@ const MyPage = () => {
       });
       // 받아온 데이터를 날짜별로 분류
       const sortedData = sortDataByDate(response.data.popups);
-      console.log("bookmark", response.data);
       setPopupData(sortedData);
       setFilteredPopups(response.data.popups); // 처음에는 전체 데이터를 필터링된 상태로 설정
     } catch (error) {
@@ -337,8 +335,6 @@ const MyPage = () => {
     .slice(0, -1);
 
   //const selectedPopups = popupData[selectedDateString] || [];
-
-  console.log("selectedPopups", selectedPopups);
 
   const handleStatusChange = (status) => {
     if (currentStatus === status) {

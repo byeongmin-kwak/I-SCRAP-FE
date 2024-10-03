@@ -7,8 +7,6 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 const Nav = ({ isLoggedIn, username }) => {
   const [menuOpen, setMenuOpen] = useState(false); // 메뉴 열림/닫힘 상태 관리
 
-  console.log(isLoggedIn, username);
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen); // 메뉴 토글
   };

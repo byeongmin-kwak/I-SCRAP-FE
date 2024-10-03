@@ -39,7 +39,6 @@ function App() {
             withCredentials: true, // 쿠키를 함께 전송하여 인증 정보를 전달
           }
         );
-        console.log("fetchUserProfile", response.data);
         if (response.data.name !== null) {
           setIsLoggedIn(true); // 유저 정보가 있으면 로그인 상태로 설정
           setUsername(response.data.name); // 유저 이름 상태에 저장

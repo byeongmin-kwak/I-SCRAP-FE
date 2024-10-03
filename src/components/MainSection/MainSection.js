@@ -77,7 +77,6 @@ const MainSection = () => {
           withCredentials: true,
         });
         setCharacter(response.data); // 받은 이미지 URL을 상태에 저장
-        console.log("취향 테스트 캐릭터 이미지", response.data);
       } catch (error) {
         console.error("Error fetching character image:", error);
       }

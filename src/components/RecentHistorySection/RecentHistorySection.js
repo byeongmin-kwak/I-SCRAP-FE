@@ -25,7 +25,6 @@ const RecentHistorySection = () => {
       })
       .then((response) => {
         setHistory(response.data);
-        console.log(response.data);
       });
   }, []);
 

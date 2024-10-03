@@ -219,7 +219,6 @@ const BookmarkPopupSection = () => {
         });
         // 받아온 데이터를 날짜별로 분류
         const sortedData = sortDataByDate(response.data.popups);
-        console.log("bookmark", response.data);
         setPopupData(sortedData);
         setUsername(response.data.userName);
       } catch (error) {
@@ -308,8 +307,6 @@ const BookmarkPopupSection = () => {
     .slice(0, -1);
 
   const selectedPopups = popupData[selectedDateString] || [];
-
-  console.log("selectedPopups", selectedPopups);
 
   const getColorByIndex = (index) => {
     const colors = ["#4ac7cf", "#fedc74", "#eea984", "#8ac926", "#ff595e"]; // 원하는 색상 배열
