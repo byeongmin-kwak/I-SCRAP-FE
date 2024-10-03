@@ -163,13 +163,13 @@ export default function PopupTest() {
                         <div className={styles.optionButtons}>
                             <button
                                 className={getButtonStyle(3, 'N')}
-                                onClick={() => handleAnswer(3, 'S')}
+                                onClick={() => handleAnswer(3, 'N')}
                             >
                                 '우와.. 이런 건 어떻게 만드는 거지?<br></br>
                                 누가 만든 거지? 신기하다!'
                             </button>
                             <button
-                                className={getButtonStyle(3, 'N')}
+                                className={getButtonStyle(3, 'S')}
                                 onClick={() => handleAnswer(3, 'S')}
                             >
                                 '우와 신기하다!'

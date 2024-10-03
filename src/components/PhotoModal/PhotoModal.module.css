@@ -57,7 +57,8 @@
 .previewImage {
     width: 170px;
     height: 107.66px;
-    border-radius: 10px
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .emptyImageSlot {
