@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Container as MapDiv, NaverMap, Marker } from "react-naver-maps";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const PopupPage = () => {
   const clientId = process.env.REACT_APP_NAVER_MAP_CLIENT_ID;
@@ -14,6 +15,7 @@ const PopupPage = () => {
   const [error, setError] = useState("");
   const [isBookmarked, setIsBookmarked] = useState(false);
   const { popupId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPopupData = async () => {
@@ -225,7 +227,7 @@ const PopupPage = () => {
                 </div>
                 <div>{calculateAverageRating(popupData.reviews)}</div>
               </div>
-              <button>후기 작성</button>
+              <button onClick={() => navigate("/card-basic")}>후기 작성</button>
             </div>
             <div className={styles.reviewContainer}>
               {popupData.reviews.map((review) => (
