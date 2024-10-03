@@ -12,26 +12,26 @@ const StickerCanvas = ({ onStickerSelect }) => {
   };
 
   // '하트' 카테고리의 스티커 불러오기
-  const stickers = importAll(require.context('../../assets/3D', false, /\.svg$/));
-  const stickers2 = importAll(require.context('../../assets/2D', false, /\.svg$/));
-  const stickers3 = importAll(require.context('../../assets/Line', false, /\.svg$/));
-  const stickers4 = importAll(require.context('../../assets/Drawing', false, /\.svg$/));
-  const stickers5 = importAll(require.context('../../assets/Real', false, /\.svg$/));
-  const stickers6 = importAll(require.context('../../assets/Frame', false, /\.svg$/));
-  const stickers7 = importAll(require.context('../../assets/Icecream', false, /\.svg$/));
-  const stickers8 = importAll(require.context('../../assets/Character', false, /\.svg$/));
-
+  //const stickers = importAll(require.context('../../assets/3D', false, /\.svg$/));
+  //const stickers2 = importAll(require.context('../../assets/2D', false, /\.svg$/));
+  //const stickers3 = importAll(require.context('../../assets/Line', false, /\.svg$/));
+  //const stickers4 = importAll(require.context('../../assets/Drawing', false, /\.svg$/));
+  //const stickers5 = importAll(require.context('../../assets/Real', false, /\.svg$/));
+  //const stickers6 = importAll(require.context('../../assets/Frame', false, /\.svg$/));
+  //const stickers7 = importAll(require.context('../../assets/Icecream', false, /\.svg$/));
+  //const stickers8 = importAll(require.context('../../assets/Character', false, /\.svg$/));
+  //Object.values(stickers)
 
   // 카테고리별 스티커 설정
   const categories = {
-    "3D": Object.values(stickers),  // stickers 객체에서 값만 추출
-    "2D": Object.values(stickers2),
-    "선 드로잉": Object.values(stickers3),
-    "그림": Object.values(stickers4),
-    "실사": Object.values(stickers5),
-    "프레임/말풍선": Object.values(stickers6),
-    "아이스크림": Object.values(stickers7),
-    "캐릭터": Object.values(stickers8),
+    "3D": [],  // stickers 객체에서 값만 추출
+    "2D": [],
+    "선 드로잉": [],
+    "그림": [],
+    "실사": [],
+    "프레임/말풍선": [],
+    "아이스크림": [],
+    "캐릭터": [],
     // 추가적인 카테고리와 스티커 추가 가능
   };
 
