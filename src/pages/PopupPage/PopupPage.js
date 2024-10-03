@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Container as MapDiv, NaverMap, Marker } from "react-naver-maps";
 import { CiBookmark } from "react-icons/ci";
+import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 const PopupPage = () => {
   const clientId = process.env.REACT_APP_NAVER_MAP_CLIENT_ID;
@@ -30,6 +31,44 @@ const PopupPage = () => {
     };
     fetchPopupData(); // 컴포넌트 마운트 시 데이터 요청
   }, []);
+
+  // 평점 평균 계산 함수
+  const calculateAverageRating = (reviews) => {
+    if (!reviews || reviews.length === 0) return 0;
+
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    const averageRating = totalRating / reviews.length;
+    return averageRating.toFixed(1); // 소수점 한 자리까지 표시
+  };
+
+  // 별점 아이콘을 생성하는 함수
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating); // 꽉 찬 별의 개수
+    const hasHalfStar = rating - fullStars >= 0.5; // 반별이 필요한지 확인
+    const totalStars = 5;
+
+    const stars = [];
+
+    // 꽉 찬 별 추가
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<FaStar key={i} color="black" size="20px" />); // 노란색으로 채운 별
+    }
+
+    // 반 별 추가
+    if (hasHalfStar) {
+      stars.push(<FaStarHalfAlt key="half" color="black" size="20px" />);
+    }
+
+    // 빈 별 추가
+    const remainingStars = totalStars - fullStars - (hasHalfStar ? 1 : 0);
+    for (let i = 0; i < remainingStars; i++) {
+      stars.push(
+        <FaRegStar key={fullStars + i + 1} color="black" size="20px" />
+      );
+    }
+
+    return stars;
+  };
 
   const ReviewCard = ({ review }) => {
     return (
@@ -98,15 +137,17 @@ const PopupPage = () => {
               <ul>
                 <li>{popupData.location.address}</li>
                 <li>기간: {popupData.dateRange}</li>
-                <li>입장료: {popupData.fee}원</li>
+                <li>입장료: {popupData.fee}</li>
                 <li>
                   이용시간: <br />
-                  {popupData.operatingHours.split("\n").map((line, index) => (
-                    <React.Fragment key={index}>
-                      {line}
-                      <br />
-                    </React.Fragment>
-                  ))}
+                  <div style={{ lineHeight: "2.0" }}>
+                    {popupData.operatingHours.split("\n").map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </div>
                 </li>
                 <li>
                   팝업/전시 크기 정보:{" "}
@@ -157,8 +198,10 @@ const PopupPage = () => {
             <div className={styles.reviewTop}>
               <div style={{ display: "flex" }}>
                 <div>전체평점</div>
-                <div>별{/* <div></div> 별점 */}</div>
-                <div>별점</div>
+                <div>
+                  {renderStars(calculateAverageRating(popupData.reviews))}
+                </div>
+                <div>{calculateAverageRating(popupData.reviews)}</div>
               </div>
               <button>후기 작성</button>
             </div>
