@@ -12,9 +12,12 @@ import CardFrontRayout from '../CardFrontRayout/CardFrontRayout';
 import CardFrontLayoutRender from '../CardFrontLayoutRender/CardFrontLayoutRender';
 import TextEditor from '../TextEditor/TextEditor';
 import html2canvas from 'html2canvas';
+import { setSelectedLayout } from '../../store/frontLayoutSlice';
 import {
   setImage, addText, addSticker, updateText, updateSticker,
-  setSavedCardImage, removeSticker, removeText, setBrightness, setContrast, setSaturation, setHue, setCropScale, setRotation
+  setSavedCardImage, removeSticker, removeText, setBrightness, setContrast, setSaturation, setHue, setCropScale, setRotation,
+  setStickers,
+  setTexts
 } from '../../store/cardSlice';
 import { setFont, setSelectedFontColor } from '../../store/fontSlice';
 
@@ -94,8 +97,9 @@ export default function CardFrontCustom() {
   // Reset 기능
   const handleReset = () => {
     // 카드 상태 초기화
-    setUndoStack([]);
-    setRedoStack([]);
+    dispatch(setSelectedLayout(null));
+    dispatch(setStickers([]));
+    dispatch(setTexts([]));
   };
 
   const handleTextAdd = (text) => {
@@ -203,9 +207,7 @@ export default function CardFrontCustom() {
         </div>
         <div className='making-card-view'>
           <div className='adjust-buttons'>
-            <img src={GoBack} alt="Go back" onClick={handleUndo} />
-            <img src={GoForward} alt="Go forward" onClick={handleRedo} />
-            <img src={Reset} alt="Reset" onClick={handleReset} />
+            <img src={Reset} alt="Reset" onClick={handleReset} className='reset-button' />
           </div>
           <div>
             <div
