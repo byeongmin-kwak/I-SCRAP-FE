@@ -222,21 +222,22 @@ const MyPage = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchPopupData = async () => {
-      try {
-        const response = await axios.get(`${serverURL}/bookmarks/popups`, {
-          withCredentials: true,
-        });
-        // 받아온 데이터를 날짜별로 분류
-        const sortedData = sortDataByDate(response.data.popups);
-        console.log("bookmark", response.data);
-        setPopupData(sortedData);
-      } catch (error) {
-        console.error("Error fetching popup data:", error);
-      }
-    };
+  const fetchPopupData = async () => {
+    try {
+      const response = await axios.get(`${serverURL}/bookmarks/popups`, {
+        withCredentials: true,
+      });
+      // 받아온 데이터를 날짜별로 분류
+      const sortedData = sortDataByDate(response.data.popups);
+      console.log("bookmark", response.data);
+      setPopupData(sortedData);
+    } catch (error) {
+      console.error("Error fetching popup data:", error);
+    }
+  };
 
+  useEffect(() => {
+    fetchProfile();
     fetchPopupData(); // 컴포넌트 마운트 시 데이터 가져오기
   }, []);
 
