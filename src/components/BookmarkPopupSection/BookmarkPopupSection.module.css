@@ -82,6 +82,10 @@
   color: black;
 }
 
+.popupItem:hover {
+  cursor: pointer;
+}
+
 .popupIndicator {
   width: 12px;
   height: 12px;

@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import axios from "axios";
+import noHistoryImage from "../../assets/MainPage/RecentHistorySectionImage.svg";
 
 const RecentHistorySection = () => {
   const [swiper, setSwiper] = useState();
@@ -25,6 +26,17 @@ const RecentHistorySection = () => {
         console.log(response.data);
       });
   }, []);
+
+  if (!history || Object.keys(history).length === 0) {
+    return (
+      <div className={styles.RecentHistorySection}>
+        <img src={topImage} alt="" className={styles.topImage} />
+        <div className={styles.container}>
+          <img src={noHistoryImage} alt="" className={styles.noHistoryImage} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.RecentHistorySection}>

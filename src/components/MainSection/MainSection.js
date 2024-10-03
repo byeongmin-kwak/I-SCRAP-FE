@@ -6,8 +6,9 @@ import leftArrow from "../../assets/MainPage/MainSectionLeftArrow.svg";
 import image1 from "../../assets/MainPage/MainSectionImage1.svg";
 import image2 from "../../assets/MainPage/MainSectionImage2.svg";
 import image3 from "../../assets/MainPage/MainSectionImage3.svg";
+import axios from "axios";
 
-const screens = [
+const screens = (character) => [
   {
     id: 0,
     component: (
@@ -19,6 +20,7 @@ const screens = [
           </button>
         </div> */}
         <img src={image1} alt="Main" className={styles.image1} />
+        <img src={character} alt="Character" className={styles.character} />
       </div>
     ),
   },
@@ -42,6 +44,23 @@ const screens = [
 
 const MainSection = () => {
   const [currentScreen, setCurrentScreen] = useState(1);
+  const [character, setCharacter] = useState(null);
+
+  useEffect(() => {
+    // API 요청을 통해 이미지 URL 가져오기
+    const fetchCharacterImage = async () => {
+      try {
+        const response = await axios.get("/preferences/character", {
+          withCredentials: true,
+        });
+        setCharacter(response.data); // 받은 이미지 URL을 상태에 저장
+      } catch (error) {
+        console.error("Error fetching character image:", error);
+      }
+    };
+
+    fetchCharacterImage();
+  }, []);
 
   const handleScrollLeft = () => {
     setCurrentScreen((prevScreen) => (prevScreen === 1 ? -1 : prevScreen + 1));
@@ -76,7 +95,7 @@ const MainSection = () => {
           transform: `translateX(${currentScreen * 100}vw)`,
         }}
       >
-        {screens.map((screen, index) => (
+        {screens(character).map((screen, index) => (
           <div className={styles.screenContainer} key={index}>
             {screen.component}
           </div>

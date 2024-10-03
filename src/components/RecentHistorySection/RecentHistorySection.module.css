@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.noHistoryImage {
+  width: 100%;
+}
+
 .container {
   height: 1200px;
   background: linear-gradient(to bottom, #FEDC74, #ffefbb); /* 위쪽은 노란색, 아래쪽은 흰색 */

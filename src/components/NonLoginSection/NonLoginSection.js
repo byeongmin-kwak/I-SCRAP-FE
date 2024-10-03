@@ -21,7 +21,7 @@ const NonLoginSection = () => {
               1. 당신에게 꼭 맞는 팝업을 추천해줘요
             </span>
             <br /> <br /> <br /> 다음에 무슨 팝업을 갈까 고민을 하지
-            <br /> 않아도 저희 크래핑이 알려드려요!
+            <br /> 않아도 저희 I’scrap이 알려드려요!
           </div>
         </div>
         <div className={styles.section}>
