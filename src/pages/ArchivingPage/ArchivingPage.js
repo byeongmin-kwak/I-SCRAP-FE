@@ -41,10 +41,8 @@ export default function ArchivingPage() {
         fetchPopups();
     }, [currentPage]);
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentData = popups.slice(startIndex, startIndex + itemsPerPage);
-    const container1Data = currentData.slice(0, 9);
-    const container2Data = currentData.slice(9, 18);
+    const container1Data = popups.slice(0, 9);
+    const container2Data = popups.slice(9, 18);
 
     const handlePageClick = (pageNumber) => {
         setCurrentPage(pageNumber);
