@@ -311,6 +311,11 @@ const BookmarkPopupSection = () => {
 
   console.log("selectedPopups", selectedPopups);
 
+  const getColorByIndex = (index) => {
+    const colors = ["#4ac7cf", "#fedc74", "#eea984", "#8ac926", "#ff595e"]; // 원하는 색상 배열
+    return colors[index % colors.length]; // 인덱스를 색상 배열 길이로 나눈 나머지를 이용해 색상 선택
+  };
+
   if (!popupData || Object.keys(popupData).length === 0) {
     return (
       <div>
@@ -384,7 +389,12 @@ const BookmarkPopupSection = () => {
                     className={styles.popupItem}
                     onClick={() => handlePopupClick(popup._id)}
                   >
-                    <div className={styles.popupIndicator}></div>
+                    <div
+                      className={styles.popupIndicator}
+                      style={{
+                        backgroundColor: getColorByIndex(index),
+                      }}
+                    ></div>
                     <p className={styles.popupName}>{popup.name}</p>
                     <p className={styles.popupDate}>
                       {new Date(popup.dateRange.start).toLocaleDateString(
