@@ -44,6 +44,8 @@
 
 .image2 {
   width: 68%;
+  object-fit: contain;
+  margin-top: -10px;
 }
 
 .image3 {
