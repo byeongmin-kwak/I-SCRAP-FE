@@ -52,7 +52,7 @@ export default function Reply({ id }) {
             const addedComment = {
                 id: Date.now().toString(),
                 contents: newComment,
-                author: { name: savedUsername },
+                author: { name: '익명' },
                 createdDate: new Date().toISOString(),
                 subComments: [],
             };
@@ -79,7 +79,7 @@ export default function Reply({ id }) {
             const addedSubComment = {
                 id: Date.now().toString(),
                 contents: replyContent,
-                author: { name: savedUsername },
+                author: { name: '익명' },
                 createdDate: new Date().toISOString(),
             };
     
