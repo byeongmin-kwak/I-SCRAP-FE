@@ -51,6 +51,7 @@
   margin-right: 20px;
   white-space: nowrap;
   font-family: 'Noto Sans KR Medium', sans-serif;
+  font-size: 16px;
 }
 
 .filterOptionsContainer {
@@ -70,12 +71,12 @@
 }
 
 .filterOptions button {
-  padding: 8px 20px;
+  padding: 8px 18px;
   border-radius: 26px;
   border: none;
   background-color: white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   flex-shrink: 0;
   position: relative;
   font-family: 'Noto Sans KR Regular', sans-serif;
