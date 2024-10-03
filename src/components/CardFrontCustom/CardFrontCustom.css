@@ -256,6 +256,11 @@
     object-fit: cover;
 }
 
+.reset-button{
+    width: 20px;
+    cursor: pointer;
+}
+
 .used-sticker-list {
     display: flex;
     width: 530px;
