@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import rightArrow from "../../assets/MainPage/MainSectionRightArrow.svg";
 import leftArrow from "../../assets/MainPage/MainSectionLeftArrow.svg";
 import image1 from "../../assets/MainPage/MainSectionImage1.svg";
-import image2 from "../../assets/MainPage/MainSectionImage2.svg";
+import image2 from "../../assets/MainPage/MainSectionImage2.png";
 import image3 from "../../assets/MainPage/MainSectionImage3.svg";
 import axios from "axios";
 
