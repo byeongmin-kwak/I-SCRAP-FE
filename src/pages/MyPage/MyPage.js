@@ -13,6 +13,7 @@ import {
 } from "date-fns";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import calendarImage from "../../assets/calendarImage.svg";
+import { useNavigate } from "react-router-dom";
 
 const StyledCalendar1 = styled(Calendar)`
   .react-calendar {
@@ -125,8 +126,18 @@ const StyledCalendar1 = styled(Calendar)`
   }
 
   /* 주말 날짜 스타일 */
-  .react-calendar__month-view__days__day--weekend {
-    color: #f44336;
+  /* 토요일 날짜 스타일 */
+  .react-calendar__month-view__days__day--weekend:nth-child(7n) {
+    color: blue; /* 토요일을 파란색으로 */
+  }
+
+  /* 일요일 날짜 스타일 */
+  .react-calendar__month-view__days__day--weekend:nth-child(7n-6) {
+    color: #f44336; /* 일요일은 빨간색 */
+  }
+
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #777777;
   }
 
   .react-calendar__month-view__days__day--neighboringMonth {
@@ -201,11 +212,14 @@ const MyPage = () => {
   const [date, setDate] = useState(new Date()); // 선택된 날짜 상태
   const [currentStatus, setCurrentStatus] = useState("all");
   const [loading, setLoading] = useState(true);
-  const [weekPopupsLoading, setWeekPopupsLoading] = useState(true);
-  const [popups, setPopups] = useState([]);
   const [weekPopups, setWeekPopups] = useState([]);
   const [profileData, setProfileData] = useState(null); // 프로필 데이터를 저장할 상태
   const [popupData, setPopupData] = useState([]); // 데이터를 저장할 상태
+  const [filteredPopups, setFilteredPopups] = useState([]); // 필터링된 팝업 데이터를 저장할 상태
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPopupsForDate, setSelectedPopupsForDate] = useState([]);
+  const [selectedPopups, setSelectedPopups] = useState([]); // 선택한 날짜의 팝업 저장
+  const navigate = useNavigate();
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
@@ -231,6 +245,7 @@ const MyPage = () => {
       const sortedData = sortDataByDate(response.data.popups);
       console.log("bookmark", response.data);
       setPopupData(sortedData);
+      setFilteredPopups(response.data.popups); // 처음에는 전체 데이터를 필터링된 상태로 설정
     } catch (error) {
       console.error("Error fetching popup data:", error);
     }
@@ -238,8 +253,19 @@ const MyPage = () => {
 
   useEffect(() => {
     fetchProfile();
-    fetchPopupData(); // 컴포넌트 마운트 시 데이터 가져오기
+    fetchPopupData();
   }, []);
+
+  const handleLogoutClick = async () => {
+    try {
+      await axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/logout`, {
+        withCredentials: true,
+      });
+      window.location.href = "/"; // 로그아웃 후 메인 페이지로 이동
+    } catch (error) {
+      console.error("로그아웃 중 오류 발생:", error);
+    }
+  };
 
   // 날짜별로 팝업 데이터 분류하는 함수
   const sortDataByDate = (data) => {
@@ -310,7 +336,9 @@ const MyPage = () => {
     .replace(/\.\s*/g, "-")
     .slice(0, -1);
 
-  const selectedPopups = popupData[selectedDateString] || [];
+  //const selectedPopups = popupData[selectedDateString] || [];
+
+  console.log("selectedPopups", selectedPopups);
 
   const handleStatusChange = (status) => {
     if (currentStatus === status) {
@@ -318,6 +346,50 @@ const MyPage = () => {
     } else {
       setCurrentStatus(status);
     }
+  };
+
+  // 필터링 함수
+  const filterPopupsByStatus = (status) => {
+    if (status === "all") {
+      setFilteredPopups(popupData); // 모든 데이터를 보여줌
+    } else {
+      const now = new Date();
+      const filtered = popupData.filter((popup) => {
+        const popupEndDate = new Date(popup.dateRange.end);
+        const popupStartDate = new Date(popup.dateRange.start);
+
+        if (status === "ongoing") {
+          return popupStartDate <= now && popupEndDate >= now; // 현재 진행중인 팝업
+        } else if (status === "upcoming") {
+          return popupStartDate > now; // 진행 예정인 팝업
+        } else if (status === "ended") {
+          return popupEndDate < now; // 종료된 팝업
+        }
+        return true;
+      });
+      setFilteredPopups(filtered); // 필터링된 데이터를 상태에 저장
+    }
+  };
+
+  const handleDateClick = (date) => {
+    const dateString = date
+      .toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .replace(/\.\s*/g, "-")
+      .slice(0, -1); // 선택한 날짜를 문자열로 변환
+    const popupsForSelectedDate = popupData[dateString] || []; // 해당 날짜의 팝업 목록을 가져옴
+    setSelectedPopups(popupsForSelectedDate); // 선택한 날짜의 팝업을 저장
+    setIsModalOpen(true); // 모달 열기
+  };
+  const handleOverlayClick = () => {
+    setIsModalOpen(false); // 모달 창을 닫기 위한 상태 업데이트
+  };
+
+  const handlePopupClick = (id) => {
+    navigate(`/popup/${id}`); // 클릭 시 해당 경로로 이동
   };
 
   return (
@@ -356,12 +428,11 @@ const MyPage = () => {
           <div>로딩 중...</div>
         )}
         <div>
-          <button className={styles.editButton}>회원정보 수정</button>
-          <button className={styles.notificationButton}>팝업 알림 설정</button>
-          <button className={styles.logoutButton}>로그아웃</button>
+          <button className={styles.logoutButton} onClick={handleLogoutClick}>
+            로그아웃
+          </button>
         </div>
       </div>
-
       {/* 오른쪽 북마크 섹션 */}
       <div className={styles.bookmarkSection}>
         <h2>북마크한 팝업</h2>
@@ -379,6 +450,7 @@ const MyPage = () => {
             next2Label={null}
             prev2Label={null}
             tileClassName={tileClassName}
+            onClickDay={handleDateClick}
           />
         </div>
         <div className={styles.filterButtons}>
@@ -404,10 +476,8 @@ const MyPage = () => {
 
         {/* 북마크된 팝업 포스터를 표시하는 부분 */}
         <div className={styles.popupGrid}>
-          {loading ? (
-            <div>로딩 중...</div>
-          ) : popups.length > 0 ? (
-            popups.map((popup) => (
+          {filteredPopups.length > 0 ? (
+            filteredPopups.map((popup) => (
               <div key={popup.id} className={styles.popupCard}>
                 <div className={styles.imageContainer}>
                   <img src={popup.poster} alt={`${popup.name} Poster`} />
@@ -423,6 +493,44 @@ const MyPage = () => {
           )}
         </div>
       </div>
+      {/* 모달 */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay} onClick={handleOverlayClick}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className={styles.closeButton}
+            >
+              X
+            </button>
+            <h3>
+              {date.toLocaleDateString("ko-KR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                weekday: "long",
+              })}
+            </h3>
+            <div className={styles.popupList}>
+              {selectedPopups.length > 0 ? (
+                selectedPopups.map((popup) => (
+                  <div key={popup.id} className={styles.popupCard}>
+                    <img
+                      src={popup.poster}
+                      alt={popup.name}
+                      className={styles.popupImage}
+                    />
+                    <p>{popup.name}</p>
+                    <a href={`/popup/${popup._id}`}>자세히 보기</a>
+                  </div>
+                ))
+              ) : (
+                <p>해당 날짜에 팝업이 없습니다.</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
