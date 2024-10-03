@@ -24,7 +24,9 @@ const regionOptions = [
 const typeOptions = [
   "전체",
   "캐릭터",
+  "스포츠",
   "드라마",
+  "뷰티",
   "패션",
   "음악",
   "음식",
