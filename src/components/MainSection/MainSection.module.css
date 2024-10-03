@@ -48,6 +48,16 @@
   margin-top: -10px;
 }
 
+.clickableArea {
+  position: absolute;
+  top: 60%; /* 원하는 위치로 조정 */
+  left: 39%; /* 원하는 위치로 조정 */
+  width: 340px; /* 클릭할 영역의 너비 */
+  height: 80px; /* 클릭할 영역의 높이 */
+  cursor: pointer;
+  z-index: 2; /* 상위에 위치하도록 */
+}
+
 .image3 {
 }
 

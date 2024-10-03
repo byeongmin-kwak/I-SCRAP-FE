@@ -70,6 +70,10 @@
   overflow-y: auto;
 }
 
+.bookmark {
+  cursor: pointer;
+}
+
 .top {
   display: flex;
   gap: 20px;
