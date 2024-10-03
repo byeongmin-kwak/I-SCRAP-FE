@@ -234,6 +234,10 @@ const BookmarkPopupSection = () => {
     navigate(`/popup/${id}`); // 클릭 시 해당 경로로 이동
   };
 
+  const handleButtonClick = () => {
+    navigate("/my"); // 클릭 시 해당 경로로 이동
+  };
+
   // 날짜별로 팝업 데이터 분류하는 함수
   const sortDataByDate = (data) => {
     const sorted = {};
@@ -324,7 +328,9 @@ const BookmarkPopupSection = () => {
 
       {/* 이미지가 캘린더 헤더 위에 배치됨 */}
       <div className={styles.calendarWrapper}>
-        <div className={styles.button}>북마크 관리</div>
+        <div className={styles.button} onClick={handleButtonClick}>
+          북마크 관리
+        </div>
 
         <img
           src={calendarImage}
