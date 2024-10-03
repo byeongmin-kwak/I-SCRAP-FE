@@ -9,23 +9,9 @@ export default function Reply({ id }) {
     const [activeReplyId, setActiveReplyId] = useState(null); // 답글을 입력할 댓글 ID
     const [loading, setLoading] = useState(true); // 로딩 상태
     const [error, setError] = useState(null); // 에러 상태
-    const [profile, setProfile] = useState(null);
+    const savedUsername = localStorage.getItem("username") ? localStorage.getItem("username") : '익명';
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/profile`, {
-                    withCredentials: true, // 자격 증명 포함 설정
-                });
-                console.log('프로필 응답:', response.data); // 프로필 정보를 콘솔에 출력
-                setProfile(response.data);
-            } catch (error) {
-                console.error('프로필 가져오기 오류:', error);
-            }
-        };
-
-        fetchProfile();
-
         const fetchComments = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/${id}/comments`, {
@@ -186,7 +172,7 @@ export default function Reply({ id }) {
                                     <div className={styles.addSubReply}>
                                         <div className={styles.profile}>
                                             <div className={styles.img}></div>
-                                            <div className={styles.name}>{profile.name}</div>
+                                            <div className={styles.name}>{savedUsername}</div>
                                         </div>
                                         <input
                                             placeholder="답글을 작성해주세요."
@@ -212,7 +198,7 @@ export default function Reply({ id }) {
             <div className={styles.addReply}>
                 <div className={styles.profile}>
                     <div className={styles.img}></div>
-                    <div className={styles.name}>{profile.name}</div>
+                    <div className={styles.name}>{savedUsername}</div>
                 </div>
                 <input
                     placeholder="댓글을 작성해주세요."

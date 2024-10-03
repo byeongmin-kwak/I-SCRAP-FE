@@ -42,6 +42,7 @@ function App() {
         if (response.data.name !== null) {
           setIsLoggedIn(true); // 유저 정보가 있으면 로그인 상태로 설정
           setUsername(response.data.name); // 유저 이름 상태에 저장
+          localStorage.setItem("username", response.data.name);
         } else {
           setIsLoggedIn(false); // 유저 정보가 없으면 비로그인 상태로 설정
         }
