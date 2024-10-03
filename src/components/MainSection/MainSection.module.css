@@ -70,7 +70,6 @@
   height: 80px; /* 클릭할 영역의 높이 */
   cursor: pointer;
   z-index: 2; /* 상위에 위치하도록 */
-  background-color: beige;
   opacity: 0.7;
 }
 
@@ -82,7 +81,6 @@
   height: 80px; /* 클릭할 영역의 높이 */
   cursor: pointer;
   z-index: 2; /* 상위에 위치하도록 */
-  background-color: aqua;
   opacity: 0.7;
 
 }
