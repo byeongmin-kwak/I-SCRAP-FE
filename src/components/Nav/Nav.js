@@ -33,6 +33,10 @@ const Nav = ({ isLoggedIn, username }) => {
     window.location.href = "/login";
   };
 
+  const handleArchivingClick = () => {
+    window.location.href = '/archiving';
+  }
+
   const handleLogoutClick = async () => {
     try {
       await axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/logout`, {
@@ -72,7 +76,7 @@ const Nav = ({ isLoggedIn, username }) => {
       <ul className={`${styles.navbarMenu} ${menuOpen ? styles.active : ""}`}>
         <li onClick={handleHomeClick}>홈</li>
         <li onClick={handleSearchClick}>찾기</li>
-        <li>기록</li>
+        <li onClick={handleArchivingClick}>기록</li>
         <li onClick={handleMyClick}>My</li>
         {isLoggedIn ? (
           <>

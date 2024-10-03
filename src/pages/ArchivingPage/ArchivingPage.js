@@ -22,7 +22,9 @@ export default function ArchivingPage() {
     useEffect(() => {
         const fetchPopups = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews?page=${currentPage}`);
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews?page=${currentPage}`, {
+                    withCredentials: true, // 쿠키를 전달할 수 있게 설정
+                });
                 const fetchedData = response.data.map((item) => ({
                     id: item.id,
                     title: item.title,
@@ -35,9 +37,8 @@ export default function ArchivingPage() {
                 console.error('팝업 데이터를 가져오는 중 오류 발생:', error);
             }
         };
-
+    
         fetchPopups();
-
     }, [currentPage]);
 
     // 현재 페이지에 표시할 데이터 계산
@@ -66,13 +67,13 @@ export default function ArchivingPage() {
     // 실제로 삭제 요청을 보내는 함수
     const handleConfirmDelete = async () => {
         try {
-            // 서버로 선택된 팝업 ID들을 보내 삭제 요청
             await axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews`, {
                 data: {
                     reviewIds: selectedPopups // 선택된 팝업 ID 배열 전송
-                }
+                },
+                withCredentials: true, // 쿠키 전달 설정
             });
-
+    
             // 선택된 팝업 삭제 후 UI에서 팝업 제거
             const remainingPopups = popups.filter(popup => !selectedPopups.includes(popup.id));
             setPopups(remainingPopups); // 상태 업데이트
