@@ -3,8 +3,8 @@ import styles from "./PopupPage.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Container as MapDiv, NaverMap, Marker } from "react-naver-maps";
-import { CiBookmark } from "react-icons/ci";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 
 const PopupPage = () => {
   const clientId = process.env.REACT_APP_NAVER_MAP_CLIENT_ID;
@@ -31,6 +31,20 @@ const PopupPage = () => {
     };
     fetchPopupData(); // 컴포넌트 마운트 시 데이터 요청
   }, []);
+
+  const clickBookmark = async () => {
+    try {
+      await axios.post(
+        `${serverURL}/bookmarks/${popupData.id}`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+    } catch (error) {
+      console.error("Error updating bookmark:", error);
+    }
+  };
 
   // 평점 평균 계산 함수
   const calculateAverageRating = (reviews) => {
@@ -125,8 +139,12 @@ const PopupPage = () => {
             </div>
             <div className={styles.titleInfo}>
               <div className={styles.top}>
-                <div className={styles.bookmark}>
-                  <CiBookmark size="30" color="#4AC7CF" />
+                <div className={styles.bookmark} onClick={clickBookmark}>
+                  {popupData.isBookmarked ? (
+                    <FaBookmark size="30" color="#4AC7CF" />
+                  ) : (
+                    <FaRegBookmark size="30" color="#4AC7CF" />
+                  )}{" "}
                 </div>
                 <button>관련 페이지 바로가기</button>
               </div>
