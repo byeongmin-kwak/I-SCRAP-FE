@@ -8,10 +8,12 @@ import "swiper/css/navigation";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import axios from "axios";
 import noHistoryImage from "../../assets/MainPage/RecentHistorySectionImage.svg";
+import { useNavigate } from "react-router-dom";
 
 const RecentHistorySection = () => {
   const [swiper, setSwiper] = useState();
   const [history, setHistory] = useState([]);
+  const navigate = useNavigate();
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
 
@@ -23,9 +25,12 @@ const RecentHistorySection = () => {
       })
       .then((response) => {
         setHistory(response.data);
-        console.log(response.data);
       });
   }, []);
+
+  const handleButtonClick = () => {
+    navigate("/archiving"); // 클릭 시 해당 경로로 이동
+  };
 
   if (!history || Object.keys(history).length === 0) {
     return (
@@ -44,7 +49,9 @@ const RecentHistorySection = () => {
       <div className={styles.container}>
         <div className={styles.topText}>
           <div className={styles.title}>최근 쓴 기록</div>
-          <div className={styles.button}>전체보기</div>
+          <div className={styles.button} onClick={handleButtonClick}>
+            전체보기
+          </div>
         </div>
         <div>
           <div className={styles.content}>

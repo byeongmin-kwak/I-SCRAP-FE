@@ -21,7 +21,6 @@ const MonthlyPopupSection = () => {
           `${process.env.REACT_APP_SERVER_URL}/popups/monthly`
         );
         setMonthlyPopups(response.data);
-        console.log("monthlyPopups", response.data);
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
       }

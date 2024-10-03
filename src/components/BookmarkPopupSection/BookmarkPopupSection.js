@@ -219,7 +219,6 @@ const BookmarkPopupSection = () => {
         });
         // 받아온 데이터를 날짜별로 분류
         const sortedData = sortDataByDate(response.data.popups);
-        console.log("bookmark", response.data);
         setPopupData(sortedData);
         setUsername(response.data.userName);
       } catch (error) {
@@ -232,6 +231,10 @@ const BookmarkPopupSection = () => {
 
   const handlePopupClick = (id) => {
     navigate(`/popup/${id}`); // 클릭 시 해당 경로로 이동
+  };
+
+  const handleButtonClick = () => {
+    navigate("/my"); // 클릭 시 해당 경로로 이동
   };
 
   // 날짜별로 팝업 데이터 분류하는 함수
@@ -305,7 +308,10 @@ const BookmarkPopupSection = () => {
 
   const selectedPopups = popupData[selectedDateString] || [];
 
-  console.log("selectedPopups", selectedPopups);
+  const getColorByIndex = (index) => {
+    const colors = ["#4ac7cf", "#fedc74", "#eea984", "#8ac926", "#ff595e"]; // 원하는 색상 배열
+    return colors[index % colors.length]; // 인덱스를 색상 배열 길이로 나눈 나머지를 이용해 색상 선택
+  };
 
   if (!popupData || Object.keys(popupData).length === 0) {
     return (
@@ -324,7 +330,9 @@ const BookmarkPopupSection = () => {
 
       {/* 이미지가 캘린더 헤더 위에 배치됨 */}
       <div className={styles.calendarWrapper}>
-        <div className={styles.button}>북마크 관리</div>
+        <div className={styles.button} onClick={handleButtonClick}>
+          북마크 관리
+        </div>
 
         <img
           src={calendarImage}
@@ -378,7 +386,12 @@ const BookmarkPopupSection = () => {
                     className={styles.popupItem}
                     onClick={() => handlePopupClick(popup._id)}
                   >
-                    <div className={styles.popupIndicator}></div>
+                    <div
+                      className={styles.popupIndicator}
+                      style={{
+                        backgroundColor: getColorByIndex(index),
+                      }}
+                    ></div>
                     <p className={styles.popupName}>{popup.name}</p>
                     <p className={styles.popupDate}>
                       {new Date(popup.dateRange.start).toLocaleDateString(

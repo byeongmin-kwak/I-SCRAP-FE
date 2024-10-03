@@ -60,6 +60,9 @@ overflow: hidden;
   position: relative;
   border-radius: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .popupImage img {

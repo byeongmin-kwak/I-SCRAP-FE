@@ -7,8 +7,6 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 const Nav = ({ isLoggedIn, username }) => {
   const [menuOpen, setMenuOpen] = useState(false); // 메뉴 열림/닫힘 상태 관리
 
-  console.log(isLoggedIn, username);
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen); // 메뉴 토글
   };
@@ -34,8 +32,8 @@ const Nav = ({ isLoggedIn, username }) => {
   };
 
   const handleArchivingClick = () => {
-    window.location.href = '/archiving';
-  }
+    window.location.href = "/archiving";
+  };
 
   const handleLogoutClick = async () => {
     try {
@@ -48,23 +46,6 @@ const Nav = ({ isLoggedIn, username }) => {
     }
   };
 
-  // const deleteCookie = (name) => {
-  //   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.i-scrap-fe.vercel.app; secure; samesite=None`;
-  // };
-
-  // const handleLogoutClick = async () => {
-  //   try {
-  //     // 쿠키 삭제 (id_token, refresh_token)
-  //     deleteCookie("id_token");
-  //     deleteCookie("refresh_token");
-
-  //     // 로그아웃 후 메인 페이지로 이동
-  //     window.location.href = "/";
-  //   } catch (error) {
-  //     console.error("로그아웃 중 오류 발생:", error);
-  //   }
-  // };
-
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarLogo}>
@@ -76,8 +57,12 @@ const Nav = ({ isLoggedIn, username }) => {
       <ul className={`${styles.navbarMenu} ${menuOpen ? styles.active : ""}`}>
         <li onClick={handleHomeClick}>홈</li>
         <li onClick={handleSearchClick}>찾기</li>
-        <li onClick={handleArchivingClick}>기록</li>
-        <li onClick={handleMyClick}>My</li>
+        {isLoggedIn && (
+          <>
+            <li onClick={handleArchivingClick}>기록</li>
+            <li onClick={handleMyClick}>My</li>
+          </>
+        )}
         {isLoggedIn ? (
           <>
             <li className={styles.loginButton} onClick={handleLogoutClick}>
