@@ -37,7 +37,7 @@
   top: 50%;
   left: 24%;
   transform: translate(-50%, -50%);
-  width: 100px; /* 크기 조정 */
+  width: 340px; /* 크기 조정 */
   height: auto;
   z-index: 1; /* 겹쳐지게 설정 */
 }

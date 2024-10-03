@@ -46,11 +46,13 @@ const MainSection = () => {
   const [currentScreen, setCurrentScreen] = useState(1);
   const [character, setCharacter] = useState(null);
 
+  const serverURL = process.env.REACT_APP_SERVER_URL;
+
   useEffect(() => {
     // API 요청을 통해 이미지 URL 가져오기
     const fetchCharacterImage = async () => {
       try {
-        const response = await axios.get("/preferences/character", {
+        const response = await axios.get(`${serverURL}/preferences/character`, {
           withCredentials: true,
         });
         setCharacter(response.data); // 받은 이미지 URL을 상태에 저장
