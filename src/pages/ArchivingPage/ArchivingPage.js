@@ -85,6 +85,7 @@ export default function ArchivingPage() {
         }
     };
 
+    
     const handlePopupClick = (id) => {
         if (isDeleted) {
             if (selectedPopups.includes(id)) {
