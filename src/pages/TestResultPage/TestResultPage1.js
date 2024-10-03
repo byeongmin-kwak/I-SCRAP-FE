@@ -1,20 +1,20 @@
 import React from 'react';
-import ISTJ from '../../assets/TestResults/ISTJ.svg';
-import ISTP from '../../assets/TestResults/ISTP.svg';
-import ISFP from '../../assets/TestResults/ISFP.svg';
-import ISFJ from '../../assets/TestResults/ISFJ.svg';
-import INTP from '../../assets/TestResults/INTP.svg';
-import INFP from '../../assets/TestResults/INFP.svg';
-import INTJ from '../../assets/TestResults/INTJ.svg';
-import INFJ from '../../assets/TestResults/INFJ.svg';
-import ENFJ from '../../assets/TestResults/ENFJ.svg';
-import ENFP from '../../assets/TestResults/ENFP.svg';
-import ENTP from '../../assets/TestResults/ENTP.svg';
-import ESTP from '../../assets/TestResults/ESTP.svg';
-import ESTJ from '../../assets/TestResults/ESTJ.svg';
-import ENTJ from '../../assets/TestResults/ENTJ.svg';
-import ESFJ from '../../assets/TestResults/ESFJ.svg';
-import ESFP from '../../assets/TestResults/ESFP.svg';
+import ISTJ from '../../assets/TestResults/ISTJ.png';
+import ISTP from '../../assets/TestResults/ISTP.png';
+import ISFP from '../../assets/TestResults/ISFP.png';
+import ISFJ from '../../assets/TestResults/ISFJ.png';
+import INTP from '../../assets/TestResults/INTP.png';
+import INFP from '../../assets/TestResults/INFP.png';
+import INTJ from '../../assets/TestResults/INTJ.png';
+import INFJ from '../../assets/TestResults/INFJ.png';
+import ENFJ from '../../assets/TestResults/ENFJ.png';
+import ENFP from '../../assets/TestResults/ENFP.png';
+import ENTP from '../../assets/TestResults/ENTP.png';
+import ESTP from '../../assets/TestResults/ESTP.png';
+import ESTJ from '../../assets/TestResults/ESTJ.png';
+import ENTJ from '../../assets/TestResults/ENTJ.png';
+import ESFJ from '../../assets/TestResults/ESFJ.png';
+import ESFP from '../../assets/TestResults/ESFP.png';
 
 import './TestResultPage1.css'; // CSS 파일을 임포트하여 스타일 적용
 import { useParams } from 'react-router-dom';
