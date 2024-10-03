@@ -30,6 +30,13 @@ const MonthlyPopupSection = () => {
     fetchMonthlyPopups();
   }, []);
 
+  useEffect(() => {
+    // Swiper가 준비되면 autoplay 시작
+    if (swiper) {
+      swiper.autoplay.start(); // Autoplay 강제 시작
+    }
+  }, [swiper]);
+
   const handleCardClick = (id) => {
     navigate(`/popup/${id}`); // 클릭 시 해당 경로로 이동
   };
