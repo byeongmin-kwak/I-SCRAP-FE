@@ -406,7 +406,6 @@
 
 .popupList {
   display: flex;
-  flex-direction: column;
   gap: 15px; /* 팝업 목록 간격 */
 }
 
