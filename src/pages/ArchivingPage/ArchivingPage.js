@@ -3,53 +3,55 @@ import './ArchivingPage.css';
 import ExampleBack from '../../assets/CardBackImages/rayout1.svg';
 import DeletButton from '../../assets/deletbutton.svg';
 import ArchivingPopup from '../../components/ArchivingPopup/ArchivingPopup';
-import ArchivingDetailModal from '../../components/ArchivingDetailModal/ArchivingDetailModal'; 
-import SaveConfirmModal from '../../components/SaveConfirmModal/SaveConfirmModal'; 
+import ArchivingDetailModal from '../../components/ArchivingDetailModal/ArchivingDetailModal';
+import SaveConfirmModal from '../../components/SaveConfirmModal/SaveConfirmModal';
 import axios from 'axios';
 
 export default function ArchivingPage() {
     const [popups, setPopups] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [isDeleted, setIsDeleted] = useState(false); 
+    const [isDeleted, setIsDeleted] = useState(false);
     const [selectedPopups, setSelectedPopups] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false); 
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
     const [selectedPopupDetail, setSelectedPopupDetail] = useState(null);
     const savedUsername = localStorage.getItem("username") ? localStorage.getItem("username") : '익명';
-    const itemsPerPage = 18; 
+    const itemsPerPage = 18;
     const totalPages = 5; // 페이지네이션을 5페이지로 제한
 
     useEffect(() => {
         const fetchPopups = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews?page=${currentPage}`, {
-                    withCredentials: true, 
+                    withCredentials: true,
                 });
                 const fetchedData = response.data.map((item) => ({
                     id: item.id,
                     title: item.title,
-                    image: item.cardFront,  
+                    image: item.cardFront,
                     name: item.popupName,
                     date: item.visitDate,
                 }));
+                console.log(response.data);
                 setPopups(fetchedData);
             } catch (error) {
                 console.error('팝업 데이터를 가져오는 중 오류 발생:', error);
             }
         };
-    
+
         fetchPopups();
     }, [currentPage]);
-
+    
     const container1Data = popups.slice(0, 9);
     const container2Data = popups.slice(9, 18);
+    const placeholders = Array(9 - container2Data.length).fill(null);
 
     const handlePageClick = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
 
     const handleDeleteButtonClick = () => {
-        setIsDeleted(true); 
+        setIsDeleted(true);
     };
 
     const handleCompleteButtonClick = () => {
@@ -64,16 +66,16 @@ export default function ArchivingPage() {
         try {
             await axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews`, {
                 data: {
-                    reviewIds: selectedPopups 
+                    reviewIds: selectedPopups
                 },
-                withCredentials: true, 
+                withCredentials: true,
             });
-    
+
             const remainingPopups = popups.filter(popup => !selectedPopups.includes(popup.id));
             setPopups(remainingPopups);
             setSelectedPopups([]);
             setIsDeleted(false);
-            setIsConfirmModalOpen(false); 
+            setIsConfirmModalOpen(false);
         } catch (error) {
             console.error('팝업 삭제 중 오류 발생:', error);
         }
@@ -89,7 +91,7 @@ export default function ArchivingPage() {
         } else {
             const popup = popups.find(popup => popup.id === id);
             setSelectedPopupDetail(popup);
-            setIsModalOpen(true); 
+            setIsModalOpen(true);
         }
     };
 
@@ -153,6 +155,10 @@ export default function ArchivingPage() {
                                     isSelected={selectedPopups.includes(popup.id)}
                                     onClick={handlePopupClick}
                                 />
+                            ))}
+                            {/* placeholder 추가 */}
+                            {placeholders.map((_, index) => (
+                                <div key={index} className="popup-placeholder"></div>
                             ))}
                         </div>
                     </div>

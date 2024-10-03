@@ -25,7 +25,7 @@
 
 .popup-search-button {
     margin-top: 40px;
-    margin-left: 620px;
+    margin-left: 350px;
     width: 163px;
     height: 40px;
     background: #FEDC74;
@@ -87,6 +87,7 @@
 }
 
 .note-title-text {
+    width: 400px;
     margin-left: 115px;
     margin-top: 60px;
     color: black;
@@ -149,4 +150,10 @@
 .pagination span.active {
     border-radius: 1.87px;
     border: 2px #D9D9D9 solid
+}
+
+.popup-placeholder {
+    visibility: hidden; /* 보이지 않지만 자리 차지 */
+    width: 140px;
+    height: 167px;
 }
