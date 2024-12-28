@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# 팝업스토어 정보 제공 및 기록 서비스 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/2321e30d-a9d2-49b1-b7da-7ecce75d7b0e" width="400"/>
+</div>
 
-## Available Scripts
+## 프로젝트 소개 🎉
 
-In the project directory, you can run:
+**현대 소비자는 특별한 '경험'을 추구합니다.**  
+우리의 프로젝트는 방문자가 자신의 취향에 맞는 팝업스토어를 쉽게 발견하고, 이를 통해 더 나은 경험을 제공하기 위해 시작되었습니다.  
+팝업스토어 방문을 더 편리하고 흥미롭게 만드는 서비스로, 소비자들에게 잊지 못할 순간을 선사합니다.  
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 배경 🌟
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+현대 소비자들은 제품이나 서비스를 단순히 ‘소유’하는 것보다 특별한 ‘경험’을 중요시합니다.  
+이러한 변화 속에서 팝업스토어는 소비자의 적극적인 참여와 경험을 유도하는 **강력한 마케팅 도구**로 주목받고 있습니다.  
+그러나 팝업스토어의 다양성 때문에 방문자가 자신의 **취향에 맞는 팝업스토어**를 찾는 데 어려움을 겪는 경우가 많습니다.  
 
-### `npm test`
+**우리 서비스는 다음과 같은 니즈를 해결합니다:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 방문자에게 **맞춤형 팝업스토어 정보를 제공**  
+- **흥미로운 기록 방식**으로 방문 경험을 극대화  
+- 소비자와 팝업스토어 간의 긍정적인 상호작용 지원  
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 주요 기능 ✨
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. **통합 팝업스토어 리스트**
+- 팝업스토어에 대한 정보를 **한눈에 확인**  
+- 다양한 스토어를 쉽게 탐색 가능  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. **북마크 및 오픈 알림**
+- 관심 있는 팝업스토어를 **북마크**  
+- 오픈 일정에 맞춰 **알림 서비스 제공**  
 
-### `npm run eject`
+### 3. **검색 및 필터링**
+- **날짜, 지역, 분야별 카테고리**로 원하는 팝업을 빠르게 검색 가능  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 4. **일정 관리**
+- 북마크한 팝업스토어의 일정을 **캘린더로 관리**  
+- 개인화된 일정 확인 기능  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 5. **추억 공유 및 커스텀 카드 제작**
+- 팝업스토어에서 찍은 사진으로 **레이아웃 & 스티커**를 활용한 커스텀 카드 제작  
+- 다른 사용자들과 **후기 공유**  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 프로젝트 진행 🤝
 
-## Learn More
+이 프로젝트는 **소프트웨어융합대학**과 **예술디자인대학**의 협업으로 진행되었습니다.  
+디자인적으로 신경을 많이 쓴 프로젝트로, 소비자 경험과 시각적 즐거움을 극대화했습니다.  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **팀 구성**: 개발자 4명, 디자이너 2명  
+- **디자인 포인트**: UI/UX에 집중하여 시각적 매력과 사용성을 모두 잡음  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 기술 스택 🔧
 
-### Code Splitting
+- **Frontend**: React  
+- **Backend**: Node.js  
+- **배포**
+  - 프론트엔드: [Vercel](https://vercel.com)  
+  - 백엔드: [AWS](https://aws.amazon.com)  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 프로젝트 포스터 🎨
 
-### Analyzing the Bundle Size
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/05c0234a-4d7e-475d-9e10-2e605628fbd1"/>
+</div>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## 배포 링크 🌐
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [서비스 바로가기](https://i-scrap-fe.vercel.app/)
