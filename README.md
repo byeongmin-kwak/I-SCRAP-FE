@@ -4,12 +4,17 @@
   <img src="https://github.com/user-attachments/assets/2321e30d-a9d2-49b1-b7da-7ecce75d7b0e" width="400"/>
 </div>
 
+## 프로젝트 포스터 🎨
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/05c0234a-4d7e-475d-9e10-2e605628fbd1"/>
+</div>
+
 ## 프로젝트 소개 🎉
 
 **현대 소비자는 특별한 '경험'을 추구합니다.**  
 우리의 프로젝트는 방문자가 자신의 취향에 맞는 팝업스토어를 쉽게 발견하고, 이를 통해 더 나은 경험을 제공하기 위해 시작되었습니다.  
 팝업스토어 방문을 더 편리하고 흥미롭게 만드는 서비스로, 소비자들에게 잊지 못할 순간을 선사합니다.  
-
 
 ## 배경 🌟
 
@@ -61,12 +66,6 @@
 - **배포**
   - 프론트엔드: [Vercel](https://vercel.com)  
   - 백엔드: [AWS](https://aws.amazon.com)  
-
-## 프로젝트 포스터 🎨
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/05c0234a-4d7e-475d-9e10-2e605628fbd1"/>
-</div>
 
 
 ## 배포 링크 🌐
